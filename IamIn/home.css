@@ -1,0 +1,44 @@
+body {
+    font: 15px/1 sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: antiquewhite;
+}
+
+.container {
+    width: 100%;
+    height: 15%;
+    margin: auto;
+    overflow: hidden;
+    background-color: white;
+}
+header #title {
+    float: left;
+    height: 64px;
+    width: 160px;
+}
+
+header #navBar {
+    float: right;
+    width: 50%;
+    height: 100%;
+    margin-top: 1.5%;
+
+}
+
+header li {
+    padding-right:8%;
+    display: inline;
+}
+
+header li a {
+    color: brown;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+header {
+    border-bottom: darksalmon 4px solid;
+}
+
+
