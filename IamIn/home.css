@@ -1,44 +1,67 @@
-body {
+html, body {
     font: 15px/1 sans-serif;
-    padding: 0;
-    margin: 0;
-    background-color: antiquewhite;
-}
-
-.container {
-    width: 100%;
-    height: 15%;
-    margin: auto;
-    overflow: hidden;
-    background-color: white;
-}
-header #title {
-    float: left;
-    height: 64px;
-    width: 160px;
-}
-
-header #navBar {
-    float: right;
-    width: 50%;
     height: 100%;
-    margin-top: 1.5%;
-
+    text-align: center;
 }
 
-header li {
-    padding-right:8%;
-    display: inline;
+.list-group-item {
+    text-align: center;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    border: none;
+    font-size: 18px;
+}
+.list-group {
+    background-color: black;
 }
 
-header li a {
-    color: brown;
-    text-decoration: none;
+.navbar-header {
+    color: blueviolet;
+}
+
+.wallpaper {
+    height: 100%;
+    border-bottom: black 4px solid;
+    background: url("images/event2.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+h2 {
     text-transform: uppercase;
+    color: #9fcdff;
 }
 
-header {
-    border-bottom: darksalmon 4px solid;
+.navbar {
+    margin-bottom: 0;
+    border-radius: unset;
 }
+
+.homeContent {
+    background-color: black;
+    opacity: 0.7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    margin-left: -200px; /* width divided by 2 */
+    margin-top: -110px;
+}
+
+@media screen and (max-width: 768px) { /*xs device and also height has to be done!*/
+    .homeContent {
+        margin-top: -10px;
+    }
+}
+
+#help {
+    background-color: black;
+    border-bottom: black 4px solid;
+}
+
+
 
 

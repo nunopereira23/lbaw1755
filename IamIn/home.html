@@ -1,35 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> About </title>
+    <title> I am In! | Welcome </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"> I am In! </a>
+            <a class="navbar-brand" href="home.html"> I am In! </a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="home.html">Home</a></li>
-            <li><a href="#">Events </a></li>
-            <li><a href="#">Create Event</a></li>
+            <li><a href="events.html">Events </a></li>
+            <li><a href="create_event.html">Create Event</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Auth <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Sign in</a></li>
-                    <li><a href="#">Sign up</a></li>
+                    <li><a href="#">SIGN UP</a></li>
+                    <li><a href="#">SIGN IN</a></li>
                 </ul>
             </li>
         </ul>
     </div>
 </nav>
-</head>
-
-<body>
-
-
+<div class="homeContent">
+    <div id="title">
+        <h2> How to start? </h2>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"> <a href="#"> Sign up </a></li>
+        <li class="list-group-item"> <a href="#"> Fill profile information </a> </li>
+        <li class="list-group-item"> <a href="#"> Create events </a></li>
+        <li class="list-group-item"> Invite friends </li>
+        <li class="list-group-item"> Share images and files </li>
+        <li class="list-group-item"> Create polls and discussions </li>
+        <li class="list-group-item"> ENJOY! </li>
+    </ul>
+</div>
+<div class="wallpaper"> </div>
 </body>
+<footer id="help">
+    <div class="footer-copyright py-3 text-center">
+
+        <div class="container-fluid">
+            <ul class="list-inline">
+                <li class="list-inline-item"> <a href="about.html"> ABOUT </a></li>
+                <li class="list-inline-item"> <a href="faq.html"> FAQ </a> </li>
+                <li class="list-inline-item"> <a href="contact.html"> CONTACT US </a></li>
+            </ul>
+        </div>
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid">
+                © 2018 I am In!
+            </div>
+        </div>
+
+    </div>
+</footer>
 </html>
