@@ -1,0 +1,28 @@
+html, body {
+    font-family: Candara;
+    font-size: 17px;
+    height: 100%;
+    text-align: center;
+    background-color: #1b1e21;
+    width: 100%;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: unset;
+    background-color: black;
+    font-size: 16px;
+}
+h3, .col-sm {
+    color: white;
+}
+
+.author {
+    height: 190px;
+    width: 190px;
+    background-color: #abdde5;
+    border-radius: 50%;
+
+}
+
+
