@@ -1,5 +1,6 @@
 html, body {
-    font: 15px/1 sans-serif;
+    font-family: Candara;
+    font-size: 17px;
     height: 100%;
     text-align: center;
 }
@@ -7,17 +8,8 @@ html, body {
 .list-group-item {
     text-align: center;
     color: white;
-    background-color: black;
-    font-weight: bold;
+    background-color: #1b1e21;
     border: none;
-    font-size: 18px;
-}
-.list-group {
-    background-color: black;
-}
-
-.navbar-header {
-    color: blueviolet;
 }
 
 .wallpaper {
@@ -29,32 +21,22 @@ html, body {
     background-attachment: fixed;
 }
 
-h2 {
+#title {
     text-transform: uppercase;
-    color: #9fcdff;
+    color: white;
+    border-bottom: black 1px outset;
 }
 
 .navbar {
     margin-bottom: 0;
     border-radius: unset;
-}
-
-.homeContent {
     background-color: black;
-    opacity: 0.7;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 200px;
-    margin-left: -200px; /* width divided by 2 */
-    margin-top: -110px;
+    font-size: 16px;
 }
 
-@media screen and (max-width: 768px) { /*xs device and also height has to be done!*/
-    .homeContent {
-        margin-top: -10px;
-    }
+.container {
+    background-color: #1b1e21;
+    width: 100%;
 }
 
 #help {
