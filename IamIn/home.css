@@ -13,7 +13,7 @@ html, body {
 }
 
 .wallpaper {
-    height: 100%;
+    min-height: 100%;
     border-bottom: black 4px solid;
     background: url("images/event2.jpg");
     background-size: cover;
