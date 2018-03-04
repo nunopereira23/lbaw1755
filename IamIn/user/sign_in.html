@@ -43,6 +43,14 @@
             padding-bottom:  15px;
         }
 
+        .row {
+            margin-left: 23%;
+        }
+
+        .radio-inline {
+            margin-left: 26%;
+        }
+
     </style>
 
 </head>
@@ -153,6 +161,7 @@
                             <input type="text" class="form-control" name="phonenumber" placeholder="Phone Number">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="password" class="col-md-3 control-label">Old Password</label>
                         <div class="col-md-9">
@@ -173,6 +182,36 @@
                             <input type="password" class="form-control" name="conf_passwd" placeholder="Confirmation">
                         </div>
                     </div>
+
+                    <label for="birth">
+                        Birth Date
+                    </label>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-md-4">
+                            <select class="form-control">
+                                <option value="Month">Month</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <select class="form-control">
+                                <option value="Day">Day</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <select class="form-control">
+                                <option value="Year">Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineCheckbox1" value="male" />
+                        Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineCheckbox2" value="female" />
+                        Female
+                    </label>
 
                     <div class="form-group">
                         <label for="input-group" class="col-md-3 control-label">Upload Profile Picture</label>

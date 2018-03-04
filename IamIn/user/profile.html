@@ -31,11 +31,41 @@
         </div>
     </nav>
 
+    <style>
+
+        body{
+            background-color: #4d4d4d;
+        }
+
+        .panel {
+            transform: translate(100px);
+            margin-top: 40px;
+            margin-right: 180px;
+            padding-bottom: 50px;
+        }
+
+        a.btn:hover {
+            -webkit-transform: scale(1.01);
+            -moz-transform: scale(1.01);
+            -o-transform: scale(1.01);
+        }
+        a.btn {
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            -o-transform: scale(0.8);
+            -webkit-transition-duration: 0.5s;
+            -moz-transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+        }
+
+    </style>
+
 </head>
 <body>
 
 <div class="container">
     <div class="row">
+
         <div class="panel panel-default">
             <div class="panel-heading"><h4>User Profile</h4></div>
             <div class="panel-body">
@@ -49,7 +79,10 @@
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
                     <div class="container">
                         <h2>Name</h2>
-
+                        <a href="#" class="btn btn-primary a-btn-slide-text">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <span><strong>Edit Profile</strong></span>
+                        </a>
                     </div>
                     <hr>
                     <ul class="container details">
