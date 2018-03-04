@@ -1,0 +1,9 @@
+.map{
+	width:100%;
+	height:300px;
+}
+
+#new_comment{
+	min-height:100px;
+	max-height:200px;
+}
