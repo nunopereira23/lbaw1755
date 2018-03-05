@@ -1,0 +1,32 @@
+html, body {
+    font-family: Candara;
+    font-size: 17px;
+    height: 100%;
+    text-align: center;
+    background-color: #1b1e21;
+    width: 100%;
+}
+
+.navbar {
+    border-radius: unset;
+    background-color: black;
+    font-size: 16px;
+}
+h3, .col-sm {
+    color: white;
+}
+h2 {
+    color: #abdde5;
+}
+p {
+    color: #b9bbbe;
+}
+img {
+    height: 160px;
+    width: 160px;
+    background-color: #abdde5;
+    border-radius: 50%;
+
+}
+
+

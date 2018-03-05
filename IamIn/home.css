@@ -1,44 +1,49 @@
-body {
-    font: 15px/1 sans-serif;
-    padding: 0;
-    margin: 0;
-    background-color: antiquewhite;
+html, body {
+    font-family: Candara;
+    font-size: 17px;
+    height: 100%;
+    text-align: center;
+}
+
+.list-group-item {
+    text-align: center;
+    color: white;
+    background-color: #1b1e21;
+    border: none;
+}
+
+.wallpaper {
+    min-height: 100%;
+    border-bottom: black 4px solid;
+    background: url("images/event2.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+#title {
+    text-transform: uppercase;
+    color: white;
+    border-bottom: black 1px outset;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: unset;
+    background-color: black;
+    font-size: 16px;
 }
 
 .container {
+    background-color: #1b1e21;
     width: 100%;
-    height: 15%;
-    margin: auto;
-    overflow: hidden;
-    background-color: white;
-}
-header #title {
-    float: left;
-    height: 64px;
-    width: 160px;
 }
 
-header #navBar {
-    float: right;
-    width: 50%;
-    height: 100%;
-    margin-top: 1.5%;
-
+#help {
+    background-color: black;
+    border-bottom: black 4px solid;
 }
 
-header li {
-    padding-right:8%;
-    display: inline;
-}
 
-header li a {
-    color: brown;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-header {
-    border-bottom: darksalmon 4px solid;
-}
 
 
