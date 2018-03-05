@@ -1,10 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Events </title>
-</head>
-<body>
+<title> I am In! | Welcome </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-grid.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="events.css">
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="home.html"> I am In! </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="events.html">EVENTS </a></li>
+            <li><a href="create_event.html">CREATE EVENT</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Username <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="user/profile.html"> Profile </a></li>
+                    <li><a href="my_events.html"> My events </a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+</head>
+
+<body>
+<div class="container">
+    <h1>Public events</h1>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="row">
+                <h3>Search for the events</h3>
+            </div>
+            <div class="row">
+                <h4>Select a date:</h4>
+            </div>
+            <div class="row">
+                <input type="email" class="form-control" id="email" placeholder="From">
+                <br>
+                <input type="password" class="form-control" id="pwd" placeholder="To">
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="form-group">
+                    <select class="form-control" id="sel1">
+                        <option><p>Type of event</p></option>
+                        <option><p>Music</p></option>
+                        <option><p>Historical</p></option>
+                        <option><p>Trip</p></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <select class="form-control " id="sel1">
+                        <option><p>Order by</p></option>
+                        <option><p>Date</p></option>
+                        <option><p>Alphabetical</p></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value=""> Include past events
+                </label>
+            </div>
+
+            <br>
+            <div class="row">
+                <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-search"></span> Search</button>
+                <button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-remove"></span> Clear</button>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <div class="row">
+                <h3>You may be interested</h3>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 1</h4>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 2</h4>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 3</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 4</h4>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 5</h4>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 6</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 7</h4>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 8</h4>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="images/event_pic.jpg" alt="" width="200" height="120">
+                    <h4>Event 9</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+
+<footer class="help">
+    <div class="footer-copyright py-3 text-center">
+        <div class="container-fluid">
+            © 2018 I am In!
+        </div>
+    </div>
+</footer>
+
 </html>
