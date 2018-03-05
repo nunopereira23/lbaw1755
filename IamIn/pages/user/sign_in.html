@@ -7,6 +7,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="body_navbar_footer.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -16,16 +17,16 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="home.html"> I am In! </a>
+                <a class="navbar-brand" href="../home/home.html"> I am In! </a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="events.html">EVENTS </a></li>
-                <li><a href="create_event.html">CREATE EVENT</a></li>
+                <li><a href="../events/events.html">EVENTS </a></li>
+                <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span
                         class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">SIGN UP</a></li>
-                        <li><a href="#">SIGN IN</a></li>
+                        <li><a href="../user/sign_in.html">SIGN IN</a></li>
                     </ul>
                 </li>
             </ul>
@@ -34,10 +35,6 @@
 
 
     <style media="screen" type="text/css">
-
-        body {
-            background-color: #4d4d4d;
-        }
 
         .input-group-btn {
             padding-bottom:  15px;
@@ -275,23 +272,12 @@
 
 </body>
 
-<footer id="help">
+<footer class="copyright">
     <div class="footer-copyright py-3 text-center">
-
-        <div class="container-fluid">
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="about.html"> ABOUT </a></li>
-                <li class="list-inline-item"><a href="faq.html"> FAQ </a></li>
-                <li class="list-inline-item"><a href="contact.html"> CONTACT US </a></li>
-            </ul>
+        <div class="container">
+            <hr>
+            © 2018 I am In!
         </div>
-        <div class="footer-copyright py-3 text-center">
-            <div class="container-fluid">
-                © 2018 I am In!
-            </div>
-        </div>
-
     </div>
 </footer>
-
 </html>

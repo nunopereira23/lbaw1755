@@ -1,32 +1,25 @@
 html, body {
-    font-family: Candara;
+    font-family: Arial, sans-serif;
     font-size: 17px;
-    height: 100%;
     text-align: center;
-    background-color: #1b1e21;
-    width: 100%;
+    background-color: white;
+    color: darkslategrey;
 }
 
 .navbar {
     border-radius: unset;
-    background-color: black;
+    border-bottom: #2c3e50;
+    background-color: #2c3e50;
     font-size: 16px;
 }
-h3, .col-sm {
-    color: white;
-}
-h2 {
-    color: #abdde5;
-}
-p {
-    color: #b9bbbe;
-}
-img {
-    height: 160px;
-    width: 160px;
-    background-color: #abdde5;
-    border-radius: 50%;
 
+img {
+    width: 180px;
+    height: 180px;
+}
+
+.copyright {
+    color: #2c3e50;
 }
 
 
