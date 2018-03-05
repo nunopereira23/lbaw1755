@@ -1,0 +1,74 @@
+.map{
+	width:100%;
+	height:300px;
+}
+
+#event_description{
+	min-height:100px;
+	max-height:150px;
+}
+
+
+hr { background-color: white; height: 1px; border: 0; }
+
+html, body {
+    font-family: Candara;
+    font-size: 17px;
+    background-color:  #1b1e21;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.container a {
+    color: #383d41;
+}
+
+
+.navbar {
+    border-radius: unset;
+    background-color: black;
+    font-size: 16px;
+}
+
+h3, .col-sm {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+h3{
+	color: black;
+}
+
+.list-group-item .custom-control-label{
+	color:black;
+}
+
+.navbar {
+    border-radius: unset;
+    background-color: black;
+    font-size: 16px;
+}
+
+.container a {
+    color: black;
+}
+
+.card,.comment-content,.textarea,.breadcrumb{
+	opacity:0.95;
+}
+
+.help {
+    background-color: black;
+    border-bottom: black 4px solid;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+}
