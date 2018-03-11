@@ -1,11 +1,11 @@
 .map{
-	width:100%;
-	height:300px;
+    width:100%;
+    height:300px;
 }
 
 #event_description{
-	min-height:100px;
-	max-height:150px;
+    min-height:100px;
+    max-height:150px;
 }
 
 html, body {
@@ -16,7 +16,7 @@ html, body {
     min-height: 100%;
     position: absolute;
     color: darkslategrey;
-	line-height: 1.3;
+    line-height: 1.3;
 }
 
 .container a {
@@ -24,15 +24,7 @@ html, body {
 }
 
 .navbar-dark .navbar-brand {
-	color: rgba(255,255,255,.5);
-}
-
-.navbar-dark .navbar-brand {
-    color: #bfbfbf;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: #bfbfbf;
+    color: rgba(255,255,255,.5);
 }
 
 .navbar {
@@ -59,11 +51,12 @@ h2 {
 }
 
 h3{
-	color: black;
+    color: black;
 }
 
+
 .card,.comment-content,.textarea,.breadcrumb{
-	opacity:0.95;
+    opacity:0.95;
 }
 
 .help {
@@ -74,8 +67,4 @@ h3{
     left: 0;
     width: 100%;
     height: 60px;
-}
-
-.copyright {
-    color: #2c3e50;
 }
