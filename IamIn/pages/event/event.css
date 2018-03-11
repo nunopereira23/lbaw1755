@@ -1,5 +1,4 @@
 .map{
-	width:100%;
 	height:300px;
 }
 
@@ -12,6 +11,13 @@
 	font-size:13px;
 }
 
+.event_img {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
 
 html, body {
     font-family: Arial, sans-serif;
@@ -51,9 +57,7 @@ h3, .col-sm {
     color: white;
 }
 
-h2 {
-    color: white;
-}
+
 
 h3{
 	color: #abdde5;
