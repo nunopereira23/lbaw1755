@@ -7,7 +7,7 @@ h3 {font-size:20px;font-weight:600;}
 h4 {font-size:18px;font-weight:600;}
 h5 {font-size:16px;font-weight:600;}
 a {color:#000;}
-a:hover {color:#dd0000;}
+a:hover {color:#FFD700;}
 
 
 .navbar {
@@ -33,7 +33,7 @@ a:hover {color:#dd0000;}
 
 /**************** FOOTER CSS ********************/
 /* Footer */
-.footer {border-top:2px solid #dd0000;position:center; background-color: #fff;color: #000;padding: 30px 0 30px;}
+.footer {border-top:2px solid #FFD700;position:center; background-color: #fff;color: #000;padding: 30px 0 30px;}
 .footer h5:after {
     content: '';
     display: block;
