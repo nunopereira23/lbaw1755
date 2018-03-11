@@ -22,6 +22,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="../events/events.html">EVENTS </a></li>
                 <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
+                <li><a href="../faq/faq.html">FAQ</a></li>
+                <li><a href="../contact/contact.html">CONTACT US</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span
                         class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -37,15 +39,29 @@
     <style media="screen" type="text/css">
 
         .input-group-btn {
-            padding-bottom:  15px;
+            padding-bottom: 15px;
         }
 
-        .row {
-            margin-left: 23%;
+        .col-xs-3 {
+            margin-left: 3%;
         }
 
         .radio-inline {
             margin-left: 26%;
+
+        }
+
+        .col-md-9 {
+            margin-top: 8px;
+        }
+
+        .col-md-3 {
+            padding: 2px;
+        }
+
+        .upload-box {
+            margin-top: 3%;
+            margin-left: 3%;
         }
 
     </style>
@@ -160,13 +176,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="col-md-3 control-label">Old Password</label>
-                        <div class="col-md-9">
-                            <input type="password" class="form-control" name="old_passwd" placeholder="Old Password">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="password" class="col-md-3 control-label">New Password</label>
                         <div class="col-md-9">
                             <input type="password" class="form-control" name="new_passwd" placeholder="New Password">
@@ -180,42 +189,53 @@
                         </div>
                     </div>
 
-                    <label for="birth">
-                        Birth Date
-                    </label>
 
                     <div class="row">
-                        <div class="col-xs-4 col-md-4">
-                            <select class="form-control">
-                                <option value="Month">Month</option>
-                            </select>
+                        <div class="col-md-3 control-label">
+                            <label for="birth">
+                                Birth Date
+                            </label>
                         </div>
-                        <div class="col-xs-4 col-md-4">
-                            <select class="form-control">
-                                <option value="Day">Day</option>
-                            </select>
                         </div>
-                        <div class="col-xs-4 col-md-4">
-                            <select class="form-control">
-                                <option value="Year">Year</option>
-                            </select>
-                        </div>
-                    </div>
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="inlineCheckbox1" value="male" />
-                        Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="inlineCheckbox2" value="female" />
-                        Female
-                    </label>
 
-                    <div class="form-group">
-                        <label for="input-group" class="col-md-3 control-label">Upload Profile Picture</label>
-                    </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-xs-3 col-md-3">
+                                    <select class="form-control">
+                                        <option value="Month">Month</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <select class="form-control">
+                                        <option value="Day">Day</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <select class="form-control">
+                                        <option value="Year">Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
 
-                    <div class="input-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" id="inlineCheckbox1" value="male"/>
+                            Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" id="inlineCheckbox2" value="female"/>
+                            Female
+                        </label>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3 control-label">
+                                    <label for="input-group">Upload Profile Picture</label>
+                                </div>
+
+                                <div class="col col-md-8 upload-box">
+                                    <div class="input-group upload">
 
                         <span class="input-group-btn">
                             <button id="fake-file-button-browse" type="button" class="btn btn-default">
@@ -223,43 +243,47 @@
                             </button>
                         </span>
 
-                        <input type="file" id="files-input-upload" style="display:none">
-                        <input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected"
-                               class="form-control">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" disabled="disabled" id="fake-file-button-upload">
+                                        <input type="file" id="files-input-upload" style="display:none">
+                                        <input type="text" id="fake-file-input-name" disabled="disabled"
+                                               placeholder="File not selected"
+                                               class="form-control">
+                                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" disabled="disabled"
+                                    id="fake-file-button-upload">
                                 <span class="glyphicon glyphicon-upload"></span>
                             </button>
                         </span>
-                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <script type="text/javascript">
+                                // Fake file upload
+                                document.getElementById('fake-file-button-browse').addEventListener('click', function () {
+                                    document.getElementById('files-input-upload').click();
+                                });
 
-                    <script type="text/javascript">
-                        // Fake file upload
-                        document.getElementById('fake-file-button-browse').addEventListener('click', function () {
-                            document.getElementById('files-input-upload').click();
-                        });
+                                document.getElementById('files-input-upload').addEventListener('change', function () {
+                                    document.getElementById('fake-file-input-name').value = this.value;
 
-                        document.getElementById('files-input-upload').addEventListener('change', function () {
-                            document.getElementById('fake-file-input-name').value = this.value;
-
-                            document.getElementById('fake-file-button-upload').removeAttribute('disabled');
-                        });
-                    </script>
-
-
-                    <div class="form-group">
-                        <!-- Button -->
-                        <div class="col-md-offset-3 col-md-9">
-                            <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i>
-                                &nbsp Sign Up
-                            </button>
-                            <span style="margin-left:8px;">or</span>
-                            <a class="btn  btn-social-icon btn-google">
-                                <span class="fa fa-google"></span> Sign in with Google
-                            </a>
+                                    document.getElementById('fake-file-button-upload').removeAttribute('disabled');
+                                });
+                            </script>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class="col-md-offset-3 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info"><i
+                                        class="icon-hand-right"></i>
+                                    &nbsp Sign Up
+                                </button>
+                                <span style="margin-left:8px;">or</span>
+                                <a class="btn  btn-social-icon btn-google">
+                                    <span class="fa fa-google"></span> Sign in with Google
+                                </a>
+                            </div>
+                        </div>
 
 
                 </form>
