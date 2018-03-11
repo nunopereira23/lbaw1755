@@ -45,6 +45,14 @@ html, body {
     font-size: 16px;
 }
 
+.navbar-dark .navbar-brand {
+    color: #bfbfbf;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #bfbfbf;
+}
+
 a {
     color: #117a8b;
 }
