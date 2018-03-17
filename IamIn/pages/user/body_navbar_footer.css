@@ -17,6 +17,13 @@ html, body {
     text-align: center;
 }
 
+.navbar-inverse .navbar-brand {
+    color: #bfbfbf;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #bfbfbf;
+}
+
 .copyright {
     background-color: white;
     position: absolute;

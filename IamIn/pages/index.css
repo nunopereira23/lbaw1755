@@ -18,6 +18,13 @@ a:hover {color:#FFD700;}
     text-align: center;
 }
 
+.navbar-inverse .navbar-brand {
+    color: #bfbfbf;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #bfbfbf;
+}
+
 .site-login{
     margin-top: 0.5%;
     margin-left: 50%;
