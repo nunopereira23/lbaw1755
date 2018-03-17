@@ -1,5 +1,6 @@
 --Tables
 
+
 CREATE TABLE event (
 	id SERIAL NOT NULL,
 	description text,
