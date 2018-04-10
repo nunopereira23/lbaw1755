@@ -1,5 +1,4 @@
 .map{
-	width:100%;
 	height:300px;
 }
 
@@ -12,6 +11,13 @@
 	font-size:13px;
 }
 
+.event_img {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
 
 html, body {
     font-family: Arial, sans-serif;
@@ -39,6 +45,14 @@ html, body {
     font-size: 16px;
 }
 
+.navbar-dark .navbar-brand {
+    color: #bfbfbf;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #bfbfbf;
+}
+
 a {
     color: #117a8b;
 }
@@ -51,9 +65,7 @@ h3, .col-sm {
     color: white;
 }
 
-h2 {
-    color: white;
-}
+
 
 h3{
 	color: #abdde5;
@@ -71,4 +83,8 @@ h3{
     left: 0;
     width: 100%;
     height: 60px;
+}
+
+.copyright {
+    color: #2c3e50;
 }
