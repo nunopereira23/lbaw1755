@@ -42,3 +42,6 @@ Route::get('contact', 'ContactController@show');
 
 // FAQ
 Route::get('faq', 'FaqController@show');
+
+//Profile 
+Route::get('profile','ProfileController@show');
