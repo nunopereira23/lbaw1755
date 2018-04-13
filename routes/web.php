@@ -17,6 +17,9 @@ Route::get('/sign_in', function () {
 Route::get('/sign_up', function () {
     return view('auth.signUp');
 });
+Route::get('/index', function () {
+    return view('pages.homepage');
+});
 
 // Cards
 Route::get('cards', 'CardController@list');

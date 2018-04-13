@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +42,7 @@
             </div>
         </div>
     </nav>
+</head>
 <body>
 <div id="signupbox" style="display:none; margin-top:50px"
      class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -160,19 +164,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <script type="text/javascript">
-                        // Fake file upload
-                        document.getElementById('fake-file-button-browse').addEventListener('click', function () {
-                            document.getElementById('files-input-upload').click();
-                        });
-
-                        document.getElementById('files-input-upload').addEventListener('change', function () {
-                            document.getElementById('fake-file-input-name').value = this.value;
-
-                            document.getElementById('fake-file-button-upload').removeAttribute('disabled');
-                        });
-                    </script>
                 </div>
 
                 <div class="form-group">
@@ -195,7 +186,6 @@
     </div>
 
 </div>
-</div>
 </body>
 <footer class="copyright">
     <div class="footer-copyright py-3 text-center">
@@ -206,3 +196,4 @@
     </div>
 </footer>
 </html>
+@endsection
