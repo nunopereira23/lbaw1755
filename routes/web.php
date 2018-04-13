@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('index');
+Route::get('/sign_in', function () {
+    return view('auth.signIn');
+});
+Route::get('/sign_up', function () {
+    return view('auth.signUp');
 });
 
 // Cards
