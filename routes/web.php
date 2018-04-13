@@ -23,6 +23,9 @@ Route::get('/index', function () {
 Route::post('verify', function () {
     return 'test';
 });
+Route::get('/index', function () {
+    return view('pages.homepage');
+});
 
 // Cards
 Route::get('cards', 'CardController@list');
