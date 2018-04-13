@@ -45,3 +45,6 @@ Route::get('faq', 'FaqController@show');
 
 // Event
 Route::get('event/{id}', 'EventController@show');
+
+//Profile
+Route::get('profile','ProfileController@show');
