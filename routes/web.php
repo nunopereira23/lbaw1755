@@ -42,3 +42,6 @@ Route::get('contact', 'ContactController@show');
 
 // FAQ
 Route::get('faq', 'FaqController@show');
+
+// Event
+Route::get('event/{id}', 'EventController@show');
