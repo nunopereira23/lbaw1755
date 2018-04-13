@@ -36,3 +36,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // About
 Route::get('about', 'AboutController@show');
+
+// Contact
+Route::get('contact', 'ContactController@show');
