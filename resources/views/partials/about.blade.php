@@ -19,9 +19,9 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="">EVENTS </a></li>
-            <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
-            <li><a href="../faq/faq.html">FAQ</a></li>
-            <li><a href="../contact/contact.html">CONTACT US</a></li>
+            <li><a href="../createEvent">CREATE EVENT</a></li>
+            <li><a href="../faq">FAQ</a></li>
+            <li><a href="../contact">CONTACT US</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Sign Up</a></li>
@@ -46,22 +46,22 @@
     <div class="row">
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../images/lenka2.jpg">
+            <img src="../../images/lenka2.jpg">
             <p> Lenka </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../images/miska.jpg">
+            <img src="../../images/miska.jpg">
             <p> Michaela </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../images/nuno.jpg">
+            <img src="../../images/nuno.jpg">
             <p> Nuno </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../images/tiago.jpg">
+            <img src="../../images/tiago.jpg">
             <p> Tiago </p>
         </div>
     </div>
