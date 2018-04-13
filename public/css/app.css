@@ -2,25 +2,7 @@ body {
   background-color: #ffffff;
   color: #9b4dca;
 }
-main > header {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  background-color: #d2afe7;
-  padding: 1em;
-  margin: 1em;
-}
-main > header h1 {
-  margin: 0;
-}
-main > header a.button {
-  margin: 1em;
-  justify-self: center;
-}
-main > header span {
-  margin: 1em;
-  justify-self: center;
-}
+
 #cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -98,13 +80,6 @@ main > header span {
 @media (max-width: 70em) {
   #cards {
     grid-template-columns: repeat(2, 1fr);
-  }
-  main > header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-  main > header h1 {
-    grid-row-end: span 2;
   }
 }
 @media (max-width: 40em) {
