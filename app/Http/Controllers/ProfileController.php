@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 
 class ProfileController extends Controller
 {
 
-    public function show()
+    public function show($id)
     {
-        return view('pages.profile');
+        $user = User::findOrFail($id);
+
+        return view('pages.profile', ['user' => $user]);
     }
 
 }

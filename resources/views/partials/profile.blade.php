@@ -89,8 +89,9 @@
             -moz-transition-duration: 0.5s;
             -o-transition-duration: 0.5s;
         }
-
-
+        ul {
+          list-style-type: none;
+        }
         .panel-body{
             margin-top: 3%;
         }
@@ -115,7 +116,7 @@
                 </div>
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
                     <div class="container">
-                        <h2>Name</h2>
+                        <h2><?php echo $user->name;?></h2>
                         <a href="edit_profile.html" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit Profile</strong></span>
@@ -123,13 +124,12 @@
                     </div>
                     <hr>
                     <ul class="container details">
-                        <li><p><span class="fas fa-user" style="width:50px;"></span>username</p></li>
-                        <li><p><span class="fas fa-envelope" style="width:50px;"></span>somerandom@email.com</p></li>
-                        <li><p><span class="fas fa-birthday-cake" style="width:50px;"></span>birthdate</p></li>
-                        <li><p><span class="fas fa-phone" style="width:50px;"></span>phone number</p></li>
+                        <li><p><span class="fas fa-envelope" style="width:50px;"></span><?php echo $user->email;?></p></li>
+                        <li><p><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo $user->birthdate;?></p></li>
+
                     </ul>
                     <hr>
-                    <div class="col-sm-5 col-xs-6 tital ">Date Of Joining: 15 Jun 2016</div>
+                    <div class="col-sm-5 col-xs-6 tital ">Warning nr: <?php echo $user->value('nr_warnings');?></div>
                 </div>
             </div>
         </div>

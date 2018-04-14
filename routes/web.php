@@ -50,4 +50,4 @@ Route::get('faq', 'FaqController@show');
 Route::get('event/{id}', 'EventController@show');
 
 //Profile
-Route::get('profile','ProfileController@show');
+Route::get('/users/{id}/profile','ProfileController@show');
