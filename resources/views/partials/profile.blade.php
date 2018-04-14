@@ -129,7 +129,7 @@
 
                     </ul>
                     <hr>
-                    <div class="col-sm-5 col-xs-6 tital ">Warning nr: <?php echo $user->value('nr_warnings');?></div>
+                    <div class="col-sm-5 col-xs-6 tital ">Warning nr: <?php echo $user->nr_warnings;?></div>
                 </div>
             </div>
         </div>
