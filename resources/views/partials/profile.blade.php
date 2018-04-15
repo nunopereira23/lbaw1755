@@ -33,11 +33,14 @@
 						</li>
 						<li class="dropdown-item"><a href="../myEvents/my_events.html"> My events </a>
 						</li>
+                        <li class="dropdown-item"><a href="../myEvents/my_events.html"> Logout </a>
+                        </li>
 					</ul>
                 </li>
             </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <style>
 

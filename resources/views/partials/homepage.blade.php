@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -110,7 +110,7 @@
                 <a href="faq/faq.html"> FAQ </a>
             </div>
             <div class="col-md-4 footer-three">
-               <a href="contact/contact.html"> CONTACT US </a>
+                <a href="contact/contact.html"> CONTACT US </a>
             </div>
 
             <div class="clearfix"></div>
@@ -118,12 +118,12 @@
     </div>
     <div class="footer-bottom">
         <div class="container">
-                <div class="col-sm-12 text-center ">
-                    <div class="copyright-text">
-                        <p>© 2018 I am In!</p>
-                    </div>
-                </div> <!-- End Col -->
-            </div>
+            <div class="col-sm-12 text-center ">
+                <div class="copyright-text">
+                    <p>© 2018 I am In!</p>
+                </div>
+            </div> <!-- End Col -->
+        </div>
     </div>
 </div>
 

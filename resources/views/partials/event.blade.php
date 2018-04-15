@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    {{--<link rel="stylesheet" href="../event.css">--}}
+    <link href="{{ asset('css/event.css') }}" rel="stylesheet">
 
     <nav class="navbar navbar-dark navbar-expand-md">
         <a class="navbar-brand" href="../index"> I am In! </a>

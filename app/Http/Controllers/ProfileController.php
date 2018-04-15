@@ -14,4 +14,11 @@ class ProfileController extends Controller
         return view('pages.profile', ['user' => $user]);
     }
 
+    public function showFirst()
+    {
+        $user = User::findOrFail(1);
+
+        return view('pages.profile', ['user' => $user]);
+    }
+
 }
