@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +11,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -63,8 +58,8 @@
 
                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
-                <form id="loginform" class="form-horizontal" role="form">
-
+                <form id="loginform" class="form-horizontal" role="form" method='POST' action='/users/1/profile'>
+                    {{ csrf_field() }}
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input id="login-username" type="text" class="form-control" name="username" value=""
@@ -91,7 +86,7 @@
                         <!-- Button -->
 
                         <div class="col-sm-12 controls">
-                            <a id="btn-login" href="profile.html" class="btn btn-success">Login </a>
+                            <input id="btn-login" type="submit" class="btn btn-success"> </input>
                             <a class="btn  btn-social-icon btn-google">
                                 <span class="fa fa-google"></span> Sign in with Google
                             </a>
@@ -127,4 +122,4 @@
     </div>
 </footer>
 </html>
-@endsection
+
