@@ -11,7 +11,7 @@
     <link href="{{ asset('css/event.css') }}" rel="stylesheet">
 
     <nav class="navbar navbar-dark navbar-expand-md">
-        <a class="navbar-brand" href="../index"> I am In! </a>
+        <a class="navbar-brand" href="/"> I am In! </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,13 +19,13 @@
             <ul class="nav navbar-nav">
                 <li class="nav-item mr-1"><a href="../events" class="nav-link mr-1">EVENTS </a>
                 </li>
-                <li class="nav-item mr-1"><a href="../createEvent" class="nav-link">CREATE EVENT</a>
+                <li class="nav-item mr-1"><a href="../create_event" class="nav-link">CREATE EVENT</a>
                 </li>
                 <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#"> Username <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="../user/profile"> Profile </a>
+                        <li class="dropdown-item"><a href="../profile"> Profile </a>
                         </li>
-                        <li class="dropdown-item"><a href="../myEvents/my_events"> My events </a>
+                        <li class="dropdown-item"><a href="../my_events"> My events </a>
                         </li>
                     </ul>
                 </li>
@@ -41,7 +41,7 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../home">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="../events">Events</a></li>
             <li class="breadcrumb-item active" aria-current="page">Event</li>
         </ol>
@@ -93,13 +93,13 @@
 
                     <div class="modal-body">
                         <div class="list-group list-group-flush">
-                            <a class="list-group-item list-group-item-action" href="profile" style="height:50px">
-                                <img class="img-responsive pull-right" style=" height: 100%;" src="../images/profile.png">
+                            <a class="list-group-item list-group-item-action" href="../profile" style="height:50px">
+                                <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
                                 John Smith
                             </a>
 
-                            <a class="list-group-item list-group-item-action" href="profile" style="height:50px">
-                                <img class="img-responsive pull-right" style=" height: 100%;" src="../images/profile.png">
+                            <a class="list-group-item list-group-item-action" href="../profile" style="height:50px">
+                                <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
                                 John Doe
                             </a>
                         </div>
@@ -163,7 +163,7 @@
                             </p>
                         </div>
                         <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                        <h5 class="text-right"><a href="../partials/profile">John Doe</a></h5>
+                        <h5 class="text-right"><a href="../profile">John Doe</a></h5>
                         <div class="mb-1 text-muted text-right">Today, 2:38 PM</div>
                     </div>
 
@@ -179,7 +179,7 @@
                                     </p>
                                 </div>
                                 <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="20px" width="20px">
-                                <h6 class="text-right"><a href="../partials/profile">John Doe</a></h6>
+                                <h6 class="text-right"><a href="../profile">John Doe</a></h6>
                                 <div class="mb-1 text-muted text-right">Today, 4:41 PM</div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                             </p>
                         </div>
                         <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                        <h5 class="text-right"><a href="../partials/profile">John Doe</a></h5>
+                        <h5 class="text-right"><a href="../profile">John Doe</a></h5>
                         <div class="mb-1 text-muted text-right">Today, 2:38 PM</div>
                     </div>
 

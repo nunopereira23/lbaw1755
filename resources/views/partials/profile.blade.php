@@ -20,20 +20,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html">I am In!</a>
+            <a class="navbar-brand" href="/">I am In!</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="../events/events.html">EVENTS </a></li>
-                <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
+                <li><a href="../events">EVENTS </a></li>
+                <li><a href="../create_event">CREATE EVENT</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Username <span
                         class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li class="dropdown-item"><a href="../user/profile.html"> Profile </a>
+						<li class="dropdown-item"><a href="../profile"> Profile </a>
 						</li>
-						<li class="dropdown-item"><a href="../myEvents/my_events.html"> My events </a>
+						<li class="dropdown-item"><a href="../my_events"> My events </a>
 						</li>
-                        <li class="dropdown-item"><a href="../myEvents/my_events.html"> Logout </a>
+                        <li class="dropdown-item"><a href="/"> Logout </a>
                         </li>
 					</ul>
                 </li>
@@ -114,13 +114,11 @@
                     <img alt="User Pic"
                          src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
                          id="profile-image1" class="img-circle img-responsive">
-
-
                 </div>
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
                     <div class="container">
                         <h2><?php echo $user->name;?></h2>
-                        <a href="edit_profile" class="btn btn-primary a-btn-slide-text">
+                        <a href="../edit_profile" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit Profile</strong></span>
                         </a>

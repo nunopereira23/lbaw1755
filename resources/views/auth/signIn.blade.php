@@ -20,19 +20,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.html">I am In!</a>
+                <a class="navbar-brand" href="/">I am In!</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="../events/events.html">EVENTS </a></li>
-                    <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
-                    <li><a href="../faq/faq.html">FAQ</a></li>
-                    <li><a href="../contact/contact.html">CONTACT US</a></li>
+                    <li><a href="../events">EVENTS </a></li>
+                    <li><a href="../create_event">CREATE EVENT</a></li>
+                    <li><a href="../faq">FAQ</a></li>
+                    <li><a href="../contact">CONTACT US</a></li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span
                                     class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">SIGN UP</a></li>
-                            <li><a href="../user/sign_in.html">SIGN IN</a></li>
+                            <li><a href="../sign_up">SIGN UP</a></li>
+                            <li><a href="../sign_in">SIGN IN</a></li>
                         </ul>
                     </li>
                 </ul>

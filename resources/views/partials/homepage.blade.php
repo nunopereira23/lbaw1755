@@ -5,7 +5,7 @@
     <title>Home Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+    <link href="{{ asset('../css/homepage.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -22,14 +22,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index">I am In!</a>
+            <a class="navbar-brand" href="/">I am In!</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="events/events.html">EVENTS </a></li>
-                <li><a href="createEvent/create_event.html">CREATE EVENT</a></li>
-                <li><a href="faq/faq.html">FAQ</a></li>
-                <li><a href="contact/contact.html">CONTACT US</a></li>
+                <li><a href="../events">EVENTS </a></li>
+                <li><a href="../create_event">CREATE EVENT</a></li>
+                <li><a href="../faq">FAQ</a></li>
+                <li><a href="../contact">CONTACT US</a></li>
                 <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="user/sign_in.html">SIGN UP</a></li>
@@ -37,7 +37,7 @@
                     </ul>
                 </li>-->
             </ul>
-            <a class="btn btn-lg btn-primary site-login" href="user/sign_in.html">Sign In</a>
+            <a class="btn btn-lg btn-primary site-login" href="../sign_in">Sign In</a>
 
         </div>
     </div>
@@ -51,7 +51,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="../images/picarra2.jpg" style="width:100%" class="img-responsive" no-repeat center center fixed>
+            <img src="../../images/picarra2.jpg" style="width:100%" class="img-responsive" no-repeat center center fixed>
             <div class="container">
                 <div class="caraous-title">
                     <div class="col-md-12">
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="item">
-            <img src="../images/book_stack.jpg" style="width:100%" class="img-responsive" no-repeat center center fixed>
+            <img src="../../images/book_stack.jpg" style="width:100%" class="img-responsive" no-repeat center center fixed>
             <div class="container">
                 <div class="caraous-title">
                     <div class="col-md-12">
@@ -104,13 +104,13 @@
     <div class="footer">
         <div class="row">
             <div class="col-md-4 footer-one">
-                <a href="about/about.html"> ABOUT </a>
+                <a href="../about"> ABOUT </a>
             </div>
             <div class="col-md-4 footer-two">
-                <a href="faq/faq.html"> FAQ </a>
+                <a href="../faq"> FAQ </a>
             </div>
             <div class="col-md-4 footer-three">
-                <a href="contact/contact.html"> CONTACT US </a>
+                <a href="../contact"> CONTACT US </a>
             </div>
 
             <div class="clearfix"></div>
