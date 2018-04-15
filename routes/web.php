@@ -10,10 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Sign in form
+Route::get('/sign_in', 'Auth\SignInController@show');
 
-Route::get('/', function () {
-    return redirect('index');
+Route::get('/sign_up', function () {
+    return view('auth.signUp');
 });
+
+Route::get('/index', function () {
+    return view('pages.homepage');
+});
+
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -51,3 +58,8 @@ Route::get('event/{id}', 'EventController@show');
 
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show');
+
+Route::post('/users/1/profile','ProfileController@showFirst');
+
+//Homepage
+Route::get('/','HomepageController@show');
