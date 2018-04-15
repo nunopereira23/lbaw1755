@@ -20,6 +20,9 @@ Route::get('/sign_up', function () {
 Route::get('/index', function () {
     return view('pages.homepage');
 });
+Route::post('verify', function () {
+    return 'test';
+});
 
 // Cards
 Route::get('cards', 'CardController@list');
