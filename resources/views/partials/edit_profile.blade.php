@@ -115,21 +115,16 @@
 
                 </div>
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
-                    <div class="container">
-                        <h2><?php echo $user->name;?></h2>
-                        <a href="edit_profile" class="btn btn-primary a-btn-slide-text">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            <span><strong>Edit Profile</strong></span>
-                        </a>
-                    </div>
+                  <form method="post" action="/users/<?php echo $user->id ?>/edit_profile">
+                    {{ csrf_field() }}
+                    Name: <input type="text" name="name" value="<?php echo $user->name;?>">
+                    Birth Date:<input type="text" name="birthdate" value="<?php echo $user->birthdate;?>">
                     <hr>
-                    <ul class="container details">
-                        <li><p><span class="fas fa-envelope" style="width:50px;"></span><?php echo $user->email;?></p></li>
-                        <li><p><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo $user->birthdate;?></p></li>
-
-                    </ul>
-                    <hr>
-                    <div class="col-sm-5 col-xs-6 tital ">Warning nr: <?php echo $user->nr_warnings;?></div>
+                    <button type="submit" class="btn btn-primary a-btn-slide-text">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        <span><strong>Save changes</strong></span>
+                    </button>
+                  </form>
                 </div>
             </div>
         </div>

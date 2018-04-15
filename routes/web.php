@@ -10,10 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Sign in form
+Route::get('/sign_in', 'Auth\SignInController@show');
 
-Route::get('/', function () {
-    return redirect('index');
+Route::get('/sign_up', function () {
+    return view('auth.signUp');
 });
+
+Route::get('/index', function () {
+    return view('pages.homepage');
+});
+
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -36,6 +43,7 @@ Route::post('register', 'Auth\RegisterController@register');
 
 //Homepage
 Route::get('index', 'HomepageController@show');
+Route::get('/','HomepageController@show');
 
 // About
 Route::get('about', 'AboutController@show');
@@ -50,4 +58,7 @@ Route::get('faq', 'FaqController@show');
 Route::get('event/{id}', 'EventController@show');
 
 //Profile
-Route::get('/users/{id}/profile','ProfileController@show');
+Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
+Route::get('/users/{id}/edit_profile','EditProfileController@show');
+Route::post('/users/{id}/edit_profile','EditProfileController@update');
+Route::post('/users/1/profile','ProfileController@showFirst');
