@@ -18,16 +18,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html">I am In!</a>
+            <a class="navbar-brand" href="/">I am In!</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="../events/events.html">EVENTS </a></li>
-                <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
+                <li><a href="../events">EVENTS </a></li>
+                <li><a href="../create_event">CREATE EVENT</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/sign_in.html"> Sign Up </a></li>
-                        <li><a href="../user/sign_in.html"> Sign In </a></li>
+                        <li><a href="../sign_up"> Sign Up </a></li>
+                        <li><a href="../sign_in"> Sign In </a></li>
                     </ul>
                 </li>
             </ul>
@@ -108,57 +108,27 @@
         <div class="col-sm align-content-center">
 
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
-                </div>
-            </div>
-            <br>
-
-        </div>
-        <div class="col-sm align-content-center">
-            <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
-                </div>
-            </div>
-            <br>
-            <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
-                </div>
-            </div>
-            <br>
-            <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
@@ -168,27 +138,27 @@
         </div>
         <div class="col-sm align-content-center">
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
@@ -198,27 +168,57 @@
         </div>
         <div class="col-sm align-content-center">
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Trip to Lisbon </a></h4>
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
+                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                    <h5> Porto's Airport </h5>
+                </div>
+            </div>
+            <br>
+
+        </div>
+        <div class="col-sm align-content-center">
+            <div class="card">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <div class="card-block">
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
+                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                    <h5> Porto's Airport </h5>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <div class="card-block">
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
+                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                    <h5> Porto's Airport </h5>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <div class="card-block">
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
                     <h5> Porto's Airport </h5>
                 </div>
@@ -236,7 +236,7 @@
         <div class="container">
             <hr>
             <ul class="list-inline">
-                <li class="list-inline-item"> <a href="my_events.html"> MY PAST EVENTS </a></li>
+                <li class="list-inline-item"> <a href="../my_events"> MY PAST EVENTS </a></li>
             </ul>
         </div>
         <div class="footer-copyright py-3 text-center">
