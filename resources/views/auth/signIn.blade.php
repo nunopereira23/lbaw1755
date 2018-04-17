@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign In</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="body_navbar_footer.css">
+    <link href="{{ asset('../css/sign_in.css') }}" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -99,7 +99,7 @@
                         <div class="col-md-12 control">
                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
                                 Don't have an account!
-                                <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                <a href="sign_up">
                                     Sign Up Here
                                 </a>
                             </div>
@@ -122,4 +122,3 @@
     </div>
 </footer>
 </html>
-
