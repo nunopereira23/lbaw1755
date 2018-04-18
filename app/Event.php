@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 
+    protected $fillable = [
+        'title', 'event_visibility', 'event_type',
+    ];
+
     public $timestamps = false;
 
 }

@@ -11,6 +11,7 @@
 |
 */
 //Sign in form
+
 Route::get('/sign_in', 'Auth\SignInController@show');
 
 Route::get('/sign_up', function () {
@@ -55,7 +56,9 @@ Route::get('contact', 'ContactController@show');
 Route::get('faq', 'FaqController@show');
 
 // Event
-Route::get('event/{id}', 'EventController@show');
+Route::get('event/{id}', 'EventController@show')->name('event');
+Route::get('create_event', 'EventController@showCreateForm')->name('create_event');
+Route::post('create_event', 'EventController@create');
 
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');

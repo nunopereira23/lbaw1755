@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../../public/css/create_event.css">
 
 
-    <nav class="navbar navbar-dark navbar-expand-md"> <a class="navbar-brand" href="/"> I am In! </a>
+    <nav class="navbar navbar-dark navbar-expand-md"><a class="navbar-brand" href="/"> I am In! </a>
         <ul class="nav navbar-nav">
             <li class="nav-item mr-1"><a href="../events" class="nav-link mr-1">EVENTS </a>
             </li>
@@ -35,26 +35,22 @@
 
 <div class="container mb-5">
     <div class="py-3 text-center">
-
         <h2>Create Event</h2>
-
     </div>
 
     <div class="row ">
 
         <div class="col-md-12">
-            <form class="needs-validation" novalidate="">
-
+            <form class="needs-validation" novalidate="" method="post" action="/create_event">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-8 mb-3 md-10">
-                        <label for="eventName">Event name</label>
-                        <input class="form-control" id="eventName" placeholder="" required="" type="text">
+                        <label for="title">Title</label>
+                        <input class="form-control" placeholder="" required="" id="title" type="text" name="title" value="New event 1">
                         <div class="invalid-feedback">
                             An event name is required.
                         </div>
                     </div>
-
-
 
                     <div class="col-2.5 pl-5">
                         <label for="date">Date</label>
@@ -124,17 +120,17 @@
 
                                         <div class="list-group list-group-flush">
                                             <a class="list-group-item list-group-item-action">
-                                                <div class="custom-control custom-checkbox m-0"  style="height:20px">
+                                                <div class="custom-control custom-checkbox m-0" style="height:20px">
                                                     <input type="checkbox" class="custom-control-input " id="customCheck1">
                                                     <img class="img-responsive" style=" height: 100%;" src="../../images/profile.png">
-                                                    <label class="custom-control-label" for="customCheck1" >John Smith</label>
+                                                    <label class="custom-control-label" for="customCheck1">John Smith</label>
                                                 </div>
                                             </a>
                                             <a class="list-group-item list-group-item-action">
-                                                <div class="custom-control custom-checkbox m-0"  style="height:20px">
+                                                <div class="custom-control custom-checkbox m-0" style="height:20px">
                                                     <input type="checkbox" class="custom-control-input " id="customCheck2">
                                                     <img class="img-responsive" style=" height: 100%;" src="../../images/profile.png">
-                                                    <label class="custom-control-label" for="customCheck2" >John Doe</label>
+                                                    <label class="custom-control-label" for="customCheck2">John Doe</label>
                                                 </div>
                                             </a>
                                         </div>
@@ -155,10 +151,10 @@
                 </div>
 
 
-
-
                 <hr class="mb-4">
-                <a href="../my_events"><button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Submit</button></a>
+                <a href="../my_events">
+                    <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Submit</button>
+                </a>
             </form>
         </div>
     </div>
