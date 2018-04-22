@@ -12,4 +12,11 @@ class SignInController extends Controller
         return view('auth.signIn');
     }
 
+    public function create()
+    {
+        return view('auth.signUp');
+    }
+
+
+
 }

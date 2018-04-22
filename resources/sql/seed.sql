@@ -45,10 +45,11 @@ CREATE TABLE users (
   name text NOT NULL,
 	birthdate date,
 	nr_warnings integer,
-	password_hash text NOT NULL,
+	password text NOT NULL,
 	profile_picture_path text,
-	is_banned boolean NOT NULL,
-	is_admin boolean NOT NULL
+	is_banned boolean,
+	is_admin boolean,
+	remember_token text
 );
 
 CREATE TABLE event_user (
@@ -255,38 +256,35 @@ INSERT INTO events (id,description,title,event_start,event_end,event_visibility,
 INSERT INTO events (id,description,title,event_start,event_end,event_visibility,event_type,gps,is_deleted) VALUES (19,'commodo at,','imperdiet','2018-07-02 22:19:16','2019-03-11 08:08:32','Public','Birthday','74.89323, 90.64342','false');
 INSERT INTO events (id,description,title,event_start,event_end,event_visibility,event_type,gps,is_deleted) VALUES (20,'Suspendisse eleifend. Cras sed','pharetra','2018-07-15 14:10:08','2018-12-24 01:53:03','Private','Culture','46.44343, 47.03385','false');
 
-
-
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (1,'Suspendisse@gravidanuncsed.ca','Emily','Oct 4, 1946',1,'2546626027DFA7B2DB0B44DF9886779EDFC31C063773DD412D25FC21BFEF64F0','profile/1','false','true');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (2,'sem.vitae@ametconsectetuer.net','Wyatt','Dec 24, 1949',0,'5FD924625F6AB16A19CC9807C7C506AE1813490E4BA675F843D5A10E0BAACDB8','profile/2','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (3,'non.dapibus@ornarelectusante.org','Nyssa','Apr 13, 1946',3,'5FD924625F6AB16A19CC9807C7C506AE1813490E4BA675F843D5A10E0BAACDB8','profile/3','true','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (4,'feugiat@semperpretium.edu','Clinton','May 24, 1960',2,'1DE86DC4F11D8BD2E5C49DA284DA83D27B9CDE4E0A3F304529E89AEF5088BA69','profile/4','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (5,'vel.arcu.eu@vitae.ca','George','Oct 29, 1963',0,'50AD41624C25E493AA1DC7F4AB32BDC5A3B0B78ECC35B539936E3FEA7C565AF7','profile/5','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (6,'nulla@Curabituregestas.net','Germane','Apr 12, 1982',2,'BC52D6BFE3AC965E069109DBD7D15E0CCAAA55678F6E2A6664BEE2EDF8AE1B2B','profile/6','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (7,'Ut.semper@pharetranibh.org','Samson','Dec 21, 1952',2,'18EE24150DCB1D96752A4D6DD0F20DFD8BA8C38527E40AA8509B7ADECF78F9C6','profile/7','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (8,'sem.consequat@tempor.net','Allistair','Jan 24, 1962',1,'824A61827555517927F87E16A9EC638BA1369F87270EBBA3275370DC24307559','profile/8','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (9,'quis.massa.Mauris@tempuseuligula.net','Jillian','Mar 22, 1962',2,'645A387A1D5F5BEC4CB243E81091049CD9A07F7A033D86A3615028442B3B4E52','profile/9','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (10,'lorem.eget@adipiscing.edu','Alden','Jun 30, 2000',0,'E797C0013811A1D1E35AD7EDD10FB99986DB664B0996C76ED9AE5E0A5151BBF9','profile/10','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (11,'nisi.sem.semper@orci.net','Ryan','Apr 29, 1949',0,'048C79AD93713E3759DCCFE3C05059FF8CCBF0445FB21D08DE9F255541C8F01B','profile/11','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (12,'quam@Duisac.edu','Castor','Sep 29, 1963',2,'96CAE35CE8A9B0244178BF28E4966C2CE1B8385723A96A6B838858CDD6CA0A1E','profile/12','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (13,'dictum.eu@congue.com','Chase','Oct 21, 1973',2,'60821E944E285931636B2C4215F2AA70F197E515E4B366C191FCCCDC89679AD4','profile/13','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (14,'scelerisque@esttempor.ca','Flavia','Jul 5, 2001',2,'18AC3E7343F016890C510E93F935261169D9E3F565436429830FAF0934F4F8E4','profile/14','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (15,'sed.consequat.auctor@velitduisemper.org','Ulysses','Jul 6, 1940',0,'50E721E49C013F00C62CF59F2163542A9D8DF02464EFEB615D31051B0FDDC326','profile/15','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (16,'sodales.nisi.magna@ipsum.edu','Rama','Aug 15, 1984',0,'DE04D58DC5CCC4B9671C3627FB8D626FE4A15810BC1FE3E724FEEA761965FB71','profile/16','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (17,'ligula.elit.pretium@semut.edu','Wyatt','Jun 30, 1946',2,'AE0305A9427A91F6F63E55AF0EAA1D9C4C02AF07F672D15E4A77D99B65327822','profile/17','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (18,'Nullam@mattisvelitjusto.net','Armando','Aug 4, 1945',2,'867BE73160E29FF5BE8ECACD417AE02B8B5E78E7A06C4216CA40F4D4026C99C8','profile/18','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (19,'lacus.Aliquam.rutrum@Sed.net','Mannix','Jan 14, 1994',1,'066CC3696D4E2CEDFA12902D2A5714A0AB7DDE2353DB1B56AEE861F4BDABDD1C','profile/19','false','false');
-INSERT INTO users (id,email,name,birthdate,nr_warnings,password_hash,profile_picture_path,is_banned,is_admin) VALUES (20,'Nam.nulla.magna@atfringillapurus.com','Stephanie','Aug 26, 1956',2,'60821E944E285931636B2C4215F2AA70F197E515E4B366C191FCCCDC89679AD4','profile/20','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (2,'sem.vitae@ametconsectetuer.net','Wyatt','Dec 24, 1949',0,'5FD924625F6AB16A19CC9807C7C506AE1813490E4BA675F843D5A10E0BAACDB8','profile/2','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (3,'non.dapibus@ornarelectusante.org','Nyssa','Apr 13, 1946',3,'5FD924625F6AB16A19CC9807C7C506AE1813490E4BA675F843D5A10E0BAACDB8','profile/3','true','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (4,'feugiat@semperpretium.edu','Clinton','May 24, 1960',2,'1DE86DC4F11D8BD2E5C49DA284DA83D27B9CDE4E0A3F304529E89AEF5088BA69','profile/4','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (5,'vel.arcu.eu@vitae.ca','George','Oct 29, 1963',0,'50AD41624C25E493AA1DC7F4AB32BDC5A3B0B78ECC35B539936E3FEA7C565AF7','profile/5','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (6,'nulla@Curabituregestas.net','Germane','Apr 12, 1982',2,'BC52D6BFE3AC965E069109DBD7D15E0CCAAA55678F6E2A6664BEE2EDF8AE1B2B','profile/6','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (7,'Ut.semper@pharetranibh.org','Samson','Dec 21, 1952',2,'18EE24150DCB1D96752A4D6DD0F20DFD8BA8C38527E40AA8509B7ADECF78F9C6','profile/7','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (8,'sem.consequat@tempor.net','Allistair','Jan 24, 1962',1,'824A61827555517927F87E16A9EC638BA1369F87270EBBA3275370DC24307559','profile/8','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (9,'quis.massa.Mauris@tempuseuligula.net','Jillian','Mar 22, 1962',2,'645A387A1D5F5BEC4CB243E81091049CD9A07F7A033D86A3615028442B3B4E52','profile/9','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (10,'lorem.eget@adipiscing.edu','Alden','Jun 30, 2000',0,'E797C0013811A1D1E35AD7EDD10FB99986DB664B0996C76ED9AE5E0A5151BBF9','profile/10','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (11,'nisi.sem.semper@orci.net','Ryan','Apr 29, 1949',0,'048C79AD93713E3759DCCFE3C05059FF8CCBF0445FB21D08DE9F255541C8F01B','profile/11','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (12,'quam@Duisac.edu','Castor','Sep 29, 1963',2,'96CAE35CE8A9B0244178BF28E4966C2CE1B8385723A96A6B838858CDD6CA0A1E','profile/12','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (13,'dictum.eu@congue.com','Chase','Oct 21, 1973',2,'60821E944E285931636B2C4215F2AA70F197E515E4B366C191FCCCDC89679AD4','profile/13','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (14,'scelerisque@esttempor.ca','Flavia','Jul 5, 2001',2,'18AC3E7343F016890C510E93F935261169D9E3F565436429830FAF0934F4F8E4','profile/14','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (15,'sed.consequat.auctor@velitduisemper.org','Ulysses','Jul 6, 1940',0,'50E721E49C013F00C62CF59F2163542A9D8DF02464EFEB615D31051B0FDDC326','profile/15','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (16,'sodales.nisi.magna@ipsum.edu','Rama','Aug 15, 1984',0,'DE04D58DC5CCC4B9671C3627FB8D626FE4A15810BC1FE3E724FEEA761965FB71','profile/16','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (17,'ligula.elit.pretium@semut.edu','Wyatt','Jun 30, 1946',2,'AE0305A9427A91F6F63E55AF0EAA1D9C4C02AF07F672D15E4A77D99B65327822','profile/17','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (18,'Nullam@mattisvelitjusto.net','Armando','Aug 4, 1945',2,'867BE73160E29FF5BE8ECACD417AE02B8B5E78E7A06C4216CA40F4D4026C99C8','profile/18','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (19,'lacus.Aliquam.rutrum@Sed.net','Mannix','Jan 14, 1994',1,'066CC3696D4E2CEDFA12902D2A5714A0AB7DDE2353DB1B56AEE861F4BDABDD1C','profile/19','false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin) VALUES (20,'Nam.nulla.magna@atfringillapurus.com','Stephanie','Aug 26, 1956',2,'60821E944E285931636B2C4215F2AA70F197E515E4B366C191FCCCDC89679AD4','profile/20','false','false');
 
 
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (8,10,'Owner');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (20,6,'Owner');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (2,13,'Ignoring');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (13,6,'Ignoring');
-INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (16,1,'Ignoring');
+INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (16,4,'Ignoring');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (3,20,'Owner');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (15,6,'Owner');
-INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (10,1,'Ignoring');
+INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (10,8,'Ignoring');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (13,12,'Invited');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (17,4,'Invited');
 INSERT INTO "event_user" (id_event,id_user,event_user_state) VALUES (2,15,'Ignoring');
