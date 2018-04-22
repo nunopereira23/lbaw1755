@@ -24,22 +24,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html">I am In!</a>
+            <a class="navbar-brand" href="../index">I am In!</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="../events/events.html">EVENTS </a></li>
-                <li><a href="../createEvent/create_event.html">CREATE EVENT</a></li>
-                <li><a href="../faq/faq.html">FAQ</a></li>
-                <li><a href="../contact/contact.html">CONTACT US</a></li>
+                <li><a href="../events">EVENTS </a></li>
+                <li><a href="../create_event">CREATE EVENT</a></li>
+                <li><a href="../faq">FAQ</a></li>
+                <li><a href="../contact">CONTACT US</a></li>
                 <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="user/sign_in.html">SIGN UP</a></li>
-                        <li><a href="user/sign_in.html">SIGN IN</a></li>
+                        <li><a href="sign_in">SIGN UP</a></li>
+                        <li><a href="sign_in">SIGN IN</a></li>
                     </ul>
                 </li>-->
             </ul>
-            <a class="btn btn-lg btn-primary site-login" href="../user/sign_in.html">Sign In</a>
+            <a class="btn btn-lg btn-primary site-login" href="../sign_in">Sign In</a>
 
         </div>
     </div>
@@ -54,7 +54,7 @@
         <div class="text-center"><i class="fa fa-5x fa-frown-o" style="color:#d9534f;"></i></div>
         <h1 class="text-center">404 Not Found<p> </p><p><small class="text-center"> Something wrong happen</small></p></h1>
         <p class="text-center">Try pressing the back button or clicking on this button.</p>
-
+<<<<<<< HEAD
         <p class="text-center"><a class="btn btn-primary" href="#"><i class="fa fa-home"></i> Take Me Home</a></p>
     </div>
 </div>
@@ -65,13 +65,13 @@
     <div class="footer">
         <div class="row">
             <div class="col-md-4 footer-one">
-                <a href="../about/about.html"> ABOUT </a>
+                <a href="../about"> ABOUT </a>
             </div>
             <div class="col-md-4 footer-two">
-                <a href="../faq/faq.html"> FAQ </a>
+                <a href="../faq"> FAQ </a>
             </div>
             <div class="col-md-4 footer-three">
-                <a href="../contact/contact.html"> CONTACT US </a>
+                <a href="../contact"> CONTACT US </a>
             </div>
 
             <div class="clearfix"></div>
@@ -90,10 +90,9 @@
 
 </body>
 </html>
-
+=======
         <p class="text-center"><a class="btn btn-primary" href="{{ route('home') }}"><i class="fa fa-home"></i> Take Me Home</a></p>
     </div>
 </div>
 </body>
 </html>
-
