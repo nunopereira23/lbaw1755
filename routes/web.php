@@ -57,4 +57,4 @@ Route::post('create_event', 'EventController@create');
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
-Route::get('/users/{id}/profile','ProfileController@showMyProfile')->name('my_profile');
+Route::get('/users/{id}/profile','ProfileController@showLoggedInUserProfile')->name('my_profile');
