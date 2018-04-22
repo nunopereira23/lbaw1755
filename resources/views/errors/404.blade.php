@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
+
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -46,9 +46,9 @@
 </nav>
 
 
-=======
+
 <body>
->>>>>>> f3d3588c8022b64ab70450c58912ebba30bb9dba
+
 <div class="container">
     <div class="jumbotron">
         <div class="text-center"><i class="fa fa-5x fa-frown-o" style="color:#d9534f;"></i></div>
