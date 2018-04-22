@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\User;
 
@@ -14,11 +15,14 @@ class ProfileController extends Controller
         return view('pages.profile', ['user' => $user]);
     }
 
-    public function showFirst()
+
+    public function showLoggedInUserProfile()
     {
+        //$id = Auth::id();
         $user = User::findOrFail(1);
 
         return view('pages.profile', ['user' => $user]);
     }
+
 
 }

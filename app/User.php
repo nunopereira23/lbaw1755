@@ -30,6 +30,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $primaryKey = 'id';
+
     /**
      * The cards this user owns.
      */
