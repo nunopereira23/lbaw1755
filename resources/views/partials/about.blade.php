@@ -12,26 +12,6 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/"> I am In! </a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="">EVENTS </a></li>
-            <li><a href="../create_event">CREATE EVENT</a></li>
-            <li><a href="../faq">FAQ</a></li>
-            <li><a href="../contact">CONTACT US</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="../sign_un">Sign Up</a></li>
-                    <li><a href="../sign_ip">Sign In</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
-
 <div class="container">
     <hr>
     <h3> ABOUT US </h3> <br>

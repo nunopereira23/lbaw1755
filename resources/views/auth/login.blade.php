@@ -16,34 +16,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">I am In!</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="../events">EVENTS </a></li>
-                    <li><a href="../create_event">CREATE EVENT</a></li>
-                    <li><a href="../faq">FAQ</a></li>
-                    <li><a href="../contact">CONTACT US</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span
-                                    class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../sign_up">SIGN UP</a></li>
-                            <li><a href="../sign_in">SIGN IN</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
 
 </head>
 
@@ -101,7 +73,7 @@
                         <!-- Button -->
 
                         <div class="col-sm-12 controls">
-                            <input id="btn-login" type="submit" class="btn btn-success"> </input>
+                            <button id="btn-login" type="submit" class="btn btn-success"> Login </button>
                             <a class="btn  btn-social-icon btn-google">
                                 <span class="fa fa-google"></span> Sign in with Google
                             </a>

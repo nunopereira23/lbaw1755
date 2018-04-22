@@ -10,21 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Sign in form
+//Error page
 
-Route::get('/sign_in', 'Auth\SignInController@show');
-
-Route::get('/sign_up', function () {
-    return view('auth.signUp');
+Route::get('/error', function () {
+    return view('pages.error');
 });
-Route::get('/index', function () {
-    return view('pages.homepage');
-});
-
-Route::get('/index', function () {
-    return view('pages.homepage');
-});
-
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -46,7 +36,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 //Homepage
-Route::get('index', 'HomepageController@show');
+Route::get('index', 'HomepageController@show')->name('home');
 Route::get('/','HomepageController@show');
 
 // About
@@ -67,4 +57,4 @@ Route::post('create_event', 'EventController@create');
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
-Route::get('/users/{id}/profile','ProfileController@showLoggedInUserProfile')->name('my_profile');
+Route::get('/users/{id}/profile','ProfileController@showMyProfile')->name('my_profile');
