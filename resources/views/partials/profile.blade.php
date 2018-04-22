@@ -118,10 +118,12 @@
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
                     <div class="container">
                         <h2><?php echo $user->name;?></h2>
-                        <a href="../edit_profile" class="btn btn-primary a-btn-slide-text">
+                        <?php if($user->id == $id_auth){ ?>
+                        <a href="/users/<?php echo $user->id?>/edit_profile" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit Profile</strong></span>
                         </a>
+                      <?php } ?>
                     </div>
                     <hr>
                     <ul class="container details">

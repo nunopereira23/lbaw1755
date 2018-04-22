@@ -5,28 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class EditProfileController extends Controller
 {
 
   public function show($id)
   {
-      $user = User::findOrFail($id);
+    if (Auth::check()){
+      if (Auth::id() == $id){
+        $user = User::findOrFail($id);
 
-      return view('pages.edit_profile', ['user' => $user]);
+        return view('pages.edit_profile', ['user' => $user]);
+      }
+    }
   }
 
   public function update(Request $request, $id)
   {
+    if (Auth::check()){
+      $input = $request->all();
 
-    $input = $request->all();
+      $user= User::findOrFail($id);
+      if ($id == Auth::id()){
+        $user->name = $input['name'];
+        $user->birthdate = $input['birthdate'];
+        $user->save();
+      }
 
-    $user= User::findOrFail($id);
-    $user->name = $input['name'];
-    $user->birthdate = $input['birthdate'];
-    $user->save();
-
-    return redirect()->route('profile', [$user]);
+      return redirect()->route('my_profile', [$user]);
+    }
   }
 
 }

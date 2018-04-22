@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Http\Controllers\Auth;
+
 
 use App\User;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -16,12 +17,14 @@ class ProfileController extends Controller
     }
 
 
-    public function showLoggedInUserProfile()
+    public function showLoggedInUserProfile($id)
     {
-        //$id = Auth::id();
-        $user = User::findOrFail(1);
+        $id_auth = Auth::id();
 
-        return view('pages.profile', ['user' => $user]);
+        $user = User::findOrFail($id);
+        
+        return view('pages.profile', ['user' => $user,'id_auth'=>$id_auth]);
+
     }
 
 
