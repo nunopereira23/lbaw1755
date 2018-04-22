@@ -7,8 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link href="{{ asset('css/event.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <link href="{{ asset('../css/event.css') }}" rel="stylesheet">
 
     <nav class="navbar navbar-dark navbar-expand-md">
         <a class="navbar-brand" href="/"> I am In! </a>
@@ -50,14 +53,17 @@
     <div class="col-md-12">
         <div class="row">
             <div class="card col-12" >
-                <div class="card-top mt-3 rounded event_img" style="background-image: url(../images/concert.jpeg);"></div>
+                <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="card-title mb-1 pb-1 font-weight-bold">Concert by band x</h4>
-                            <div class="text-muted">10 Mar 2017 at 10 PM</div>
-                            <div class="mb-1 text-muted">Centre plaza 4567-567</div>
-                            <p class="card-text">Event description. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
+                            <h4 class="card-title mb-1 pb-1 font-weight-bold"><?php echo $event->title ?></h4>
+                            <div class="text-muted"><?php echo $event->event_start ?> - <?php echo $event->event_type ?></div>
+                            <div id="floating-panel">
+                              <input id="latlng" type="hidden" value="<?php echo $event->gps ?>">
+                              <input id="submit" type="button" value="Get event adress">
+                            </div>
+                            <p class="card-text"><?php echo $event->description ?></p>
 
                             <div class="container-fluid  mb-2">
                                 <div id="map" class="map rounded" style="width:100%"></div>
@@ -185,21 +191,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="comment mb-2 ml-2 row">
-                    <div class="comment-content col-sm-10 p-2 rounded bg-light">
-                        <div class="comment-body">
-                            <p>This is a comment.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                <br>
-                                <button type="button" class="btn btn-sm float-left" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
-                                <br>
-                            </p>
-                        </div>
-                        <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                        <h5 class="text-right"><a href="../profile">John Doe</a></h5>
-                        <div class="mb-1 text-muted text-right">Today, 2:38 PM</div>
-                    </div>
 
-                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="bd-example-modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -261,14 +253,47 @@
 
     </div>
 
+
     <script>
-        function myMap() {
-            var mapCanvas = document.getElementById("map");
-            var mapOptions = {
-                center: new google.maps.LatLng(41.15, -8.63), zoom: 15
-            };
-            var map = new google.maps.Map(mapCanvas, mapOptions);
-        }
+      function myMap() {
+          var mapCanvas = document.getElementById("map");
+          var mapOptions = {
+              center: new google.maps.LatLng(<?php echo $event->gps ?>), zoom: 15
+          };
+          var map = new google.maps.Map(mapCanvas, mapOptions);
+          var geocoder = new google.maps.Geocoder;
+          var infowindow = new google.maps.InfoWindow;
+
+          document.getElementById('submit').addEventListener('click', function() {
+            geocodeLatLng(geocoder, map, infowindow);
+          });
+
+      }
+
+
+      function geocodeLatLng(geocoder, map, infowindow) {
+        var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              map.setZoom(11);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+              });
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
