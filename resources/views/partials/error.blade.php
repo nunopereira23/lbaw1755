@@ -24,13 +24,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index">I am In!</a>
+            <a class="navbar-brand" href="/">I am In!</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="../events">EVENTS </a></li>
                 <li><a href="../create_event">CREATE EVENT</a></li>
-                <li><a href="../faq.">FAQ</a></li>
+                <li><a href="../faq">FAQ</a></li>
                 <li><a href="../contact">CONTACT US</a></li>
                 <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -54,8 +54,8 @@
         <div class="text-center"><i class="fa fa-5x fa-frown-o" style="color:#d9534f;"></i></div>
         <h1 class="text-center">404 Not Found<p> </p><p><small class="text-center"> Something wrong happen</small></p></h1>
         <p class="text-center">Try pressing the back button or clicking on this button.</p>
-<<<<<<< HEAD
-        <p class="text-center"><a class="btn btn-primary" href="#"><i class="fa fa-home"></i> Take Me Home</a></p>
+
+        <p class="text-center"><a class="btn btn-primary" href="/"><i class="fa fa-home"></i> Go To Homepage</a></p>
     </div>
 </div>
 
@@ -90,10 +90,3 @@
 
 </body>
 </html>
-=======
-        <p class="text-center"><a class="btn btn-primary" href="{{ route('home') }}"><i class="fa fa-home"></i> Take Me Home</a></p>
-    </div>
-</div>
-</body>
-</html>
->>>>>>> f3d3588c8022b64ab70450c58912ebba30bb9dba

@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index">I am In!</a>
+            <a class="navbar-brand" href="/">I am In!</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -55,7 +55,7 @@
         <h1 class="text-center">404 Not Found<p> </p><p><small class="text-center"> Something wrong happen</small></p></h1>
         <p class="text-center">Try pressing the back button or clicking on this button.</p>
 
-        <p class="text-center"><a class="btn btn-primary" href="../index"><i class="fa fa-home"></i> Go To Homepage</a></p>
+        <p class="text-center"><a class="btn btn-primary" href="/"><i class="fa fa-home"></i> Go To Homepage</a></p>
     </div>
 </div>
 
