@@ -32,14 +32,9 @@
                 <li><a href="../create_event">CREATE EVENT</a></li>
                 <li><a href="../faq">FAQ</a></li>
                 <li><a href="../contact">CONTACT US</a></li>
-                <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="sign_in">SIGN UP</a></li>
-                        <li><a href="sign_in">SIGN IN</a></li>
-                    </ul>
-                </li>-->
+             
             </ul>
-            <a class="btn btn-lg btn-primary site-login" href="../sign_in">Sign In</a>
+            <a class="btn btn-lg btn-primary site-login" href="../login">Sign In</a>
 
         </div>
     </div>
