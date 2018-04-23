@@ -17,6 +17,8 @@ class EditProfileController extends Controller
         $user = User::findOrFail($id);
 
         return view('pages.edit_profile', ['user' => $user]);
+      }else {
+        return abort(404);
       }
     }
   }
