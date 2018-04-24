@@ -53,6 +53,10 @@ Route::get('event/{id}', 'EventController@show')->name('event');
 Route::get('create_event', 'EventController@showCreateForm')->name('create_event');
 Route::post('create_event', 'EventController@create');
 
+//Events
+Route::get('events', 'EventsController@show');
+
+
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
