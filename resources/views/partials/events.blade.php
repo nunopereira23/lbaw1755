@@ -10,6 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
 
+<!--
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -33,6 +34,8 @@
             </ul>
         </div>
 </nav>
+-->
+
 <h3> All public events </h3>
 <br>
 <div class="container">
@@ -108,7 +111,7 @@
         <div class="col-sm align-content-center">
 
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -117,7 +120,7 @@
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -126,37 +129,7 @@
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
-                </div>
-            </div>
-            <br>
-
-        </div>
-        <div class="col-sm align-content-center">
-            <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
-                </div>
-            </div>
-            <br>
-            <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
-                </div>
-            </div>
-            <br>
-            <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -168,7 +141,7 @@
         </div>
         <div class="col-sm align-content-center">
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -177,7 +150,7 @@
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -186,7 +159,7 @@
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -198,7 +171,7 @@
         </div>
         <div class="col-sm align-content-center">
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -207,7 +180,7 @@
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
@@ -216,7 +189,37 @@
             </div>
             <br>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
+                <div class="card-block">
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
+                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                    <h5> Porto's Airport </h5>
+                </div>
+            </div>
+            <br>
+
+        </div>
+        <div class="col-sm align-content-center">
+            <div class="card">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
+                <div class="card-block">
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
+                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                    <h5> Porto's Airport </h5>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
+                <div class="card-block">
+                    <h4> <a href="../event"> Trip to Lisbon </a></h4>
+                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                    <h5> Porto's Airport </h5>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top" no-repeat center center fixed>
                 <div class="card-block">
                     <h4> <a href="../event"> Trip to Lisbon </a></h4>
                     <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
