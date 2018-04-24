@@ -47,6 +47,9 @@ Route::get('contact', 'ContactController@show');
 // FAQ
 Route::get('faq', 'FaqController@show');
 
+//Admin
+Route::get('admin', 'AdminController@show');
+
 // Event
 Route::get('event/{id}', 'EventController@show')->name('event');
 Route::post('event/{id}', 'EventController@request');
