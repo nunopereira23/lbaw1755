@@ -64,4 +64,4 @@ Route::get('events', 'EventsController@show');
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
-Route::get('/users/{id}/profile','ProfileController@showLoggedInUserProfile')->name('my_profile');
+Route::get('my_profile','ProfileController@showLoggedInUser');
