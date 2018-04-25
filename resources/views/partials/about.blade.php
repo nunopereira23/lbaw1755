@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title> About </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="about.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap-grid.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+<link href="{{ asset('css/about.css') }}" rel="stylesheet">
 
 <div class="container">
     <hr>
-    <h3> ABOUT US </h3> <br>
+    <h4> ABOUT US </h4>
+    <br>
     <p> As our lives tend to be more and more busy, it brings the need of properly schedule our events in an organised way.
         So, it would be very helpful to have a platform that could store and present events in an interactive and user-friendly way,
         so that their users could manage and better plan future events that they want to share with other friends.
@@ -26,34 +15,23 @@
     <div class="row">
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../../images/lenka2.jpg">
+            <img src="{{ asset('../images/lenka2.jpeg') }}">
             <p> Lenka </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../../images/miska.jpg">
+            <img src="{{ asset('../images/miska.jpeg') }}">
             <p> Michaela </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../../images/nuno.jpg">
+            <img src="{{ asset('../images/nuno.jpeg') }}">
             <p> Nuno </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="../../images/tiago.jpg">
+            <img src="{{ asset('../images/tiago.jpeg') }}">
             <p> Tiago </p>
         </div>
     </div>
 </div>
-
-</body>
-<footer class="copyright">
-    <div class="footer-copyright py-3 text-center">
-        <div class="container">
-            <hr>
-            © 2018 I am In!
-        </div>
-    </div>
-</footer>
-</html>

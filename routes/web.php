@@ -10,8 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Error page
 
+//Error page
 Route::get('/error', function () {
     return view('pages.error');
 });
@@ -28,7 +28,6 @@ Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
-
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

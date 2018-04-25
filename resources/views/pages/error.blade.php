@@ -2,7 +2,6 @@
 
 @section('content')
     @include('partials.error')
-
 @endsection
 
 

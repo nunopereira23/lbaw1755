@@ -38,6 +38,7 @@ class EventController extends Controller
         $event->event_visibility = $request->input('event_visibility', 'Public');
         $event->event_type = $request->input('event_type', 'Trip');
         $event->is_deleted = $request->input('is_deleted', false);
+        $event->description = $request->input('event_decription');
 
         $event->save();
 
