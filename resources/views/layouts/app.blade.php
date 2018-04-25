@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('I am In') }}</title>
+    <title>{{ config('I am In!') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
@@ -18,69 +21,99 @@
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script type="text/javascript" src={{ asset('js/app.js') }} defer>
-</script>
-  </head>
-  <body>
-    <main>
-      <header>
+    </script>
+</head>
+<body>
+<main>
+    <header>
         @if (Auth::check())
-        <div class="container-fluid" id="navbar">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">I am In!</a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-              <li><a href="../events">EVENTS </a></li>
-              <li><a href="../create_event">CREATE EVENT</a></li>
-              <li><a href="../faq">FAQ</a></li>
-              <li><a href="../contact">CONTACT US</a></li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> {{ Auth::user()->name }} <span
-                          class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{ url('/profile') }}"> Profile </a></li>
-                  <li><a href="{{ url('/logout') }}"> Logout </a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="/">I am In!</a>
+                <button class="navbar-toggler"
+                        type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url('/events') }}">EVENTS <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/create_event') }}">CREATE EVENT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contact') }}">CONTACT US</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/profile')  }}">Profile</a>
+                                <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         @else
-          <div class="container-fluid" id="navbar">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">I am In!</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <li><a href="../events">EVENTS </a></li>
-                <li><a href="../create_event">CREATE EVENT</a></li>
-                <li><a href="../faq">FAQ</a></li>
-                <li><a href="../contact">CONTACT US</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> AUTH <span
-                            class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{ url('register') }}"> Sign up </a></li>
-                    <li><a href="{{ url('login') }}"> Sign in </a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="/">I am In!</a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/events') }}">EVENTS <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/create_event') }}">CREATE EVENT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contact') }}">CONTACT US</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                AUTH
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/login') }} ">Sign up</a>
+                                <a class="dropdown-item" href="{{ url('/register')  }}">Log in</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         @endif
-
-      </header>
-      <section id="content">
+    </header>
+    <section id="content">
         @yield('content')
-      </section>
-    </main>
-  </body>
+    </section>
+</main>
+</body>
+<footer class="copyright">
+    <div class="footer-copyright py-3 text-center">
+        <div class="container">
+            <hr>
+            © 2018 I am In!
+        </div>
+    </div>
+</footer>
 </html>

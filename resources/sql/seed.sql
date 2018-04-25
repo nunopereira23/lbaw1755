@@ -1,5 +1,4 @@
 --Tables
-
 DROP TABLE IF EXISTS answers CASCADE;
 DROP TABLE IF EXISTS answer_user CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
@@ -12,18 +11,11 @@ DROP TABLE IF EXISTS reports CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 
 DROP FUNCTION IF EXISTS uninvited_comment();
-
 DROP TRIGGER IF EXISTS  uninvited_comment ON comments;
-
 DROP FUNCTION IF EXISTS warning_ban();
-
 DROP TRIGGER IF EXISTS  warning_ban ON users;
-
 DROP FUNCTION IF EXISTS event_in_past();
-
 DROP TRIGGER IF EXISTS  event_in_past ON events;
-
-
 
 CREATE TABLE events (
 	id SERIAL NOT NULL,
@@ -105,7 +97,6 @@ CREATE TABLE reports(
 );
 
 -- Primary Keys and Uniques
-
 ALTER TABLE ONLY events
     ADD CONSTRAINT event_pkey PRIMARY KEY (id);
 
@@ -139,9 +130,7 @@ ALTER TABLE ONLY event_path
 ALTER TABLE ONLY reports
     ADD CONSTRAINT report_pkey PRIMARY KEY (id);
 
-
 -- Foreign Keys
-
 ALTER TABLE ONLY event_user
   ADD CONSTRAINT event_user_id_event_fkey FOREIGN KEY (id_event) REFERENCES events(id) ON UPDATE CASCADE;
 
@@ -178,9 +167,7 @@ ALTER TABLE ONLY event_path
 ALTER TABLE ONLY reports
 	ADD CONSTRAINT report_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
-
 --Triggers
-
 	CREATE FUNCTION uninvited_comment() RETURNS TRIGGER AS
 	$BODY$
 	BEGIN
