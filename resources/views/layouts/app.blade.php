@@ -56,7 +56,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/profile')  }}">Profile</a>
+                                <a class="dropdown-item" href="{{ url('my_profile')  }}">Profile</a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
                             </div>
                         </li>
@@ -94,8 +94,8 @@
                                 AUTH
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/login') }} ">Sign up</a>
-                                <a class="dropdown-item" href="{{ url('/register')  }}">Log in</a>
+                                <a class="dropdown-item" href="{{ url('register') }} ">Sign up</a>
+                                <a class="dropdown-item" href="{{ url('login')  }}">Log in</a>
                             </div>
                         </li>
                     </ul>

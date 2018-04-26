@@ -26,6 +26,12 @@
             <td><p><?php echo $user->name ?> </p></td>
             <td><p><?php echo $user->email ?></p></td>
             <td>
+                <form method="post" action="admin">
+                    {{ csrf_field() }}
+                    <input type="submit" name="action" value="Ban"/>
+                    <input type="submit" name="action" value="Unban"/>
+                    <input type="hidden" name="id" value="<?php echo $user->id; ?>"/>
+                </form>
                 <button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
                 <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
             </td>

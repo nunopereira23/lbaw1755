@@ -49,6 +49,7 @@ Route::get('faq', 'FaqController@show');
 
 //Admin
 Route::get('admin', 'AdminController@show');
+Route::post('admin', 'AdminController@banUser')->name('admin');
 
 // Event
 Route::get('event/{id}', 'EventController@show')->name('event');
@@ -64,4 +65,4 @@ Route::get('events', 'EventsController@show');
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
-Route::get('my_profile','ProfileController@showLoggedInUser');
+Route::get('my_profile','ProfileController@showLoggedInUser')->name('my_profile');
