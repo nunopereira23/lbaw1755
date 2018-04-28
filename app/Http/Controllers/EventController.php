@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 use App\Event;
 
@@ -18,8 +20,23 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::find($id);
+        if ($event->event_visibility == 'Public'){
+          return view('pages.event', ['event' => $event]);
+        }else if($event->event_visibility == 'Private'){
+          $user_id = Auth::id();
+          $event_status = DB::table('event_user')
+                                            ->where('id_event', '=', $id)
+                                            ->where('id_user', '=', $user_id)
+                                            ->pluck('event_user_state');
+          $status = $event_status[0];
+          //echo $status;
+            if ($status == ('Owner' || 'Invited' || 'Going')){
+              return view('pages.event', ['event' => $event]);
+            }
 
-        return view('pages.event', ['event' => $event]);
+        }
+
+        return abort(404);
     }
 
     public function showCreateForm()
