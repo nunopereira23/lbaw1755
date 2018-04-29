@@ -20,14 +20,28 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-primary m-2" style="width:100%">Accept</button>
-                            <button type="button" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
+                          <?php if ($status != ('')){
+                            echo '->user: '.$status."\n".'->event: '.$event->event_visibility;
+                            if ($status != 'Owner'){ ?>
+                              <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="type" value="AcceptEvent">
+                                <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+                                <?php if($status != 'Going'){ ?>
+                                  <button type="submit" class="btn btn-primary m-2" style="width:100%">Accept</button>
+                                <?php }else{ ?>
+                                <button type="submit" class="btn btn-success m-2" style="width:100%">Going</button>
+                                <?php } ?>
+                              </form>
+                              <button type="button" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
+                            <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".bd-example-modal-sm">
                                 2 are in!
                             </button>
                             <button type="button" class="btn m-2 dropdown-toggle" data-toggle="modal" style="width:100%" data-target=".bd-example-modal-sm2">
                                 Share
                             </button>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

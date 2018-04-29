@@ -49,6 +49,7 @@ Route::get('faq', 'FaqController@show');
 
 // Event
 Route::get('event/{id}', 'EventController@show')->name('event');
+Route::post('event/{id}', 'EventController@request');
 Route::get('create_event', 'EventController@showCreateForm')->name('create_event');
 Route::post('create_event', 'EventController@create');
 

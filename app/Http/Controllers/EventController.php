@@ -20,23 +20,67 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::find($id);
-        if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event]);
-        }else if($event->event_visibility == 'Private'){
+        $status = '';
+
+        if (Auth::check()){
           $user_id = Auth::id();
           $event_status = DB::table('event_user')
                                             ->where('id_event', '=', $id)
                                             ->where('id_user', '=', $user_id)
                                             ->pluck('event_user_state');
-          $status = $event_status[0];
-          //echo $status;
-            if ($status == ('Owner' || 'Invited' || 'Going')){
-              return view('pages.event', ['event' => $event]);
-            }
+          if (!$event_status->isEmpty())
+            $status = $event_status[0];
 
+          if ($status == '')
+            $status = 'Logged';
         }
 
-        return abort(404);
+        if ($event->event_visibility == 'Public'){
+          return view('pages.event', ['event' => $event,'status' => $status]);
+        }else if($event->event_visibility == 'Private'){
+          if ($status == ('Owner' || 'Invited' || 'Going')){
+            return view('pages.event', ['event' => $event,'status' => $status]);
+          }
+        }
+
+        return view('pages.error');
+    }
+
+    public function request(Request $request, $id)
+    {
+      if (Auth::check()){
+        switch ($request->type) {
+          case 'AcceptEvent':
+            $user_id = Auth::id();
+            $event_status = DB::table('event_user')
+                                              ->where('id_event', '=', $id)
+                                              ->where('id_user', '=', $user_id)
+                                              ->pluck('event_user_state');
+            if ($event_status->isEmpty())
+            {
+              DB::table('event_user')->insert(['id_event'=>$request->event_id,
+                                              'id_user'=>$user_id,
+                                              'event_user_state'=>'Going']);
+
+            }else if (!$event_status->isEmpty()){
+
+              if ($event_status[0] == 'Going')
+              {
+                DB::table('event_user')->where('id_event','=',$request->event_id)
+                                       ->where('id_user','=',$user_id)
+                                       ->where('event_user_state','=','Going')->delete();
+              }
+            }
+
+            return redirect()->route('event', ['id' => $request->event_id]);
+
+            break;
+
+          default:
+
+            break;
+        }
+      }
     }
 
     public function showCreateForm()
