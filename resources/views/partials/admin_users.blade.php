@@ -26,8 +26,16 @@
             <td><p><?php echo $user->name ?> </p></td>
             <td><p><?php echo $user->email ?></p></td>
             <td>
-                <button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
-                <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                <form method="post" action="/users/<?php echo $user->id ?>/ban">
+                    {{ csrf_field() }}
+                    <input type="submit" name="action" value="Ban"/>
+                    <input type="hidden" name="id" value="<?php echo $user->id; ?>"/>
+                </form>
+                <form method="post" action="/users/<?php echo $user->id ?>/reinstate">
+                    {{ csrf_field() }}
+                    <input type="submit" name="action" value="Reinstate"/>
+                    <input type="hidden" name="id" value="<?php echo $user->id; ?>"/>
+                </form>
             </td>
         </tr>
         <?php endforeach ?>

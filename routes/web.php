@@ -48,8 +48,9 @@ Route::get('contact', 'ContactController@show');
 Route::get('faq', 'FaqController@show');
 
 //Admin
-Route::get('admin', 'AdminController@show');
-Route::post('admin', 'AdminController@banUser')->name('admin');
+Route::get('users', 'AdminController@show');
+Route::post('/users/{id}/ban', 'AdminController@ban');
+Route::post('/users/{id}/reinstate', 'AdminController@reinstate');
 
 // Event
 Route::get('event/{id}', 'EventController@show')->name('event');

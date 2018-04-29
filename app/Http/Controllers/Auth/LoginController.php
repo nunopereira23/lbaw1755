@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Session;
+use Auth;
+use View;
 use App\User;
 
 class LoginController extends Controller
@@ -40,15 +43,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    protected function credentials(Request $request)
+    protected function authenticated(Request $request)
     {
-        $credentials = $request->only($this->username(), 'password');
-        return array_add($credentials, 'is_banned', '0');
+        if (Auth::user()->is_banned == 1) {
+            $message = 'This account been blocked, please contact us for more information @ RealLexi.com';
+            Auth::logout($request);
+            Session::flash('Error', $message);
+            return View::make('auth.login')->withMessage($message);
+        }
     }
+
+
 }
