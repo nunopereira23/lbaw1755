@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     // Don't add create and update timestamps in database.
-    public $timestamps  = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -33,9 +33,13 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     /**
-     * The cards this user owns.
+     * The events where the user is owner, going, ignoring or invited
      */
-     public function cards() {
-      return $this->hasMany('App\Card');
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Event', 'event_user', 'id_user', 'id_event')
+            ->withPivot('event_user_state');
     }
+
 }
