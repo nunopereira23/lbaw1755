@@ -62,7 +62,7 @@ Route::post('create_event', 'EventController@create');
 Route::get('events', 'EventsController@show');
 
 //My events
-Route::get('my_events', 'MyEventsController@show');
+Route::get('/users/{id}/my_events', 'MyEventsController@show');
 
 
 //Profile

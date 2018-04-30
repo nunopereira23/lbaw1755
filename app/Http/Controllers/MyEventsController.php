@@ -17,11 +17,11 @@ use App\User;
 class MyEventsController extends Controller
 {
 
-    public function show()
+    public function show($id)
     {
         $id_auth = Auth::id();
-        $loggedInUser = User::findOrFail($id_auth);
-        if ($loggedInUser) {
+        if ($id == $id_auth) {
+            $loggedInUser = User::findOrFail($id_auth);
             return view('pages.my_events', ['user' => $loggedInUser]);
         }
         return view('pages.error');
