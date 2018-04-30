@@ -49,13 +49,15 @@ class EventController extends Controller
     public function request(Request $request, $id)
     {
       if (Auth::check()){
+        $user_id = Auth::id();
+        $event_status = DB::table('event_user')
+                                          ->where('id_event', '=', $id)
+                                          ->where('id_user', '=', $user_id)
+                                          ->pluck('event_user_state');
         switch ($request->type) {
+          
           case 'AcceptEvent':
-            $user_id = Auth::id();
-            $event_status = DB::table('event_user')
-                                              ->where('id_event', '=', $id)
-                                              ->where('id_user', '=', $user_id)
-                                              ->pluck('event_user_state');
+
             if ($event_status->isEmpty())
             {
               DB::table('event_user')->insert(['id_event'=>$request->event_id,
@@ -73,6 +75,28 @@ class EventController extends Controller
             }
 
             return redirect()->route('event', ['id' => $request->event_id]);
+
+          break;
+
+          case 'IgnoreEvent':
+
+              if ($event_status->isEmpty())
+              {
+                DB::table('event_user')->insert(['id_event'=>$request->event_id,
+                                                'id_user'=>$user_id,
+                                                'event_user_state'=>'Ignoring']);
+
+              }else if (!$event_status->isEmpty()){
+
+                if ($event_status[0] == 'Ignoring')
+                {
+                  DB::table('event_user')->where('id_event','=',$request->event_id)
+                                         ->where('id_user','=',$user_id)
+                                         ->where('event_user_state','=','Ignoring')->delete();
+                }
+              }
+
+              return redirect()->route('event', ['id' => $request->event_id]);
 
             break;
 

@@ -27,13 +27,23 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" name="type" value="AcceptEvent">
                                 <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                                <?php if($status != 'Going'){ ?>
+                                <?php if(($status != 'Going')&&($status != 'Ignoring')){ ?>
                                   <button type="submit" class="btn btn-primary m-2" style="width:100%">Accept</button>
-                                <?php }else{ ?>
+                                <?php }else if ($status == 'Going'){ ?>
                                 <button type="submit" class="btn btn-success m-2" style="width:100%">Going</button>
                                 <?php } ?>
                               </form>
-                              <button type="button" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
+                              <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="type" value="IgnoreEvent">
+                                <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+                                <?php if(($status != 'Ignoring')&&($status != 'Going')){ ?>
+                                  <button type="submit" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
+                                <?php }else if ($status == 'Ignoring'){ ?>
+                                    <button type="submit" class="btn btn-danger m-2" style="width:100%">Ignoring</button>
+                                <?php } ?>
+                              </form>
+
                             <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".bd-example-modal-sm">
                                 2 are in!
