@@ -21,12 +21,29 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $status = '';
-        echo $event->is_Deleted;
+
         if ($event->is_deleted == true)
         {
           $error_type = 'Event_Canceled';
           return view('pages.error',['error_type'=>$error_type]);
         }
+
+        $event_owner = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->join('event_user', 'event_user.id_user', '=', 'users.id')
+            ->where('event_user.id_event',$id)
+            ->where('event_user.event_user_state','=','Owner')
+            ->get();
+
+        $users_going = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->join('event_user', 'event_user.id_user', '=', 'users.id')
+            ->where('event_user.id_event',$id)
+            ->where('event_user.event_user_state','=','Going')
+            ->get();
+
+        $going = array_merge(json_decode($event_owner),json_decode($users_going));
+
 
         if (Auth::check()){
           $user_id = Auth::id();
@@ -42,10 +59,10 @@ class EventController extends Controller
         }
 
         if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event,'status' => $status]);
+          return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going]);
         }else if($event->event_visibility == 'Private'){
           if ($status == ('Owner' || 'Invited' || 'Going')){
-            return view('pages.event', ['event' => $event,'status' => $status]);
+            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going]);
           }
         }
 

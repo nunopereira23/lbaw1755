@@ -51,8 +51,8 @@
 
 
                             <?php } ?>
-                            <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".bd-example-modal-sm">
-                                2 are in!
+                            <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".goingModal">
+                                <?php echo count($going); ?> are in!
                             </button>
                             <button type="button" class="btn m-2 dropdown-toggle" data-toggle="modal" style="width:100%" data-target=".bd-example-modal-sm2">
                                 Share
@@ -82,7 +82,7 @@
             </div>
           </div>
         </div>
-        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal fade goingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content text-center">
                     <div class="modal-header text-center">
@@ -93,14 +93,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="list-group list-group-flush">
-                            <a class="list-group-item list-group-item-action" href="../profile" style="height:50px">
+                          <?php foreach ($going as $user) {?>
+                            <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
                                 <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
-                                John Smith
+                                <?php echo $user->name; ?>
                             </a>
-                            <a class="list-group-item list-group-item-action" href="../profile" style="height:50px">
-                                <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
-                                John Doe
-                            </a>
+                          <?php } ?>
                         </div>
                     </div>
                     <div class="modal-footer">
