@@ -207,10 +207,9 @@ class EventController extends Controller
 
         //$this->authorize('create', $event);
 
-        // now working only like this!
         $event->title = $request->input('title');
-        $event->event_visibility = $request->input('event_visibility', 'Public');
-        $event->event_type = $request->input('event_type', 'Trip');
+        $event->event_visibility = $request->input('event_visibility');
+        $event->event_type = $request->input('event_type');
         $event->is_deleted = $request->input('is_deleted', false);
         $event->description = $request->input('event_description');
 
