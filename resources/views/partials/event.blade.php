@@ -44,6 +44,12 @@
                                 <?php } ?>
                               </form>
 
+                            <?php } else{ ?>
+                                  <button type="button" class="btn btn-primary m-2" style="width:100%">Edit event</button>
+                                  <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="font-size:11px;">Cancel Event</button>
+
+
+
                             <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".bd-example-modal-sm">
                                 2 are in!
@@ -56,6 +62,25 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal fade" id="cancelEventModal" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header" style="font-size:15px;">
+                <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
+                <p class="modal-title">Are you sure you want to cancel this event?</p>
+              </div>
+              <div class="modal-footer">
+                <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                  {{ csrf_field() }}
+                  <input type="hidden" name="type" value="CancelEvent">
+                  <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+                  <button type="submit" class="btn btn-danger btn-xs">Yes</button>
+                  <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal">No</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">

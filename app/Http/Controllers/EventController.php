@@ -21,6 +21,12 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $status = '';
+        echo $event->is_Deleted;
+        if ($event->is_deleted == true)
+        {
+          $error_type = 'Event_Canceled';
+          return view('pages.error',['error_type'=>$error_type]);
+        }
 
         if (Auth::check()){
           $user_id = Auth::id();
@@ -55,7 +61,7 @@ class EventController extends Controller
                                           ->where('id_user', '=', $user_id)
                                           ->pluck('event_user_state');
         switch ($request->type) {
-          
+
           case 'AcceptEvent':
 
             if ($event_status->isEmpty())
@@ -97,6 +103,20 @@ class EventController extends Controller
               }
 
               return redirect()->route('event', ['id' => $request->event_id]);
+
+            break;
+
+            case 'CancelEvent':
+              if (Auth::check()){
+
+                $event= Event::findOrFail($id);
+                if ($event_status[0] == 'Owner'){
+                  $event->is_deleted = 'true';
+                  $event->save();
+                }
+
+                return redirect()->route('event', ['id' => $request->event_id]);
+              }
 
             break;
 
