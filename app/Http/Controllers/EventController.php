@@ -197,6 +197,9 @@ class EventController extends Controller
 
     public function showCreateForm()
     {
+        if (!Auth::check()){
+            return abort(404);
+        }
         return view('pages.create_event');
     }
 
