@@ -10,8 +10,13 @@
       <?php } else if ($error_type == 'Event_Canceled') { ?>
         <h1 class="text-center">Event canceled.<p></p>
         </h1>
+      <?php } else if ($error_type == 'Event_Not_Found') { ?>
+        <h1 class="text-center">Event not found.<p></p>
+        </h1>
+      <?php } else if ($error_type == 'Event_No_Permission') { ?>
+        <h1 class="text-center">Event is private. <br>Need proper invite to acess.<p></p>
+        </h1>
       <?php } ?>
-
         <p class="text-center">Try pressing the back button or clicking on this button.</p>
         <p class="text-center"><a class="btn btn-primary" href="/"><i class="fa fa-home"></i> Go To Homepage</a></p>
     </div>

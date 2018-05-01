@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Session;
 
 use App\Event;
 
@@ -21,6 +22,12 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $status = '';
+
+        if (!isset($event))
+        {
+          $error_type = 'Event_Not_Found';
+          return view('pages.error',['error_type'=>$error_type]);
+        }
 
         if ($event->is_deleted == true)
         {
@@ -42,31 +49,58 @@ class EventController extends Controller
             ->where('event_user.event_user_state','=','Going')
             ->get();
 
+
+        $users_canBeInvited = DB::table("users")
+            ->select('id','name')
+            ->whereNotIn('id',function($query) use(&$id) {
+              $query->select('id_user')
+                    ->from('event_user')
+                    ->where('id_event','=',$id);
+            })->get();
+
+        $users_canBeInvited = json_decode($users_canBeInvited);
+
         $going = array_merge(json_decode($event_owner),json_decode($users_going));
 
 
         if (Auth::check()){
           $user_id = Auth::id();
+          $i = 0;
+          foreach($users_canBeInvited as $user_tbi)
+          {
+            if ($user_tbi->id == $user_id){
+               unset($users_canBeInvited[$i]);
+            }
+            $i++;
+          }
+
           $event_status = DB::table('event_user')
                                             ->where('id_event', '=', $id)
                                             ->where('id_user', '=', $user_id)
                                             ->pluck('event_user_state');
-          if (!$event_status->isEmpty())
-            $status = $event_status[0];
 
           if ($status == '')
             $status = 'Logged';
+
+          if (!$event_status->isEmpty())
+            $status = $event_status[0];
         }
 
+        if (Session::get('modal') != null)
+          $modal =  Session::get('modal');
+        else
+          $modal = 'noModal';
+
         if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going]);
+          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'modal' => $modal]);
         }else if($event->event_visibility == 'Private'){
-          if ($status == ('Owner' || 'Invited' || 'Going')){
-            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going]);
+          if (($status == 'Owner') || ($status == 'Invited') || ($status == 'Going')){
+            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited,'modal' => $modal]);
           }
         }
 
-        return view('pages.error');
+        $error_type = 'Event_No_Permission';
+        return view('pages.error',['error_type'=>$error_type]);
     }
 
     public function request(Request $request, $id)
@@ -135,6 +169,22 @@ class EventController extends Controller
                 return redirect()->route('event', ['id' => $request->event_id]);
               }
 
+            break;
+
+            case 'ShareEvent':
+              $invitedModal = 'noInvite';
+
+              $invited = $request->invited;
+              if (count($invited) > 0){
+                $invitedModal = 'Invite';
+                foreach ($invited as $invited_id) {
+                    DB::table('event_user')->insert(['id_event'=>$request->event_id,
+                                                    'id_user'=>$invited_id,
+                                                    'event_user_state'=>'Invited']);
+                }
+              }
+              Session::flash('modal',$invitedModal);
+              return redirect()->route('event', ['id' => $request->event_id]);
             break;
 
           default:
