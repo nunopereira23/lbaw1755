@@ -35,7 +35,7 @@
                         <select class="custom-select d-block w-100" id="event_type" name="event_type">
                             <option value="" selected="selected">Choose...</option>
                             <option value="Trip">Trip</option>
-                            <option value="Party" selected="selected">Party</option>
+                            <option value="Party">Party</option>
                             <option value="Sport">Sport</option>
                             <option value="Education">Education</option>
                             <option value="Culture">Culture</option>
