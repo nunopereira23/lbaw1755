@@ -7,14 +7,13 @@
  */
 
 namespace App\Http\Controllers;
+
+use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
-
-use App\Event;
-use Auth;
 use App\User;
 
 class EventController extends Controller
@@ -205,13 +204,14 @@ class EventController extends Controller
     {
         $event = new Event();
 
-        //$this->authorize('create', $event);
-
         $event->title = $request->input('title');
         $event->event_visibility = $request->input('event_visibility');
         $event->event_type = $request->input('event_type');
         $event->is_deleted = $request->input('is_deleted', false);
         $event->description = $request->input('event_description');
+        if(isset($_GET['gps'])) {
+            $event->gps = $_GET['gps'];
+        }
 
         $event->save();
 
