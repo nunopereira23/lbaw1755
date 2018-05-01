@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\EventUser;
 use Auth;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -218,10 +219,18 @@ class EventController extends Controller
             $event->event_type = $request->input('event_type');
             $event->is_deleted = $request->input('is_deleted', false);
             $event->description = $request->input('event_description');
+
+            $date_start = date_format(new DateTime($request->input('date_start')), 'Y-m-d');
+            $time_start = date_format(new DateTime($request->input('time_start')), 'h:i:s');
+            $event->event_start = $date_start . " " . $time_start;
+
+            $date_end = date_format(new DateTime($request->input('date_end')), 'Y-m-d');
+            $time_end = date_format(new DateTime($request->input('time_end')), 'h:i:s');
+            $event->event_end = $date_end . " " . $time_end;
+
             if (isset($_GET['gps'])) {
                 $event->gps = $_GET['gps'];
             }
-
         }
         $event->save();
         $user_event->id_event = $event->id;

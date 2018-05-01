@@ -10,28 +10,42 @@
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-8 mb-3 md-10">
-                        <label for="title">Title</label>
+                        <label for="title">Title*</label>
                         <input class="form-control" placeholder="Name of the event" id="title" type="text" name="title">
                         <div class="invalid-feedback">
                             An event name is required.
                         </div>
                     </div>
-                    <div class="col-2.5 pl-5">
-                        <label for="date">Date</label>
+                </div>
+                <div class="row">
+                    <div class="col-3.5 mb-5 pl-3">
+                        <label for="date">Start Date*</label>
                         <div class="input-group">
-                            <input class="form-control" id="date" type="date">
+                            <input class="form-control" id="date" type="date" name="date_start">
                         </div>
                     </div>
-                    <div class="col-1.5 pl-5">
+                    <div class="col-1.5 pl-4">
                         <label for="time">Time</label>
                         <div class="input-group">
-                            <input class="form-control" id="time" type="time">
+                            <input class="form-control" id="time" type="time" name="time_start">
+                        </div>
+                    </div>
+                    <div class="col-2.5 pl-5">
+                        <label for="date">End Date*</label>
+                        <div class="input-group">
+                            <input class="form-control" id="date" type="date" name="date_end">
+                        </div>
+                    </div>
+                    <div class="col-1.5 pl-4">
+                        <label for="time">Time</label>
+                        <div class="input-group">
+                            <input class="form-control" id="time" type="time" name="time_end">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="event_type">Type</label>
+                        <label for="event_type">Type*</label>
                         <select class="custom-select d-block w-100" id="event_type" name="event_type">
                             <option value="" selected="selected">Choose...</option>
                             <option value="Trip">Trip</option>
