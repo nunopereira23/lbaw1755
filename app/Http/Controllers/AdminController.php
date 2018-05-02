@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Report;
 use Auth;
 
 class AdminController extends Controller
@@ -12,8 +13,10 @@ class AdminController extends Controller
         $id_auth = Auth::id();
         $loggedInUser = User::findOrFail($id_auth);
         if ($loggedInUser->is_admin == true) {
-            $users = User::all();
-            return view('pages.admin_users', ['users' => $users]);
+            $activeUsers = User::all()->where('is_banned',false);
+            $bannedUsers = User::all()->where('is_banned',true);
+            $reports = Report::all();
+            return view('pages.admin_users', ['users' => $activeUsers, 'bannedUsers' => $bannedUsers,  'reports' => $reports]);
         }
         else {
             return view('pages.error');

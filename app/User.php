@@ -42,4 +42,8 @@ class User extends Authenticatable
             ->withPivot('event_user_state');
     }
 
+    public function reports() {
+        return $this->hasMany('App\Report', 'id_user', 'id');
+    }
+
 }
