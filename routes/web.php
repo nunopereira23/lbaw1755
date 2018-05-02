@@ -51,6 +51,7 @@ Route::get('faq', 'FaqController@show');
 Route::get('users', 'AdminController@show');
 Route::post('/users/{id}/ban', 'AdminController@ban');
 Route::post('/users/{id}/reinstate', 'AdminController@reinstate');
+Route::post('/users/{id}/warn', 'AdminController@warn');
 
 // Event
 Route::get('event/{id}', 'EventController@show')->name('event');

@@ -9,8 +9,7 @@
 
 <body>
 <div class="container">
-    <h1>Admin</h1>
-    <h2>Registered Users</h2>
+    <h2>Active Users</h2>
     <br>
     <table class="table table-condensed">
         <thead>
@@ -21,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($users as $user) :?>
+        <?php foreach ($activeUsers as $user) :?>
         <tr>
             <td><p><?php echo $user->name ?> </p></td>
             <td><p><?php echo $user->email ?></p></td>
@@ -31,6 +30,27 @@
                     <input type="submit" name="action" value="Ban"/>
                     <input type="hidden" name="id" value="<?php echo $user->id; ?>"/>
                 </form>
+            </td>
+        </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
+    <h2>Banned Users</h2>
+    <br>
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th><p>Name</p></th>
+            <th><p>Email</p></th>
+            <th><p>Actions</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($bannedUsers as $user) :?>
+        <tr>
+            <td><p><?php echo $user->name ?> </p></td>
+            <td><p><?php echo $user->email ?></p></td>
+            <td>
                 <form method="post" action="/users/<?php echo $user->id ?>/reinstate">
                     {{ csrf_field() }}
                     <input type="submit" name="action" value="Reinstate"/>
@@ -41,14 +61,34 @@
         <?php endforeach ?>
         </tbody>
     </table>
+    <h2>User's reports</h2>
+    <br>
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th><p>Name</p></th>
+            <th><p>Email</p></th>
+            <th><p>Description</p></th>
+            <th><p>Actions</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($reports as $report) :?>
+        <tr>
+            <td><p><?php echo $report->id_user ?> </p></td>
+            <td><p><?php echo $report->description ?></p></td>
+            <td><p><?php echo $report->description ?></p></td>
+            <td>
+                <form method="post" action="/users/<?php echo $report->id_user ?>/warn">
+                    {{ csrf_field() }}
+                    <input type="submit" name="action" value="Warn"/>
+                    <input type="hidden" name="id" value="<?php echo $report->id_user; ?>"/>
+                </form>
+            </td>
+        </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
 </div>
 
-<footer class="copyright">
-    <div class="footer-copyright py-3 text-center">
-        <div class="container">
-            <hr>
-© 2018 I am In!
-        </div>
-    </div>
-</footer>
 
