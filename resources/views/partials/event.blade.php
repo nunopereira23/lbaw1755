@@ -51,13 +51,15 @@
 
 
                             <?php } ?>
+                        <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".goingModal">
                                 <?php echo count($going); ?> are in!
                             </button>
+                        <?php if ($status != ('')){ ?>
                             <button type="button" class="btn m-2 dropdown-toggle" data-toggle="modal" style="width:100%" data-target=".shareModal">
                                 Share
                             </button>
-                            <?php } ?>
+                        <?php } ?>
                         </div>
                     </div>
                 </div>
