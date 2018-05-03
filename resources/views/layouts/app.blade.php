@@ -91,9 +91,6 @@
                             <a class="nav-link" href="{{ url('/events') }}">EVENTS <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/create_event') }}">CREATE EVENT</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
                         </li>
                         <li class="nav-item">

@@ -2,16 +2,16 @@
 
 <div class="container mb-5">
     <div class="py-3 text-center">
-        <h3>Create event</h3>
+        <h3>Edit event</h3>
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form class="needs-validation" novalidate="" role="form" method="POST" action={{ route('create_event') }}>
+            <form class="needs-validation" novalidate="" role="form" method="POST" action="/event/<?php echo $event->title ?>/edit_event">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-8 mb-3 md-10">
-                        <label for="title">Title*</label>
-                        <input class="form-control" placeholder="Name of the event" id="title" type="text" name="title">
+                        <label for="title">Title</label>
+                        <input class="form-control" placeholder="Name of the event" id="title" type="text" name="title" value="<?php echo $event->title ?>">
                         <div class="invalid-feedback">
                             An event name is required.
                         </div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="row">
                     <div class="col-3.5 mb-5 pl-3">
-                        <label for="date">Start Date*</label>
+                        <label for="date">Start Date</label>
                         <div class="input-group">
                             <input class="form-control" id="date" type="date" name="date_start">
                         </div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="col-2.5 pl-5">
-                        <label for="date">End Date*</label>
+                        <label for="date">End Date</label>
                         <div class="input-group">
                             <input class="form-control" id="date" type="date" name="date_end">
                         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="event_type">Type*</label>
+                        <label for="event_type">Type</label>
                         <select class="custom-select d-block w-100" id="event_type" name="event_type">
                             <option value="" selected="selected">Choose...</option>
                             <option value="Trip">Trip</option>
@@ -79,47 +79,15 @@
                             <label class="custom-control-label" for="public">Public</label>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary m-2 float-right" data-toggle="modal" data-target=".bd-example-modal-sm2">
-                            Share with...
-                        </button>
-                        <div class="modal fade bd-example-modal-sm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content text-center">
-                                    <h3 class="modal-title" id="exampleModalLabel">Share with...</h3>
-                                    <div class="modal-body">
-                                        <div class="list-group list-group-flush">
-                                            <a class="list-group-item list-group-item-action">
-                                                <div class="custom-control custom-checkbox m-0" style="height:20px">
-                                                    <input type="checkbox" class="custom-control-input " id="customCheck1">
-                                                    <img class="img-responsive" style=" height: 100%;" src="../../images/profile.png">
-                                                    <label class="custom-control-label" for="customCheck1">John Smith</label>
-                                                </div>
-                                            </a>
-                                            <a class="list-group-item list-group-item-action">
-                                                <div class="custom-control custom-checkbox m-0" style="height:20px">
-                                                    <input type="checkbox" class="custom-control-input " id="customCheck2">
-                                                    <img class="img-responsive" style=" height: 100%;" src="../../images/profile.png">
-                                                    <label class="custom-control-label" for="customCheck2">John Doe</label>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="row">
                     <hr class="mb-4">
-                    <h5> Event description</h5>
-                    <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"></textarea>
+                    <h5>Event description</h5>
+                    <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"><?php echo $event->description ?></textarea>
                 </div>
                 <hr class="mb-4">
-                <a href={{'../my_events'}}>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                <a href="/event/<?php echo $event->id ?>">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Save changes</button>
                 </a>
             </form>
         </div>

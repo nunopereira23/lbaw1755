@@ -20,69 +20,68 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                          <?php if ($status != ('')){
-                            echo '->user: '.$status."\n".'->event: '.$event->event_visibility;
+                            <?php if ($status != ('')){
+                            echo '->user: ' . $status . "\n" . '->event: ' . $event->event_visibility;
                             if ($status != 'Owner'){ ?>
-                              <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                            <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="type" value="AcceptEvent">
                                 <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                                <?php if(($status != 'Going')&&($status != 'Ignoring')){ ?>
-                                  <button type="submit" class="btn btn-primary m-2" style="width:100%">Accept</button>
+                                <?php if(($status != 'Going') && ($status != 'Ignoring')){ ?>
+                                <button type="submit" class="btn btn-primary m-2" style="width:100%">Accept</button>
                                 <?php }else if ($status == 'Going'){ ?>
                                 <button type="submit" class="btn btn-success m-2" style="width:100%">Going</button>
                                 <?php } ?>
-                              </form>
-                              <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                            </form>
+                            <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="type" value="IgnoreEvent">
                                 <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                                <?php if(($status != 'Ignoring')&&($status != 'Going')){ ?>
-                                  <button type="submit" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
+                                <?php if(($status != 'Ignoring') && ($status != 'Going')){ ?>
+                                <button type="submit" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
                                 <?php }else if ($status == 'Ignoring'){ ?>
-                                    <button type="submit" class="btn btn-danger m-2" style="width:100%">Ignoring</button>
+                                <button type="submit" class="btn btn-danger m-2" style="width:100%">Ignoring</button>
                                 <?php } ?>
-                              </form>
+                            </form>
 
                             <?php } else{ ?>
-                                  <button type="button" class="btn btn-primary m-2" style="width:100%">Edit event</button>
-                                  <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="font-size:11px;width:100%;">Cancel Event</button>
-
-
-
+                            <form action="/event/<?php echo $event->id ?>/edit_event">
+                                <button type="submit" class="btn btn-primary m-2" style="width:100%">Edit event</button>
+                            </form>
+                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="font-size:11px;width:100%;">Cancel Event</button>
                             <?php } ?>
-                        <?php } ?>
+                            <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".goingModal">
                                 <?php echo count($going); ?> are in!
                             </button>
-                        <?php if ($status != ('')){ ?>
+                            <?php if ($status != ('')){ ?>
                             <button type="button" class="btn m-2 dropdown-toggle" data-toggle="modal" style="width:100%" data-target=".shareModal">
                                 Share
                             </button>
-                        <?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="cancelEventModal" role="dialog">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header" style="font-size:15px;">
-                <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
-                <p class="modal-title">Are you sure you want to cancel this event?</p>
-              </div>
-              <div class="modal-footer">
-                <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
-                  {{ csrf_field() }}
-                  <input type="hidden" name="type" value="CancelEvent">
-                  <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                  <button type="submit" class="btn btn-danger btn-xs">Yes</button>
-                  <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal">No</button>
-                </form>
-              </div>
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header" style="font-size:15px;">
+                        <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
+                        <p class="modal-title">Are you sure you want to cancel this event?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="type" value="CancelEvent">
+                            <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+                            <button type="submit" class="btn btn-danger btn-xs">Yes</button>
+                            <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal">No</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <div class="modal fade goingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -95,12 +94,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="list-group list-group-flush">
-                          <?php foreach ($going as $user) {?>
+                            <?php foreach ($going as $user) {?>
                             <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
                                 <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
                                 <?php echo $user->name; ?>
                             </a>
-                          <?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -114,28 +113,28 @@
                 <div class="modal-content text-center">
                     <h5 class="modal-title">Share with...</h5>
                     <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
-                      {{ csrf_field() }}
-                      <input type="hidden" name="type" value="ShareEvent">
-                      <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+                        {{ csrf_field() }}
+                        <input type="hidden" name="type" value="ShareEvent">
+                        <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
 
-                      <div class="modal-body">
-                          <div class="list-group list-group-flush">
-                              <a class="list-group-item list-group-item-action">
-                                                              <?php foreach ($canBeInvited as $user) {?>
+                        <div class="modal-body">
+                            <div class="list-group list-group-flush">
+                                <a class="list-group-item list-group-item-action">
+                                    <?php foreach ($canBeInvited as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="invited[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
                                         <img class="img-responsive" style=" height: 100%;float:left;" src="../../images/profile.png">
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
-                                  <?php }?>
-                              </a>
+                                    <?php }?>
+                                </a>
 
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary btn-xs">Send</button>
-                          <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
-                      </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-xs">Send</button>
+                            <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -224,35 +223,35 @@
     </div>
 
     <label hidden id="triggerModal">
-      <?php echo $modal;?>
+        <?php echo $modal;?>
     </label>
 
     <div class="modal fade" id="inviteSuccess" role="dialog">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-body" style="font-size:15px;">
-            <?php if ($modal == 'Invite'){ ?>
-            <p class="modal-title">User(s) invited successfuly.</p>
-            <?php } elseif ($modal == 'noInvite') { ?>
-            <p class="modal-title">No users were invited.</p>
-            <?php } ?>
-            <br>
-            <button type="button" class="btn btn-primary btn-xs mb-0" data-dismiss="modal" style="height:25px;float:right;font-size:11px;">Close</button>
-          </div>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body" style="font-size:15px;">
+                    <?php if ($modal == 'Invite'){ ?>
+                    <p class="modal-title">User(s) invited successfuly.</p>
+                    <?php } elseif ($modal == 'noInvite') { ?>
+                    <p class="modal-title">No users were invited.</p>
+                    <?php } ?>
+                    <br>
+                    <button type="button" class="btn btn-primary btn-xs mb-0" data-dismiss="modal" style="height:25px;float:right;font-size:11px;">Close</button>
+                </div>
 
+            </div>
         </div>
-      </div>
     </div>
 
     <script type="text/javascript">
 
-      var labelText = $('#triggerModal').text().trim();
+        var labelText = $('#triggerModal').text().trim();
 
-      if (labelText != "noModal"){
-        $(document).ready(function(){
-            $('#inviteSuccess').modal('show');
-        });
-      }
+        if (labelText != "noModal") {
+            $(document).ready(function () {
+                $('#inviteSuccess').modal('show');
+            });
+        }
     </script>
 
     <script>
