@@ -9,26 +9,28 @@
 
 <body>
 <div class="container">
-    <h2>Active Users</h2>
+    <h2>Banned Users</h2>
     <br>
     <table class="table table-condensed">
         <thead>
         <tr>
             <th><p>Name</p></th>
             <th><p>Email</p></th>
+            <th><p>Description</p></th>
             <th><p>Actions</p></th>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($activeUsers as $user) :?>
+        <?php foreach ($reports as $report) :?>
         <tr>
-            <td><p><?php echo $user->name ?> </p></td>
-            <td><p><?php echo $user->email ?></p></td>
+            <td><p><?php echo $report->getUserName() ?> </p></td>
+            <td><p><?php echo $report->getUserEmail() ?></p></td>
+            <td><p><?php echo $report->description ?></p></td>
             <td>
-                <form method="post" action="/users/<?php echo $user->id ?>/ban">
+                <form method="post" action="/users/<?php echo $report->id_user ?>/warn">
                     {{ csrf_field() }}
-                    <input type="submit" name="action" value="Ban"/>
-                    <input type="hidden" name="id" value="<?php echo $user->id; ?>"/>
+                    <input type="submit" name="action" value="Warn"/>
+                    <input type="hidden" name="id" value="<?php echo $report->id_user; ?>"/>
                 </form>
             </td>
         </tr>
@@ -36,5 +38,3 @@
         </tbody>
     </table>
 </div>
-
-

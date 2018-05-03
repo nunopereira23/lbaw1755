@@ -18,4 +18,15 @@ class Report extends Model
         return $this->belongsTo('App\User', 'id', 'id_user');
     }
 
+    public function getUserName() {
+        $user = User::findOrFail($this->id_user);
+        return $user->name;
+    }
+
+    public function getUserEmail() {
+        $user = User::findOrFail($this->id_user);
+        return $user->email;
+    }
+
+
 }

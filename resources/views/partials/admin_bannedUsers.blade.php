@@ -9,7 +9,7 @@
 
 <body>
 <div class="container">
-    <h2>Active Users</h2>
+    <h2>Banned Users</h2>
     <br>
     <table class="table table-condensed">
         <thead>
@@ -20,14 +20,14 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($activeUsers as $user) :?>
+        <?php foreach ($bannedUsers as $user) :?>
         <tr>
             <td><p><?php echo $user->name ?> </p></td>
             <td><p><?php echo $user->email ?></p></td>
             <td>
-                <form method="post" action="/users/<?php echo $user->id ?>/ban">
+                <form method="post" action="/users/<?php echo $user->id ?>/reinstate">
                     {{ csrf_field() }}
-                    <input type="submit" name="action" value="Ban"/>
+                    <input type="submit" name="action" value="Reinstate"/>
                     <input type="hidden" name="id" value="<?php echo $user->id; ?>"/>
                 </form>
             </td>

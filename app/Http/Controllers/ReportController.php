@@ -19,10 +19,5 @@ class ReportController extends Controller
         echo "user is reported";
     }
 
-    public function getUserName($id) {
-        $user = User::findOrFail($id);
-
-    }
-
 
 }

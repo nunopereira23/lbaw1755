@@ -48,7 +48,9 @@ Route::get('contact', 'ContactController@show');
 Route::get('faq', 'FaqController@show');
 
 //Admin
-Route::get('users', 'AdminController@show');
+Route::get('users', 'AdminController@showActiveUsers');
+Route::get('banned_users', 'AdminController@showBannedUsers');
+Route::get('reports', 'AdminController@showReports');
 Route::post('/users/{id}/ban', 'AdminController@ban');
 Route::post('/users/{id}/reinstate', 'AdminController@reinstate');
 Route::post('/users/{id}/warn', 'AdminController@warn');

@@ -8,14 +8,22 @@ use Auth;
 class AdminController extends Controller
 {
 
-    public function show()
+    public function showActiveUsers()
     {
-        $id_auth = Auth::id();
-        $loggedInUser = User::findOrFail($id_auth);
-            $activeUsers = User::all()->where('is_banned',false);
-            $bannedUsers = User::all()->where('is_banned',true);
-            $reports = Report::all();
-            return view('pages.admin_users', ['activeUsers' => $activeUsers, 'bannedUsers' => $bannedUsers,  'reports' => $reports]);
+        $activeUsers = User::all()->where('is_banned',false);
+        return view('pages.admin_users', ['activeUsers' => $activeUsers]);
+    }
+
+    public function showBannedUsers()
+    {
+        $bannedUsers = User::all()->where('is_banned',true);
+        return view('pages.admin_bannedUsers', ['bannedUsers' => $bannedUsers]);
+    }
+
+    public function showReports()
+    {
+        $reports = Report::all();
+        return view('pages.admin_reports', ['reports' => $reports]);
     }
 
     public function ban()
@@ -24,7 +32,8 @@ class AdminController extends Controller
             $user = User::findOrFail($_POST['id']);
             $user->is_banned = true;
             $user->save();
-            echo "User is successfully banned";
+            $page = "banned";
+            return view('pages.admin_message', ['page' => $page]);
         }
     }
 
@@ -34,7 +43,8 @@ class AdminController extends Controller
             $user= User::findOrFail($_POST['id']);
             $user->is_banned = false;
             $user->save();
-            echo "User is successfully reinstated";
+            $page = "reinstated";
+            return view('pages.admin_message', ['page' => $page]);
         }
     }
 
@@ -44,7 +54,8 @@ class AdminController extends Controller
             $user= User::findOrFail($_POST['id']);
             $user->nr_warnings += 1;
             $user->save();
-            echo "User is successfully warned";
+            $page = "warned";
+            return view('pages.admin_message', ['page' => $page]);
         }
     }
 
