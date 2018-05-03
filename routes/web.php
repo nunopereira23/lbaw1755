@@ -47,6 +47,14 @@ Route::get('contact', 'ContactController@show');
 // FAQ
 Route::get('faq', 'FaqController@show');
 
+//Admin
+Route::get('users', 'AdminController@showActiveUsers');
+Route::get('banned_users', 'AdminController@showBannedUsers');
+Route::get('reports', 'AdminController@showReports');
+Route::post('/users/{id}/ban', 'AdminController@ban');
+Route::post('/users/{id}/reinstate', 'AdminController@reinstate');
+Route::post('/users/{id}/warn', 'AdminController@warn');
+
 // Event
 Route::get('event/{id}', 'EventController@show')->name('event');
 Route::post('event/{id}', 'EventController@request');
@@ -56,9 +64,13 @@ Route::post('create_event', 'EventController@create');
 //Events
 Route::get('events', 'EventsController@show');
 
+//My events
+Route::get('/users/{id}/my_events', 'MyEventsController@show');
+
 
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
-Route::get('/users/{id}/profile','ProfileController@showLoggedInUserProfile')->name('my_profile');
+Route::get('my_profile','ProfileController@showLoggedInUser')->name('my_profile');
+Route::post('/users/{id}/report','ReportController@report');

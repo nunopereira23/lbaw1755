@@ -18,9 +18,10 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/cards');
+            return redirect('/index');
         }
 
         return $next($request);
+
     }
 }

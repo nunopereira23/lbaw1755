@@ -13,4 +13,10 @@ class Event extends Model
 
     public $timestamps = false;
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'event_user', 'id_event', 'id_user')
+            ->withPivot('event_user_state');
+    }
+
 }

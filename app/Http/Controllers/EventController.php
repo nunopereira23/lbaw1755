@@ -14,6 +14,8 @@ use Auth;
 use Session;
 
 use App\Event;
+use Auth;
+use App\User;
 
 class EventController extends Controller
 {
@@ -210,9 +212,15 @@ class EventController extends Controller
         $event->event_visibility = $request->input('event_visibility', 'Public');
         $event->event_type = $request->input('event_type', 'Trip');
         $event->is_deleted = $request->input('is_deleted', false);
-        $event->description = $request->input('event_decription');
+        $event->description = $request->input('event_description');
 
         $event->save();
+
+        // set the owner of this event
+        $id_auth = Auth::id();
+        $eventOwner = User::findOrFail($id_auth);
+        $eventOwner->events()->attach($event, ['event_user_state' => 'Owner']);
+
 
         return redirect()->route('event', [$event]);
     }

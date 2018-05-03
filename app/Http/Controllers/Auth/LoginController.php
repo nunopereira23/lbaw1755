@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Session;
+use Auth;
+use View;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -37,4 +42,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(Request $request)
+    {
+        if (Auth::user()->is_banned == 1) {
+            $message = 'This account been blocked, please contact us for more information @ RealLexi.com';
+            Auth::logout($request);
+            Session::flash('Error', $message);
+            return View::make('auth.login')->withMessage($message);
+        }
+    }
+
+
 }
