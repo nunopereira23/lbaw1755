@@ -94,16 +94,12 @@ class EventController extends Controller
             $status = $event_status[0];
         }
 
-        if (Session::get('modal') != null)
-          $modal =  Session::get('modal');
-        else
-          $modal = 'noModal';
 
         if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'modal' => $modal]);
+          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited]);
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited,'modal' => $modal]);
+            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited]);
           }
         }
 
@@ -227,11 +223,11 @@ class EventController extends Controller
             break;
 
             case 'ShareEvent':
-              $invitedModal = 'noInvite';
+              $response = 'noInvite';
 
               $invited = $request->invited;
               if (count($invited) > 0){
-                $invitedModal = 'Invite';
+                $response = 'Invited';
                 foreach ($invited as $invited_id) {
                     DB::table('event_user')->insert(['id_event'=>$request->event_id,
                                                     'id_user'=>$invited_id,
@@ -239,8 +235,8 @@ class EventController extends Controller
                                                     'is_invited'=>true]);
                 }
               }
-              Session::flash('modal',$invitedModal);
-              return redirect()->route('event', ['id' => $request->event_id]);
+
+              return response()->json($response);
             break;
 
           default:
