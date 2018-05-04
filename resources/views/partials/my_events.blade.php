@@ -89,8 +89,8 @@
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
                     <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                    <h5> Porto's Airport </h5>
+                    <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
+                    <h5> Location </h5>
                 </div>
             </div>
             <?php } else {?>
@@ -108,23 +108,26 @@
         <div class="col-sm justify-content-center">
             <span id="going"> Going</span>
             <hr>
+            <?php foreach ($user->events as $event) :
+                if ($event->pivot->event_user_state == 'Going') {?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> FEUP party </a></h4>
-                    <h6 class="text-muted"> 18 Mar 2018 at 8.30 PM</h6>
-                    <h5>FEUP canteen </h5>
+                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
+                    <h5>Location </h5>
                 </div>
             </div>
-            <br>
-            <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event/event.html"> PHP workshop </a></h4>
-                    <h6 class="text-muted"> 10 Mar 2018 at 9.00 AM</h6>
-                    <h5> FEUP B003</h5>
-                </div>
+            <?php } else {?>
+            <div>
+                <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
+            <?php } endforeach ?>
+            <?php if (!($user->events)) {?>
+            <div>
+                <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
+            </div>
+            <?php } ?>
             <hr>
         </div>
 
@@ -132,22 +135,40 @@
         <div class="col-sm justify-content-center">
             <span id="ignoring"> Ignoring </span>
             <hr>
-            <br>
-            <div>
-                <br>
-                <p> OOOPS, this category is empty :/ </p>
+            <?php foreach ($user->events as $event) :
+            if ($event->pivot->event_user_state == 'Ignoring') {?>
+            <div class="card">
+                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <div class="card-block">
+                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
+                    <h5>Location </h5>
+                </div>
             </div>
+            <?php } else {?>
+            <div>
+                <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
+            </div>
+            <?php } endforeach ?>
+            <?php if (!($user->events)) {?>
+            <div>
+                <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
+            </div>
+            <?php } ?>
+            <hr>
         </div>
         <br>
         <div class="col-sm justify-content-center">
             <span id="invited"> Invited to </span>
             <hr>
+            <?php foreach ($user->events as $event) :
+                if ($event->pivot->event_user_state == 'Invited') {?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> Team dinner </a></h4>
-                    <h6 class="text-muted"> 11 April 2018 at 9.00 PM</h6>
-                    <h5>Rua- Tapas & Music Bar </h5>
+                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
+                    <h5>Location </h5>
                     <h5>Invited by <a href="../user/profile.html"> joao95 </a> </h5>
                     <br>
                     <div class="dropdown">
@@ -161,29 +182,18 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4> <a href="../event/event.html">Birthday party </a></h4>
-                    <h6 class="text-muted"> 16 April 2018 at 9.00 PM </h6>
-                    <h5>Club 77</h5>
-                    <h5>Invited by <a href="../user/profile.html"> miguel123 </a> </h5>
-                    <br>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            React <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="my_events.html"> Accept </a></li>
-                            <li><a href="my_events.html"> Ignore </a></li>
-                        </ul>
-                    </div>
-                </div>
+            <?php } else {?>
+            <div>
+                <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
+            <?php } endforeach ?>
+            <?php if (!($user->events)) {?>
+            <div>
+                <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
+            </div>
+            <?php } ?>
             <hr>
         </div>
-        <br>
     </div>
 </div>
 </body>

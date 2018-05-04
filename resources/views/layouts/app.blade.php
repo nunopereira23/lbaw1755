@@ -60,6 +60,7 @@
                                 <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
                             </div>
                         </li>
+                        @if (Auth::user()->is_admin)
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Admin page
@@ -70,6 +71,7 @@
                                     <a class="dropdown-item" href="{{ url('reports') }}">Reports</a>
                                 </div>
                             </li>
+                        @endif
                     </ul>
                 </div>
             </nav>

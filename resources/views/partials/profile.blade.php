@@ -17,10 +17,11 @@
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             <span><strong>Edit Profile</strong></span>
                         </a>
-                        <?php } ?>
+                        <?php } else {?>
                         <button type="button" class="btn btn-primary a-btn-slide-text" data-toggle="modal" data-target=".bd-example-modal-sm2">
                             <span><strong>Report user</strong></span>
                         </button>
+                        <?php } ?>
                     </div>
                     <hr>
                     <ul class="container details">
