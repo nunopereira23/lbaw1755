@@ -19,30 +19,21 @@
                                 <div id="map" class="map rounded" style="width:100%"></div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div id="userActions" class="col-md-2">
                             <?php if ($status != ('')){
                             echo '->user: ' . $status . "\n" . '->event: ' . $event->event_visibility;
                             if ($status != 'Owner'){ ?>
-                            <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="type" value="AcceptEvent">
-                                <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                                <?php if(($status != 'Going') && ($status != 'Ignoring')){ ?>
-                                <button type="submit" class="btn btn-primary m-2" style="width:100%">Accept</button>
-                                <?php }else if ($status == 'Going'){ ?>
-                                <button type="submit" class="btn btn-success m-2" style="width:100%">Going</button>
-                                <?php } ?>
-                            </form>
-                            <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="type" value="IgnoreEvent">
-                                <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                                <?php if(($status != 'Ignoring') && ($status != 'Going')){ ?>
-                                <button type="submit" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
-                                <?php }else if ($status == 'Ignoring'){ ?>
-                                <button type="submit" class="btn btn-danger m-2" style="width:100%">Ignoring</button>
-                                <?php } ?>
-                            </form>
+                              <?php if(($status != 'Going')&&($status != 'Ignoring')){ ?>
+                                <button type="submit" id="acceptEvent" class="btn btn-primary m-2" style="width:100%">Accept</button>
+                              <?php }else if ($status == 'Going'){ ?>
+                              <button type="submit" id="acceptEvent" class="btn btn-success m-2" style="width:100%">Going</button>
+                              <?php } ?>
+
+                                <?php if(($status != 'Ignoring')&&($status != 'Going')){ ?>
+                                <button type="submit" id="ignoreEvent" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
+                              <?php }else if ($status == 'Ignoring'){ ?>
+                                  <button type="submit" id="ignoreEvent" class="btn btn-danger m-2" style="width:100%">Ignoring</button>
+                              <?php } ?>
 
                             <?php } else{ ?>
                             <form action="/event/<?php echo $event->id ?>/edit_event">
@@ -242,6 +233,49 @@
             </div>
         </div>
     </div>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <script>
+
+      $(document).on( "click", "#acceptEvent", function( ) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'AcceptEvent',
+                  event_id: <?php echo $event->id ?> },
+            dataType: 'JSON',
+            /* remind that 'data' is the response of the AjaxController */
+            success: function (data) {
+              //if((data == "AcceptSuccess") || (data == "UnacceptSuccess"))
+                $("#userActions").load(location.href+" #userActions>*","");
+                //alert(data);
+            }
+        });
+      });
+
+      $(document).on( "click", "#ignoreEvent", function( ) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'IgnoreEvent',
+                  event_id: <?php echo $event->id ?> },
+            dataType: 'JSON',
+            /* remind that 'data' is the response of the AjaxController */
+            success: function (data) {
+              //if((data == "AcceptSuccess") || (data == "UnacceptSuccess"))
+                $("#userActions").load(location.href+" #userActions>*","");
+                //alert(data);
+            }
+        });
+      });
+
+    </script>
+
 
     <script type="text/javascript">
 
