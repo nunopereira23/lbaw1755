@@ -13,10 +13,18 @@ class ReportController extends Controller
     {
         $report = new Report();
         $report->description = $request->input('description');
-        $user = User::findOrFail($id);
-        $user->reports()->save($report);
+        $user = User::find($id);
+        if ($user == null) {
+            return view('pages.user_404');
+        }
+        else {
+            if ($user->reports()->save($report)) {
+                $page = "reported";
+                return view('pages.admin_message', ['page' => $page]);
+            }
+            return view('pages.server_error');
+        }
 
-        echo "user is reported";
     }
 
 
