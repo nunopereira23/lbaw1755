@@ -1,4 +1,13 @@
-h3 {
+img {
+    width: 160px;
+    height: auto;
+}
+
+.container {
+    padding: 50px;
+}
+
+h1 {
     text-align: center;
 }
 

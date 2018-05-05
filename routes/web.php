@@ -70,7 +70,6 @@ Route::get('events', 'EventsController@show');
 //My events
 Route::get('/users/{id}/my_events', 'MyEventsController@show');
 
-
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');

@@ -4,7 +4,7 @@
     <form id="contactUsform">
         {{ csrf_field() }}
         <div class="container">
-            <h2>Contact us</h2>
+            <h1>Contact us</h1>
             <p>Please fill in this form.</p>
             <hr>
 
