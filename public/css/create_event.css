@@ -24,7 +24,7 @@ h3, .col-sm {
     color: white;
 }
 
-h2 {
+h1, h2 {
     color: black;
 }
 
@@ -32,6 +32,10 @@ h3 {
     color: black;
 }
 
-.card, .comment-content, .textarea, .breadcrumb {
+.card, .textarea, .breadcrumb {
     opacity: 0.95;
+}
+
+.container {
+    padding: 40px;
 }

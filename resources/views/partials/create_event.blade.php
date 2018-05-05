@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <link href="{{ asset('css/create_event.css') }}" rel="stylesheet">
 
-<div class="container mb-5">
+<div class="container">
     <div class="py-3 text-center">
-        <h3>Create event</h3>
+        <h1>Create event</h1>
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form class="needs-validation" novalidate="" role="form" method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());">
+            <form class="needs-validation" role="form" method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());">
                 <fieldset>
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-8 mb-3 md-10">
-                            <label for="title">Title*</label>
+                            <label for="title"><b>Title (required)</b></label>
                             <input class="form-control" placeholder="Name of the event" id="title" type="text" name="title">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-3.5 mb-5 pl-3">
-                            <label for="date_start">Start Date</label>
+                            <label for="date_start"><b>Start Date</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="date_start" type="date" name="date_start" value="2018-06-06">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
-                            <label for="time_start">Time</label>
+                            <label for="time_start"><b>Time</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="time_start" type="time" name="time_start">
                             </div>
                         </div>
                         <div class="col-2.5 pl-5">
-                            <label for="date_end">End Date</label>
+                            <label for="date_end"><b>End Date</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="date_end" type="date" name="date_end" value="2018-07-07">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
-                            <label for="time_end">Time</label>
+                            <label for="time_end"><b>Time</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="time_end" type="time" name="time_end">
                             </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="event_type">Type</label>
+                            <label for="event_type"><b>Type</b></label>
                             <select class="custom-select d-block w-100" id="event_type" name="event_type">
                                 <option value="Trip" selected="selected">Trip</option>
                                 <option value="Party">Party</option>
@@ -55,18 +55,19 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="state">Event photo</label>
+                            <label for="state"><b>Event photo</b></label>
                             <input class="form-control" type="file">
                         </div>
                     </div>
                     <hr class="mb-1">
-                    <label>Location</label>
+                    <label><b>Location</b></label>
                     <input class="form-control" id="gps" placeholder="Address of the event" type="text" name="gps">
                     <br/>
                     <input id="submit" type="button" class="btn btn-primary" value="Show on map">
+                    <hr class="mb-4">
                     <div id="map" class="map rounded mt-1"></div>
                     <hr class="mb-4">
-                    <h5 class="mb-3">Event privacy</h5>
+                    <h5><b>Event privacy</b></h5>
                     <div class="row">
                         <div class="col-6 d-block my-3">
                             <div class="custom-control custom-radio">
@@ -78,46 +79,11 @@
                                 <label class="custom-control-label" for="public">Public</label>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-primary m-2 float-right" data-toggle="modal" data-target=".bd-example-modal-sm2">
-                                Share with...
-                            </button>
-                            <div class="modal fade bd-example-modal-sm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content text-center">
-                                        <h3 class="modal-title" id="exampleModalLabel">Share with...</h3>
-                                        <div class="modal-body">
-                                            <div class="list-group list-group-flush">
-                                                <a class="list-group-item list-group-item-action">
-                                                    <div class="custom-control custom-checkbox m-0" style="height:20px">
-                                                        <input type="checkbox" class="custom-control-input " id="customCheck1">
-                                                        <img class="img-responsive" style=" height: 100%;" src="../../images/profile.png">
-                                                        <label class="custom-control-label" for="customCheck1">John Smith</label>
-                                                    </div>
-                                                </a>
-                                                <a class="list-group-item list-group-item-action">
-                                                    <div class="custom-control custom-checkbox m-0" style="height:20px">
-                                                        <input type="checkbox" class="custom-control-input " id="customCheck2">
-                                                        <img class="img-responsive" style=" height: 100%;" src="../../images/profile.png">
-                                                        <label class="custom-control-label" for="customCheck2">John Doe</label>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mb-4">
-                        <h5> Event description</h5>
-                        <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"></textarea>
                     </div>
+                    <h5><b>Event description</b></h5>
+                    <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"></textarea>
                     <hr class="mb-4">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Create">
                 </fieldset>
             </form>
         </div>
@@ -169,6 +135,5 @@
             }
         });
     }
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>
