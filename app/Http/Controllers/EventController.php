@@ -220,9 +220,7 @@ class EventController extends Controller
             $time_end = date_format(new DateTime($request->input('time_end')), 'h:i:s');
             $event->event_end = $date_end . " " . $time_end;
 
-            if (isset($_GET['gps'])) {
-                $event->gps = $_GET['gps'];
-            }
+            $event->gps = $request->input('gps');
         }
         $event->save();
         $user_event->id_event = $event->id;
@@ -242,12 +240,32 @@ class EventController extends Controller
         return view('pages.edit_event', ['event' => $event]);
     }
 
-    public function edit(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $event = new Event();
+        $event = Event::find($id);
+
+        if (Auth::check()) {
+            if ($_POST['submitted'] == "Cancel") {
+                return redirect()->route('event', [$event]);
+            }
+
+            $event->title = $request->input('title');
+            $event->event_visibility = $request->input('event_visibility');
+            $event->event_type = $request->input('event_type');
+            $event->gps = $request->input('gps');
+            $event->description = $request->input('event_description');
+
+            $date_start = date_format(new DateTime($request->input('date_start')), 'Y-m-d');
+            $time_start = date_format(new DateTime($request->input('time_start')), 'h:i:s');
+            $event->event_start = $date_start . " " . $time_start;
+
+            $date_end = date_format(new DateTime($request->input('date_end')), 'Y-m-d');
+            $time_end = date_format(new DateTime($request->input('time_end')), 'h:i:s');
+            $event->event_end = $date_end . " " . $time_end;
+        }
+        $event->save();
 
         return redirect()->route('event', [$event]);
-
     }
 
 }

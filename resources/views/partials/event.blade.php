@@ -11,8 +11,7 @@
                             <h4 class="card-title mb-1 pb-1 font-weight-bold"><?php echo $event->title ?></h4>
                             <div class="text-muted"><?php echo $event->event_start ?> - <?php echo $event->event_type ?></div>
                             <div id="floating-panel">
-                                <input id="latlng" type="hidden" value="<?php echo $event->gps ?>">
-                                <input id="submit" type="button" value="Get event adress">
+                                <input id="address" type="hidden" value="<?php echo $event->gps ?>">
                             </div>
                             <p class="card-text"><?php echo $event->description ?></p>
                             <div class="container-fluid  mb-2">
@@ -242,55 +241,37 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-
-        var labelText = $('#triggerModal').text().trim();
-
-        if (labelText != "noModal") {
-            $(document).ready(function () {
-                $('#inviteSuccess').modal('show');
-            });
-        }
-    </script>
-
-    <script>
-        function myMap() {
-            var mapCanvas = document.getElementById("map");
-            var mapOptions = {
-                center: new google.maps.LatLng(<?php echo $event->gps ?>), zoom: 15
-            };
-            var map = new google.maps.Map(mapCanvas, mapOptions);
-            var geocoder = new google.maps.Geocoder;
-            var infowindow = new google.maps.InfoWindow;
-
-            document.getElementById('submit').addEventListener('click', function () {
-                geocodeLatLng(geocoder, map, infowindow);
-            });
-        }
-
-        function geocodeLatLng(geocoder, map, infowindow) {
-            var input = document.getElementById('latlng').value;
-            var latlngStr = input.split(',', 2);
-            var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-            geocoder.geocode({'location': latlng}, function (results, status) {
-                if (status === 'OK') {
-                    if (results[0]) {
-                        map.setZoom(11);
-                        var marker = new google.maps.Marker({
-                            position: latlng,
-                            map: map
-                        });
-                        infowindow.setContent(results[0].formatted_address);
-                        infowindow.open(map, marker);
-                    } else {
-                        window.alert('No results found');
-                    }
-                } else {
-                    window.alert('Geocoder failed due to: ' + status);
-                }
-            });
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>
 </div>
+<script type="text/javascript">
+    var labelText = $('#triggerModal').text().trim();
+    if (labelText != "noModal") {
+        $(document).ready(function () {
+            $('#inviteSuccess').modal('show');
+        });
+    }
+
+    function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {
+            center: new google.maps.LatLng(41.15, -8.63), zoom: 15
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function (results) {
+            if (results[0]) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(11);
+                var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            }
+        })
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>

@@ -20,7 +20,7 @@
                         <div class="col-3.5 mb-5 pl-3">
                             <label for="date_start">Start Date</label>
                             <div class="input-group">
-                                <input class="form-control" id="date_start" type="date" name="date_start" value="2018-09-01">
+                                <input class="form-control" id="date_start" type="date" name="date_start" value="2018-06-06">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
@@ -32,7 +32,7 @@
                         <div class="col-2.5 pl-5">
                             <label for="date_end">End Date</label>
                             <div class="input-group">
-                                <input class="form-control" id="date_end" type="date" name="date_end" value="2018-09-02">
+                                <input class="form-control" id="date_end" type="date" name="date_end" value="2018-07-07">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
@@ -61,7 +61,8 @@
                     </div>
                     <hr class="mb-1">
                     <label>Location</label>
-                    <input class="form-control" placeholder="Address of the event" id="gps" type="text" name="gps">
+                    <input class="form-control" id="gps" placeholder="Address of the event" type="text" name="gps">
+                    <br/>
                     <input id="submit" type="button" class="btn btn-primary" value="Show on map">
                     <div id="map" class="map rounded mt-1"></div>
                     <hr class="mb-4">
@@ -149,12 +150,13 @@
 
     function geocodeLatLng(geocoder, map, infowindow) {
         var address = document.getElementById('gps').value;
-        geocoder.geocode({'location': address}, function (results, status) {
+        geocoder.geocode({'address': address}, function (results, status) {
             if (status === 'OK') {
                 if (results[0]) {
+                    map.setCenter(results[0].geometry.location);
                     map.setZoom(11);
                     var marker = new google.maps.Marker({
-                        position: latlng,
+                        position: results[0].geometry.location,
                         map: map
                     });
                     infowindow.setContent(results[0].formatted_address);
@@ -166,19 +168,7 @@
                 window.alert('Geocoder failed due to: ' + status);
             }
         });
-        $.ajax({
-                url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false",
-                type: "POST",
-                success: function (res) {
-                    var lat = res.results[0].geometry.location.lat;
-                    var lng = res.results[0].geometry.location.lng;
-                    var gps = lat + ',' + lng;
-                    window.location.href = window.location.href + '?gps=' + gps;
-                }
-            }
-        )
-    };
-
+    }
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>

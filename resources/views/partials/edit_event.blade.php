@@ -6,7 +6,7 @@
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form class="needs-validation" novalidate="" role="form" method="PUT" action="{{ route('edit_event') }}" onsubmit="return(validate());">
+            <form class="needs-validation" role="form" method="POST" action="{{ route('edit_event', [$event]) }}" onsubmit="return(validate());">
                 <fieldset>
                     {{ csrf_field() }}
                     <div class="row">
@@ -19,25 +19,25 @@
                         <div class="col-3.5 mb-5 pl-3">
                             <label for="date_start">Start Date</label>
                             <div class="input-group">
-                                <input class="form-control" id="date_start" type="date" name="date_start" value="<?php echo $event->event_start ?>>">
+                                <input class="form-control" id="date_start" type="date" name="date_start" value="<?php echo date_format(new DateTime($event->event_start), 'Y-m-d') ?>">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
                             <label for="time_start">Time</label>
                             <div class="input-group">
-                                <input class="form-control" id="time_start" type="time" name="time_start">
+                                <input class="form-control" id="time_start" type="time" name="time_start" value="<?php echo date_format(new DateTime($event->event_end), 'h:i')?>">
                             </div>
                         </div>
                         <div class="col-2.5 pl-5">
                             <label for="date_end">End Date</label>
                             <div class="input-group">
-                                <input class="form-control" id="date_end" type="date" name="date_end">
+                                <input class="form-control" id="date_end" type="date" name="date_end" value="<?php echo date_format(new DateTime($event->event_end), 'Y-m-d') ?>">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
                             <label for="time_end">Time</label>
                             <div class="input-group">
-                                <input class="form-control" id="time_end" type="time" name="time_end">
+                                <input class="form-control" id="time_end" type="time" name="time_end" value="<?php echo date_format(new DateTime($event->event_start), 'h:i')?>">
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,8 @@
                     </div>
                     <hr class="mb-1">
                     <label>Location</label>
-                    <input class="form-control" placeholder="Address of the event" id="gps" type="text" name="gps">
+                    <input class="form-control" placeholder="Address of the event" id="gps" type="text" name="gps" value="<?php echo $event->gps ?>">
+                    <br/>
                     <input id="submit" type="button" class="btn btn-primary" value="Show on map">
                     <div id="map" class="map rounded mt-1"></div>
                     <hr class="mb-4">
@@ -93,7 +94,8 @@
                         <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"><?php echo $event->description ?></textarea>
                     </div>
                     <hr class="mb-4">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit" name="submitted">
+                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Cancel" name="submitted">
                 </fieldset>
             </form>
         </div>
@@ -115,23 +117,40 @@
         var mapOptions = {
             center: new google.maps.LatLng(41.15, -8.63), zoom: 15
         };
+        var marker;
         var map = new google.maps.Map(mapCanvas, mapOptions);
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
 
+        var address = document.getElementById('gps').value;
+        geocoder.geocode({'address': address}, function (results) {
+            if (results[0]) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(11);
+                marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            }
+        });
+
         document.getElementById('submit').addEventListener('click', function () {
-            geocodeLatLng(geocoder, map, infowindow);
+            geocodeLatLng(geocoder, map, infowindow, marker);
         });
     }
 
-    function geocodeLatLng(geocoder, map, infowindow) {
+    function geocodeLatLng(geocoder, map, infowindow, marker) {
+        marker.setMap(null);
         var address = document.getElementById('gps').value;
-        geocoder.geocode({'location': address}, function (results, status) {
+        geocoder.geocode({'address': address}, function (results, status) {
             if (status === 'OK') {
                 if (results[0]) {
+                    map.setCenter(results[0].geometry.location);
                     map.setZoom(11);
-                    var marker = new google.maps.Marker({
-                        position: latlng,
+                    marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
                         map: map
                     });
                     infowindow.setContent(results[0].formatted_address);
@@ -143,18 +162,7 @@
                 window.alert('Geocoder failed due to: ' + status);
             }
         });
-        $.ajax({
-                url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false",
-                type: "POST",
-                success: function (res) {
-                    var lat = res.results[0].geometry.location.lat;
-                    var lng = res.results[0].geometry.location.lng;
-                    var gps = lat + ',' + lng;
-                    window.location.href = window.location.href + '?gps=' + gps;
-                }
-            }
-        )
-    };
+    }
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>
