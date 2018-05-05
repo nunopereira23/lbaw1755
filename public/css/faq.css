@@ -1,3 +1,11 @@
 .collapse {
     color: black;
 }
+
+.container {
+    padding: 40px;
+}
+
+p {
+    color: #282828;
+}
