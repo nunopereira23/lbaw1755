@@ -1,23 +1,28 @@
 <div class="container">
-    <br>
-    <h4>Contact us</h4>
-    <form>
-        <div class="form-group">
-            <label class="form form-control-lg" for="name">Name:</label>
-            <input type="name" class="form-control" id="name" placeholder="Name" name="name">
-        </div>
-        <div class="form-group">
-            <label class="form form-control-lg" for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" name="email">
-        </div>
-        <div class="form-group">
-            <label class="form form-control-lg" for="phone">Phone number</label>
-            <input type="phoneNumber" class="form-control" id="phone" placeholder="Phone number" name="phone">
-        </div>
-        <div class="form-group">
-            <label class="form form-control-lg" for="comment">Comment:</label>
+    <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
+    {{--class="form-horizontal" role="form" method="POST" action="{{ route('contact_us') }}">--}}
+    <form id="contactUsform">
+        {{ csrf_field() }}
+        <div class="container">
+            <h2>Contact us</h2>
+            <p>Please fill in this form.</p>
+            <hr>
+
+            <label for="name"><b>Name</b></label>
+            <input type="text" placeholder="Enter your name" name="name" id="name">
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter your email" name="email" id="email" required>
+
+            <label for="phoneNumber"><b>Password confirmation</b></label>
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter your phone number">
+
+            <label for="comment"><b>Comment</b></label>
             <textarea class="form-control" placeholder="You can leave us a comment" rows="5" id="comment"></textarea>
+
+            <div class="clearfix">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Send</button>
     </form>
 </div>
