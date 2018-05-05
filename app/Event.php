@@ -8,7 +8,7 @@ class Event extends Model
 {
 
     protected $fillable = [
-        'title', 'event_visibility', 'event_type',
+        'title', 'event_visibility', 'event_type', 'gps',
     ];
 
     public $timestamps = false;
