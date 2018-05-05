@@ -142,6 +142,7 @@ class EventController extends Controller
                 DB::table('event_user')->where('id_event','=',$request->event_id)
                    ->where('id_user','=',$user_id)
                    ->update(['event_user_state' => 'Going']);
+                   $response = 'InviteAcceptSuccess';
               }
 
               if ($event_status[0] == 'Going')

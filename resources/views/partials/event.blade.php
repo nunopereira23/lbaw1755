@@ -19,7 +19,7 @@
                                 <div id="map" class="map rounded" style="width:100%"></div>
                             </div>
                         </div>
-                        <div id="#userActions" class="col-md-2">
+                        <div id="userActions" class="col-md-2">
                             <?php if ($status != ('')){
                             echo '->user: ' . $status . "\n" . '->event: ' . $event->event_visibility;
                             if ($status != 'Owner'){ ?>
@@ -281,11 +281,12 @@
               var inviteStatus = data;
               $("#shareEventModal").load(location.href+" #shareEventModal>*","");
               $("#closeShareEvent").click();
+              $("#modalInviteBody").empty();
               if(data == "Invited")
               {
-                $("#modalInviteBody").append("User(s) invited successfuly.")
+                $("#modalInviteBody").append("User(s) invited successfuly.");
               }else if (data == "noInvite") {
-                $("#modalInviteBody").append("No one invited.")
+                $("#modalInviteBody").append("No one invited.");
               }
                 $("#inviteSuccess").modal('toggle');
             }
