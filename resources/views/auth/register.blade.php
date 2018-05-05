@@ -2,7 +2,7 @@
 
 @section('content')
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
-    <form id="signupform" class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+    <form id="signupform" class="form-horizontal" role="form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="container">
             <h2>Sign Up</h2>
@@ -39,8 +39,8 @@
             <label for="birthdate"><b>Date of birth</b></label>
             <input type="date" name="birthdate" id="birthdate">
 
-            <label for="picture"><b>Upload profile picture</b></label>
-            <input type="file" class="form-control">
+            <label for="fileToUpload"><b>Upload profile picture</b></label>
+            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
 
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>

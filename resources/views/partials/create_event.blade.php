@@ -7,7 +7,7 @@
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form class="needs-validation" role="form" method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());">
+            <form class="needs-validation" role="form" method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());" enctype="multipart/form-data">
                 <fieldset>
                     {{ csrf_field() }}
                     <div class="row">
@@ -55,8 +55,8 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="state"><b>Event photo</b></label>
-                            <input class="form-control" type="file">
+                            <label for="fileToUpload"><b>Event photo</b></label>
+                            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
                         </div>
                     </div>
                     <hr class="mb-1">
