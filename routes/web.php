@@ -69,6 +69,7 @@ Route::get('events', 'EventsController@show');
 
 //My events
 Route::get('/users/{id}/my_events', 'MyEventsController@show');
+Route::get('/users/{id}/past_events', 'MyEventsController@showPast');
 
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');

@@ -9,8 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
-
+<?php if ($past) { ?>
 <h3> MY EVENTS </h3>
+<?php } else { ?>
+<h3> MY PAST EVENTS </h3>
+<?php }?>
 <br>
 <div class="container">
     <div class="row">
@@ -83,7 +86,7 @@
         <div class="col-sm align-content-center">
             <span id="created"> Created by me </span>
             <hr>
-            <?php foreach ($user->events as $event) :
+            <?php foreach ($events as $event) :
                 if ($event->pivot->event_user_state == 'Owner') {?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
@@ -98,7 +101,7 @@
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
             <?php } endforeach ?>
-            <?php if (!($user->events)) {?>
+            <?php if (!($events)) {?>
             <div>
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
@@ -108,7 +111,7 @@
         <div class="col-sm justify-content-center">
             <span id="going"> Going</span>
             <hr>
-            <?php foreach ($user->events as $event) :
+            <?php foreach ($events as $event) :
                 if ($event->pivot->event_user_state == 'Going') {?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
@@ -123,7 +126,7 @@
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
             <?php } endforeach ?>
-            <?php if (!($user->events)) {?>
+            <?php if (!($events)) {?>
             <div>
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
@@ -135,7 +138,7 @@
         <div class="col-sm justify-content-center">
             <span id="ignoring"> Ignoring </span>
             <hr>
-            <?php foreach ($user->events as $event) :
+            <?php foreach ($events as $event) :
             if ($event->pivot->event_user_state == 'Ignoring') {?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
@@ -150,7 +153,7 @@
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
             <?php } endforeach ?>
-            <?php if (!($user->events)) {?>
+            <?php if (!($events)) {?>
             <div>
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
@@ -161,7 +164,7 @@
         <div class="col-sm justify-content-center">
             <span id="invited"> Invited to </span>
             <hr>
-            <?php foreach ($user->events as $event) :
+            <?php foreach ($events as $event) :
                 if ($event->pivot->event_user_state == 'Invited') {?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
@@ -187,7 +190,7 @@
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
             <?php } endforeach ?>
-            <?php if (!($user->events)) {?>
+            <?php if (!($events)) {?>
             <div>
                 <p> <?php echo 'OOOPS, this category is empty :/'?> </p>
             </div>
@@ -200,7 +203,11 @@
 <footer class="past">
         <div class="container">
             <ul class="list-inline">
-                <li class="list-inline-item"> <a href="past_events.html"> MY PAST EVENTS </a></li>
+                <?php if ($past) { ?>
+                <li class="list-inline-item"> <a  href="/users/<?php echo $user->id ?>/past_events"> MY PAST EVENTS </a></li>
+                    <?php } else { ?>
+                    <li class="list-inline-item"> <a  href="/users/<?php echo $user->id ?>/my_events"> MY EVENTS </a></li>
+                    <?php }?>
             </ul>
         </div>
 </footer>

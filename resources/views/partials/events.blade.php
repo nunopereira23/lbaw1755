@@ -70,122 +70,60 @@
                 </div>
             </div>
             <div class="col-sm align-content-center">
+            <?php for ($i=0; $i < $count; $i++) :
+                if (($i % 4) == 0)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
                 </div>
                 <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
-
+            <?php } endfor ?>
             </div>
             <div class="col-sm align-content-center">
+            <?php for ($i=0; $i < $count; $i++) :
+            if (($i % 4) == 1)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
                 </div>
                 <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
+            <?php } endfor ?>
             </div>
             <div class="col-sm align-content-center">
+            <?php for ($i=0; $i < $count; $i++) :
+            if (($i % 4) == 2)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
                 </div>
                 <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
+            <?php } endfor ?>
             </div>
             <div class="col-sm align-content-center">
+                <?php for ($i=0; $i < $count; $i++) :
+                if (($i % 4) == 3)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
+                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
                 </div>
                 <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
-                    <div class="card-block">
-                        <h4><a href="../event"> Trip to Lisbon </a></h4>
-                        <h6 class="text-muted"> 23 Mar 2018 at 9.30 AM </h6>
-                        <h5> Porto's Airport </h5>
-                    </div>
-                </div>
-                <br>
-            </div>
+                <?php } endfor ?>
             <br>
         </div>
     </div>

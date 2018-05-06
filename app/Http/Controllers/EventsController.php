@@ -17,8 +17,9 @@ class EventsController extends Controller
 
     public function show()
     {
-        return view('pages.events');
+        $events = Event::where('event_visibility','Public')->get();
+        $count = $events->count();
+        return view('pages.events', ['events' => $events, 'count' => $count]);
     }
-
 
 }
