@@ -1,8 +1,8 @@
 <link href="{{ asset('css/create_event.css') }}" rel="stylesheet">
 
-<div class="container mb-5">
+<div class="container">
     <div class="py-3 text-center">
-        <h3>Edit event</h3>
+        <h1>Edit event</h1>
     </div>
     <div class="row ">
         <div class="col-md-12">
@@ -11,31 +11,31 @@
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-8 mb-3 md-10">
-                            <label for="title">Title</label>
+                            <label for="title"><b>Title (required)</b></label>
                             <input class="form-control" placeholder="Name of the event" id="title" type="text" name="title" value="<?php echo $event->title ?>">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-3.5 mb-5 pl-3">
-                            <label for="date_start">Start Date</label>
+                            <label for="date_start"><b>Start Date</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="date_start" type="date" name="date_start" value="<?php echo date_format(new DateTime($event->event_start), 'Y-m-d') ?>">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
-                            <label for="time_start">Time</label>
+                            <label for="time_start"><b>Time</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="time_start" type="time" name="time_start" value="<?php echo date_format(new DateTime($event->event_end), 'h:i')?>">
                             </div>
                         </div>
                         <div class="col-2.5 pl-5">
-                            <label for="date_end">End Date</label>
+                            <label for="date_end"><b>End Date</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="date_end" type="date" name="date_end" value="<?php echo date_format(new DateTime($event->event_end), 'Y-m-d') ?>">
                             </div>
                         </div>
                         <div class="col-1.5 pl-4">
-                            <label for="time_end">Time</label>
+                            <label for="time_end"><b>Time</b></label>
                             <div class="input-group">
                                 <input class="form-control" id="time_end" type="time" name="time_end" value="<?php echo date_format(new DateTime($event->event_start), 'h:i')?>">
                             </div>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="event_type">Type</label>
+                            <label for="event_type"><b>Type</b></label>
                             <select class="custom-select d-block w-100" id="event_type" name="event_type">
                                 <option value="Trip" <?php echo($event->event_type == "Trip" ? 'selected' : ''); ?>>Trip</option>
                                 <option value="Sport" <?php echo($event->event_type == "Sport" ? 'selected' : ''); ?>>Sport</option>
@@ -54,18 +54,19 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="state">Event photo</label>
+                            <label for="state"><b>Event photo</b></label>
                             <input class="form-control" type="file">
                         </div>
                     </div>
                     <hr class="mb-1">
-                    <label>Location</label>
+                    <label><b>Location</b></label>
                     <input class="form-control" placeholder="Address of the event" id="gps" type="text" name="gps" value="<?php echo $event->gps ?>">
                     <br/>
                     <input id="submit" type="button" class="btn btn-primary" value="Show on map">
+                    <hr class="mb-4">
                     <div id="map" class="map rounded mt-1"></div>
                     <hr class="mb-4">
-                    <h5 class="mb-3">Event privacy</h5>
+                    <h5 class="mb-3"><b>Event privacy</b></h5>
                     <div class="row">
                         <div class="col-6 d-block my-3">
                             <div class="custom-control custom-radio">
@@ -88,13 +89,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <hr class="mb-4">
-                        <h5>Event description</h5>
-                        <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"><?php echo $event->description ?></textarea>
-                    </div>
+                    <h5><b>Event description</b></h5>
+                    <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"><?php echo $event->description ?></textarea>
                     <hr class="mb-4">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit" name="submitted">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Edit" name="submitted">
                     <input type="submit" class="btn btn-danger btn-lg btn-block" value="Cancel" name="submitted">
                 </fieldset>
             </form>

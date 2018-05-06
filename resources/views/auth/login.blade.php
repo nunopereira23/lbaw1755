@@ -1,68 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    <form id="loginform" class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+        <div class="container">
+            <h2>Log In</h2>
+            <p>Please fill in this form to log in.</p>
+            <hr>
 
-    <div class="container">
-        <div id="loginbox" style="margin-top:100px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h4>Sign In</h4>
-                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a>
-                    </div>
-                </div>
-                <div style="padding-top:30px" class="panel-body">
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <form id="loginform" class="form-horizontal" role="form" method='POST' action={{ route('login') }}>
-                        {{ csrf_field() }}
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="email" class="form-control" name="email" value="{{ old('email') }}"
-                                   placeholder="Email" required autofocus>
-                            @if ($errors->has('email'))
-                                <span class="error">
-                                {{ $errors->first('email') }}
-                            </span>
-                            @endif
-                        </div>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="login-password" type="password" class="form-control" name="password"
-                                   placeholder="Password" required>
-                            @if ($errors->has('password'))
-                                <span class="error">
-                                {{ $errors->first('password') }}
-                            </span>
-                            @endif
-                        </div>
-                        <div class="input-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="login-remember" type="checkbox" name="remember" value="1" {{ old('remember') ? 'checked' : '' }}> Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
-                            <div class="col-sm-12 controls">
-                                <button id="btn-login" type="submit" class="btn btn-success"> Login</button>
-                                <a class="btn  btn-social-icon btn-google">
-                                    <span class="fa fa-google"></span> Sign in with Google
-                                </a>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12 control">
-                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                    Don't have an account?
-                                    <a href="{{ route('register') }}">
-                                        Sign Up Here
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="login-username" value="{{ old('email') }}" required autofocus>
+            @if ($errors->has('email'))
+                <span class="error">
+                    {{ $errors->first('email') }}
+                </span>
+            @endif
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" class="form-control" name="password" id="login-password" placeholder="Password" required>
+            @if ($errors->has('password'))
+                <span class="error">
+                    {{ $errors->first('password') }}
+                </span>
+            @endif
+
+            <div class="clearfix">
+                <button type="button" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn">Log In</button>
+                <button type="submit" class="btn-primary">Sign In With Google</button>
             </div>
+            <hr/>
+            Don't have an account?
+            <a href="{{ route('register') }}">Sign Up Here</a>
         </div>
-    </div>
+    </form>
 @endsection
