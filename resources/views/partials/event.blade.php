@@ -127,38 +127,62 @@
             </div>
         </div>
         <div class="row pb-5 mt-2">
-            <div class="comments col-md-6" id="comments">
-                <h5 class="mb-2">Comments</h5>
+          <?php if ($status != ''){ ?>
+            <div class="new_comment col-md-6 mb-5 mt-3" id="new_comment">
+                <div class="form-group">
+                    <h5>New comment:</h5>
+                    <textarea style="resize:none;" class="form-control bg-light" minlength="1" maxlength="150" rows="5" id="commentContent" placeholder=""></textarea>
+                    <button type="button" class="btn btn-sm m-2 mr-2" data-toggle="modal" data-target=".bd-example-modal-sm4">Add photo</button>
+                    <button type="button" class="btn m-2">Add poll</button>
+                    <input type="submit" id="submitComment" class="btn float-right mt-2 mb-5" value="Submit">
+                    <div class="alert alert-success" id="newCommentSuccess" style="display:none;">
+                      Comment added sucessfuly.
+                    </div>
+                    <div class="alert alert-danger" id="newCommentFailure" style="display:none;">
+                      Comment failed.
+                    </div>
+                </div>
+            </div>
+          <?php } ?>
+          </br>
+
+            <div class="comments col-md-6 pull-right mt-3" id="comments">
+                <h5 class="mb-2 ">Comments(<?php echo count(json_decode($comments)); ?>)</h5>
                 <div class="comment mb-2 ml-2 row">
-                    <div class="comment-content col-sm-10 p-2 rounded bg-light border">
+                  <?php foreach($comments as $comment){ ?>
+                    <div name="comments[]" id=<?php echo $comment->id ?> class="comment-content col-sm-11 p-2 mb-1 rounded bg-light border">
                         <div class="comment-body">
-                            <p>This is a comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat.
+                            <p><?php echo $comment->comment_content ?>
                                 <br>
-                                <button type="button" class="btn btn-sm float-left" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
+                                <?php if ($status != ''){ ?>
+                                  <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
+                                <?php } ?>
                                 <br>
                             </p>
                         </div>
                         <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                        <h5 class="text-right"><a href="../profile">John Doe</a></h5>
-                        <div class="mb-1 text-muted text-right">Today, 2:38 PM</div>
+                        <p class="text-right"><a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a></p>
+                        <div class="mb-1 text-muted text-right"><?php echo $comment->date ?></div>
                     </div>
-                    <div class="comment-reply col-md-11 col-sm-10 offset-sm-2 mt-2" style="width:90%">
+                    <!-- <div class="comment-reply col-md-11 col-sm-10 mb-3 mt-2" style="width:90%">
                         <div class="row">
-                            <div class="comment-content col-sm-10 p-2 rounded bg-light border">
-                                <div class="comment-body">
-                                    <p>This is a comment reply. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        <br>
-                                        <button type="button" class="btn btn-sm float-left" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
-                                        <br>
-                                    </p>
-                                </div>
-                                <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="20px" width="20px">
-                                <h6 class="text-right"><a href="../profile">John Doe</a></h6>
-                                <div class="mb-1 text-muted text-right">Today, 4:41 PM</div>
+                            <div class="comment-content col-sm-11 p-2 rounded bg-light border">
+                              <div class="comment-body">
+                                  <p>This is a comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                      laboris nisi ut aliquip ex ea commodo consequat.
+                                      <br>
+                                      <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
+                                      <br>
+                                  </p>
+                              </div>
+                              <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+                              <p class="text-right"><a href="../profile">John Doe</a></p>
+                              <div class="mb-1 text-muted text-right">Today, 2:38 PM</div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+                  <?php } ?>
                 </div>
 
                 <!-- Modal -->
@@ -173,7 +197,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="new_comment"></label><textarea class="form-control" rows="5" id="new_comment"></textarea>
+                                    <label for="new_comment"></label><textarea class="form-control" rows="6" maxlength="100" id="new_comment"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -184,15 +208,7 @@
                     </div>
                 </div>
             </div>
-            <div class="new_comment col-md-6" id="new_comment">
-                <div class="form-group">
-                    <h5>New comment:</h5>
-                    <textarea class="form-control bg-light" rows="5" id="new_comment" placeholder=""></textarea>
-                    <button type="button" class="btn btn-sm m-2 mr-2" data-toggle="modal" data-target=".bd-example-modal-sm4">Add photo</button>
-                    <button type="button" class="btn m-2">Add poll</button>
-                    <input type="submit" class="btn float-right mt-2" value="Submit">
-                </div>
-            </div>
+
             <div class="modal fade bd-example-modal-sm4" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content text-center">
@@ -292,6 +308,84 @@
             }
         });
       });
+
+
+      $(document).on( "click", "#submitComment", function( ) {
+
+        var commentContent = $("#commentContent").val();
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'SubmitComment',
+                  event_id: <?php echo $event->id ?>,
+                  comment_content: commentContent,
+                  replyto:0 },
+            dataType: 'JSON',
+            success: function (data) {
+
+              $("#submitComment").attr("disabled",true);
+              setTimeout(function(){
+                  $("#submitComment").attr("disabled",false);
+              }, 1500);
+
+              if (data == "newComment"){
+                $("#newCommentSuccess").show();
+                setTimeout(function(){
+                    $("#newCommentSuccess").fadeOut(500);
+                }, 1000);
+              }else{
+                $("#newCommentFailure").show();
+                setTimeout(function(){
+                    $("#newCommentfailure").fadeOut(500);
+                }, 1000);
+
+              }
+
+              $("#comments").load(location.href+" #comments>*","");
+              $("#commentContent").val('');
+
+            }
+        });
+      });
+
+
+      $(document).ready(function(){
+
+        var i = 0;
+        if ($('div[name="comments[]"]').length > 1) {
+          $('div[name="comments[]"]').each(function() {
+              if (i > 0)
+                $(this).hide();
+
+                i++
+          });
+
+          if (i > 0 )
+          {
+            $("#comments").append('<button id="moreComments" type="button" class="btn btn-primary ml-2 mr-2" style="width:98%;height:35px;">Load more comments</button>');
+
+          }
+        }
+
+      });
+
+      $(document).on( "click", "#moreComments", function( ) {
+        var i = 0;
+        $('div[name="comments[]"]').each(function() {
+            if (i > 0)
+              $(this).fadeIn(250);
+
+              i++
+        });
+        $("#moreComments").hide();
+
+
+      });
+
+
 
     </script>
 

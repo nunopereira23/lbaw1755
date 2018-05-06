@@ -63,6 +63,14 @@ class EventController extends Controller
         $going = array_merge(json_decode($event_owner),json_decode($users_going));
 
 
+        $comments = DB::table('comments')
+            ->select('comments.id','users.id AS user_id','users.name','comments.comment_content','comments.date','comments.id_event')
+            ->join('users', 'users.id', '=', 'comments.id_user')
+            ->where('comments.id_event',$id)
+            ->where('comments.replyto',0)
+            ->get();
+
+        
         if (Auth::check()){
           $user_id = Auth::id();
           $i = 0;
@@ -96,10 +104,10 @@ class EventController extends Controller
 
 
         if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited]);
+          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments]);
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited]);
+            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited,'comments' => $comments]);
           }
         }
 
@@ -238,6 +246,22 @@ class EventController extends Controller
               }
 
               return response()->json($response);
+            break;
+
+            case 'SubmitComment':
+              $response = 'noComment';
+
+              if (Auth::check()){
+
+                DB::table('comments')->insert(['id_event'=>$request->event_id,
+                                                'id_user'=>Auth::id(),
+                                                'comment_content'=>$request->comment_content,
+                                                'replyto'=>$request->replyto,
+                                                'date'=> date('Y-m-d H:i:s')]);
+                $response = 'newComment';
+              }
+              return response()->json($response);
+
             break;
 
           default:
