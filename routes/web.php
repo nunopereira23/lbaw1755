@@ -64,8 +64,9 @@ Route::post('create_event', 'EventController@create');
 Route::get('event/{id}/edit_event', 'EventController@showEditForm')->name('edit_event');
 Route::post('event/{id}/edit_event', 'EventController@update');
 
-//Events
+//Public events
 Route::get('events', 'EventsController@show');
+Route::get('events/search', 'EventsController@search')->name('search_events');
 
 //My events
 Route::get('/users/{id}/my_events', 'MyEventsController@show');

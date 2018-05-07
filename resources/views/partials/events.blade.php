@@ -7,68 +7,61 @@
         <div class="row">
             <div class="col-sm">
                 <div class="container">
-                    <div class="row">
-                        <form>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by title" name="search">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <form method="get" action={{ route('search_events') }}>
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <input type="text" class="form-control" placeholder="Title" name="title">
+                        </div>
                     <div class="row">
                         <h5>Select the date period:</h5>
                     </div>
                     <div class="row">
-                        <input type="date" class="form-control" id="dateFrom" placeholder="From">
+                        <input type="date" class="form-control" id="dateFrom" placeholder="From" name="startFrom">
                         <br>
-                        <input type="date" class="form-control" id="dateTo" placeholder="To">
+                        <input type="date" class="form-control" id="dateTo" placeholder="To" name="startTo">
                     </div>
                     <div class="row">
                         <h5>Max km from my location:</h5>
                     </div>
                     <div class="row">
-                        <input type="number" class="form-control" id="km" placeholder="Km">
+                        <input type="number" class="form-control" id="km" placeholder="Km" name="km">
                     </div>
                     <br>
                     <div class="row">
                         <div class="form-group">
-                            <select class="form-control">
-                                <option><p>Type of event</p></option>
-                                <option><p>Music</p></option>
-                                <option><p>Historical</p></option>
-                                <option><p>Trip</p></option>
+                            <select class="form-control" name="type">
+                                <option value="All">All types</option>
+                                <option value="Trip">Trip</option>
+                                <option value="Party">Party</option>
+                                <option value="Sport">Sport</option>
+                                <option value="Education">Education</option>
+                                <option value="Culture">Culture</option>
+                                <option value="Birthday">Birthday</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <select class="form-control">
-                                <option><p>Order by</p></option>
-                                <option><p>Date</p></option>
-                                <option><p>Alphabetical</p></option>
+                            <select class="form-control" name="order">
+                                <option value="title"><p>Title</p></option>
+                                <option value="event_start"><p>Date</p></option>
                             </select>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group">
-                            <select class="form-control">
-                                <option><p>Order direction </p></option>
-                                <option><p>Highest first</p></option>
-                                <option><p>Lowest first</p></option>
+                            <select class="form-control" name="orderDirection">
+                                <option value="desc"><p>Descending</p></option>
+                                <option value="asc"><p>Ascending</p></option>
                             </select>
                         </div>
                     </div>
-                    <br>
                     <div class="row">
-                        <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-search"></span> Filter</button>
+                        <button type="submit" class="btn btn-primary btn-block"> Filter </button>
                         <button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-remove"></span> Clear</button>
                     </div>
+                    </form>
                 </div>
             </div>
+
             <div class="col-sm align-content-center">
             <?php for ($i=0; $i < $count; $i++) :
                 if (($i % 4) == 0)  { ?>
@@ -126,5 +119,6 @@
                 <?php } endfor ?>
             <br>
         </div>
+    </div>
     </div>
 </div>
