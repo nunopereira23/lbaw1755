@@ -68,9 +68,19 @@ class EventController extends Controller
             ->join('users', 'users.id', '=', 'comments.id_user')
             ->where('comments.id_event',$id)
             ->where('comments.replyto',0)
+            ->orderBy('comments.date','DESC')
             ->get();
 
-        
+        $replies = DB::table('comments')
+            ->select('comments.id','users.id AS user_id','users.name','comments.comment_content','comments.date','comments.id_event','comments.replyto')
+            ->join('users', 'users.id', '=', 'comments.id_user')
+            ->where('comments.id_event',$id)
+            ->where('comments.replyto',"!=",0)
+            ->orderBy('comments.date','ASC')
+            ->get();
+
+
+
         if (Auth::check()){
           $user_id = Auth::id();
           $i = 0;
@@ -104,10 +114,10 @@ class EventController extends Controller
 
 
         if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments]);
+          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited,'comments' => $comments]);
+            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
           }
         }
 

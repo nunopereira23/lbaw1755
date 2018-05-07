@@ -144,65 +144,69 @@
                 </div>
             </div>
           <?php } ?>
-          </br>
+        </br><hr>
 
             <div class="comments col-md-6 pull-right mt-3" id="comments">
-                <h5 class="mb-2 ">Comments(<?php echo count(json_decode($comments)); ?>)</h5>
+                <h5 class="mb-2 ">Comments(<?php echo count(json_decode($comments))+count(json_decode($replies)); ?>)</h5>
                 <div class="comment mb-2 ml-2 row">
                   <?php foreach($comments as $comment){ ?>
-                    <div name="comments[]" id=<?php echo $comment->id ?> class="comment-content col-sm-11 p-2 mb-1 rounded bg-light border">
-                        <div class="comment-body">
+                    <div name="comments[]"  class="comment-content col-sm-11 p-2 mb-1 rounded bg-light border">
+                        <div class="comment-body" id=<?php echo $comment->id ?>>
                             <p><?php echo $comment->comment_content ?>
                                 <br>
                                 <?php if ($status != ''){ ?>
-                                  <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
+                                  <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
                                 <?php } ?>
                                 <br>
                             </p>
                         </div>
                         <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
                         <p class="text-right"><a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a></p>
-                        <div class="mb-1 text-muted text-right"><?php echo $comment->date ?></div>
+                        <div class="mb-1 text-muted text-right"><?php echo $comment->date;  echo " | Nr: ", $comment->id." " ?></div>
                     </div>
-                    <!-- <div class="comment-reply col-md-11 col-sm-10 mb-3 mt-2" style="width:90%">
-                        <div class="row">
-                            <div class="comment-content col-sm-11 p-2 rounded bg-light border">
-                              <div class="comment-body">
-                                  <p>This is a comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                      laboris nisi ut aliquip ex ea commodo consequat.
-                                      <br>
-                                      <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#bd-example-modal3">Reply</button>
-                                      <br>
-                                  </p>
-                              </div>
-                              <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                              <p class="text-right"><a href="../profile">John Doe</a></p>
-                              <div class="mb-1 text-muted text-right">Today, 2:38 PM</div>
-                            </div>
-                        </div>
-                    </div> -->
 
+                    <?php foreach($replies as $reply){ ?>
+                      <?php if($reply->replyto == $comment->id ){?>
+                        <div name="replies[]"  class="comment-content col-sm-11 p-2 mb-1 ml-1" >
+                          <div class="comment-content col-sm-11 p-2 rounded bg-light border">
+                            <div class="comment-body" id=<?php echo $comment->id ?>>
+                                <p><?php echo $reply->comment_content ?>
+                                    <br>
+                                    <?php if ($status != ''){ ?>
+                                      <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
+                                    <?php } ?>
+                                    <br>
+                                </p>
+                            </div>
+                            <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+                            <p class="text-right"><a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a></p>
+                            <div class="mb-1 text-muted text-right"><?php echo $reply->date;  echo " | Nr: ", $reply->id." " ?></div>
+                          </div>
+                        </div>
+                      <?php } ?>
+                    <?php } ?>
                   <?php } ?>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="bd-example-modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal" id="replyCommentModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
+                        <p hidden id="replyButtonId"></p>
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Reply</h5>
+                                <h5 class="modal-title">Reply</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="new_comment"></label><textarea class="form-control" rows="6" maxlength="100" id="new_comment"></textarea>
+                                    <textarea class="form-control" rows="6" maxlength="100" id="new_reply"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Send</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="submitCommentReply" class="btn btn-primary">Send</button>
+                                <button type="button" id="closeCommentReply" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -355,6 +359,7 @@
       $(document).ready(function(){
 
         var i = 0;
+        var j = 0;
         if ($('div[name="comments[]"]').length > 1) {
           $('div[name="comments[]"]').each(function() {
               if (i > 0)
@@ -362,6 +367,14 @@
 
                 i++
           });
+
+          $('div[name="replies[]"]').each(function() {
+              if (j > 0)
+                $(this).hide();
+
+                j++
+          });
+
 
           if (i > 0 )
           {
@@ -374,16 +387,57 @@
 
       $(document).on( "click", "#moreComments", function( ) {
         var i = 0;
+        var j = 0;
         $('div[name="comments[]"]').each(function() {
             if (i > 0)
               $(this).fadeIn(250);
 
               i++
         });
+
+        $('div[name="replies[]"]').each(function() {
+            if (j > 0)
+              $(this).fadeIn(250);
+
+              j++
+        });
+
         $("#moreComments").hide();
 
 
       });
+
+      /*Fill the toreply field*/
+      $(document).on( "click", "#replyButton", function( ) {
+        $("#replyButtonId").text($(this).closest("div").attr("id"));
+      });
+
+
+
+      $(document).on( "click", "#submitCommentReply", function( ) {
+
+        var commentContent = $("#new_reply").val();
+        var replyto = $("#replyButtonId").text();
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'SubmitComment',
+                  event_id: <?php echo $event->id ?>,
+                  comment_content: commentContent,
+                  replyto:replyto },
+            dataType: 'JSON',
+            success: function (data) {
+              $("#closeCommentReply").click();
+              $("#new_reply").val('');
+              $("#comments").load(location.href+" #comments>*","");
+
+            }
+        });
+      });
+
 
 
 
