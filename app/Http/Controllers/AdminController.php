@@ -29,11 +29,16 @@ class AdminController extends Controller
     public function ban()
     {
         if ($_POST['action'] && $_POST['id']) {
-            $user = User::findOrFail($_POST['id']);
+            $user = User::find($_POST['id']);
+            if ($user == null) {
+                return view('pages.user_404');
+            }
             $user->is_banned = true;
-            $user->save();
-            $page = "banned";
-            return view('pages.admin_message', ['page' => $page]);
+            if($user->save()) {
+                $page = "banned";
+                return view('pages.admin_message', ['page' => $page]);
+            }
+            return view('pages.server_error');
         }
     }
 
@@ -41,10 +46,15 @@ class AdminController extends Controller
     {
         if ($_POST['action'] && $_POST['id']) {
             $user= User::findOrFail($_POST['id']);
+            if ($user == null) {
+                return view('pages.user_404');
+            }
             $user->is_banned = false;
-            $user->save();
-            $page = "reinstated";
-            return view('pages.admin_message', ['page' => $page]);
+            if($user->save()) {
+                $page = "reinstated";
+                return view('pages.admin_message', ['page' => $page]);
+            }
+            return view('pages.server_error');
         }
     }
 
@@ -52,10 +62,15 @@ class AdminController extends Controller
     {
         if ($_POST['action'] && $_POST['id']) {
             $user= User::findOrFail($_POST['id']);
+            if ($user == null) {
+                return view('pages.user_404');
+            }
             $user->nr_warnings += 1;
-            $user->save();
-            $page = "warned";
-            return view('pages.admin_message', ['page' => $page]);
+            if($user->save()) {
+                $page = "warned";
+                return view('pages.admin_message', ['page' => $page]);
+            }
+            return view('pages.server_error');
         }
     }
 
