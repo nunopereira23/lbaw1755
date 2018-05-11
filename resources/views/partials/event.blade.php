@@ -67,13 +67,14 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="type" value="CancelEvent">
                             <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                            <button type="submit" class="btn btn-danger btn-xs">Yes</button>
-                            <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-danger btn-sm btn-xs">Yes</button>
+                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">No</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="modal fade goingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content text-center">
@@ -126,6 +127,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row pb-5 mt-2">
           <?php if ($status != ''){ ?>
             <div class="new_comment col-md-6 mb-5 mt-3" id="new_comment">
@@ -157,30 +159,52 @@
                                 <?php if ($status != ''){ ?>
                                   <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
                                 <?php } ?>
+                                <?php if (($status == 'Owner' )||($user_id == $comment->user_id)){ ?>
+                                  <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
+                                  <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
+                                  <?php } ?>
+                                <?php } ?>
                                 <br>
                             </p>
                         </div>
                         <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                        <p class="text-right"><a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a></p>
-                        <div class="mb-1 text-muted text-right"><?php echo $comment->date;  echo " | Nr: ", $comment->id." " ?></div>
+                        <p class="text-right">
+                          <?php if ($comment->comment_content != ' Comment deleted' ){ ?>
+                            <a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a>
+                          <?php } else { ?>
+                            User
+                          <?php }?>
+                        </p>
+                        <div class="mb-1 text-muted text-right"><?php echo $comment->date;  echo " | Nr: "?><span id="comment_id"> <?php echo $comment->id." " ?></span></div>
                     </div>
 
                     <?php foreach($replies as $reply){ ?>
                       <?php if($reply->replyto == $comment->id ){?>
                         <div name="replies[]"  class="comment-content col-sm-11 p-2 mb-1 ml-1" >
                           <div class="comment-content col-sm-11 p-2 rounded bg-light border">
-                            <div class="comment-body" id=<?php echo $comment->id ?>>
+                            <div class="comment-body" id=<?php echo $comment->id ?>><!-- so the reply is made to the aprent comment -->
                                 <p><?php echo $reply->comment_content ?>
                                     <br>
                                     <?php if ($status != ''){ ?>
                                       <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
                                     <?php } ?>
+                                    <?php if (($status == 'Owner' )||($user_id == $reply->user_id)) { ?>
+                                      <?php if ($reply->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
+                                      <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
+                                      <?php } ?>
+                                    <?php } ?>
                                     <br>
                                 </p>
                             </div>
                             <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                            <p class="text-right"><a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a></p>
-                            <div class="mb-1 text-muted text-right"><?php echo $reply->date;  echo " | Nr: ", $reply->id." " ?></div>
+                            <p class="text-right">
+                              <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
+                                <a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a>
+                              <?php } else { ?>
+                                User
+                              <?php }?>
+                            </p>
+                            <div class="mb-1 text-muted text-right"><?php echo $reply->date;  echo " | Nr: "?><span id="comment_id"> <?php echo $reply->id." " ?></span></div>
                           </div>
                         </div>
                       <?php } ?>
@@ -208,6 +232,22 @@
                                 <button type="button" id="submitCommentReply" class="btn btn-primary">Send</button>
                                 <button type="button" id="closeCommentReply" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="deleteCommentModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <p hidden id="deleteCommentId"></p>
+                        <div class="modal-header" style="font-size:15px;">
+                            <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
+                            <p class="modal-title">Are you sure you want to delete this comment?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" id="submitCommentDelete" class="btn btn-danger btn-sm btn-xs">Yes</button>
+                          <button type="button" id="closeCommentDelete" class="btn btn-primary btn-sm" data-dismiss="modal">No</button>
                         </div>
                     </div>
                 </div>
@@ -438,8 +478,33 @@
         });
       });
 
+      /*Fill the toreply field*/
+      $(document).on( "click", "#deleteButton", function( ) {
+        $("#deleteCommentId").text($(this).parent().parent().parent().find('span').text());
+      });
+
+      $(document).on( "click", "#submitCommentDelete", function( ) {
 
 
+        var comment_id = $("#deleteCommentId").text();
+
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'DeleteComment',
+                  event_id: <?php echo $event->id ?>,
+                  comment_id:comment_id },
+            dataType: 'JSON',
+            success: function (data) {
+              $("#closeCommentDelete").click();
+              $("#comments").load(location.href+" #comments>*","");
+
+            }
+        });
+      });
 
     </script>
 

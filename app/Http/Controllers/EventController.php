@@ -114,10 +114,14 @@ class EventController extends Controller
 
 
         if ($event->event_visibility == 'Public'){
-          return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+          if (Auth::check())
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            else {
+              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['event' => $event,'status' => $status,'going' =>$going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
           }
         }
 
@@ -273,6 +277,21 @@ class EventController extends Controller
               return response()->json($response);
 
             break;
+
+            case 'DeleteComment':
+              $response = 'noDelete';
+
+              if (Auth::check()){
+
+                DB::table('comments')->where('id','=',$request->comment_id)
+                                     ->update(['comment_content' => ' Comment deleted']);
+
+                $response = 'commentDeleted';
+              }
+              return response()->json($response);
+
+            break;
+
 
           default:
 
