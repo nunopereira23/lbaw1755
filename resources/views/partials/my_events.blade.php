@@ -20,66 +20,76 @@
         <div class="col-sm">
             <div class="container">
                 <div class="row">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search by title" name="search">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
+                    <form  id="search-form" method="get" action="/api/users/<?php echo $user->id ?>/my_events">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <input type="text" class="form-control" placeholder="Title" name="title">
+                        </div>
+                        <div class="row">
+                            <h5>Select the date period:</h5>
+                        </div>
+                        <div class="row">
+                            <input type="date" class="form-control" id="dateFrom" placeholder="From" name="startFrom">
+                            <br>
+                            <input type="date" class="form-control" id="dateTo" placeholder="To" name="startTo">
+                        </div>
+                        <div class="row">
+                            <h5>Location:</h5>
+                        </div>
+                        <div class="row">
+                            <input type="text" class="form-control" id="location" placeholder="Location" name="location">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <h5>Event type:</h5>
+                        </div>
+                        <div class="row">
+                                <select class="form-control" name="type">
+                                    <option value="All">All types</option>
+                                    <option value="Trip">Trip</option>
+                                    <option value="Party">Party</option>
+                                    <option value="Sport">Sport</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Culture">Culture</option>
+                                    <option value="Birthday">Birthday</option>
+                                </select>
+                        </div>
+                        <div class="row">
+                            <h5>My state:</h5>
+                        </div>
+                        <div class="row">
+                            <select class="form-control" name="state">
+                                    <option value="All">All states</option>
+                                    <option value="Created">Created by me</option>
+                                    <option value="Going">Going</option>
+                                    <option value="Ignoring">Ignoring</option>
+                                    <option value="Invited">Invited</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <h5>Order by:</h5>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <select class="form-control" name="order">
+                                    <option value="title"><p>Title</p></option>
+                                    <option value="event_start"><p>Date</p></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="orderDirection">
+                                    <option value="desc"><p>Descending</p></option>
+                                    <option value="asc"><p>Ascending</p></option>
+                                </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary btn-block"> Filter </button>
+                        </div>
                     </form>
-                </div>
-                <div class="row">
-                    <h5>Select the date period:</h5>
-                </div>
-                <div class="row">
-                    <input type="date" class="form-control" id="dateFrom" placeholder="From">
-                    <br>
-                    <input type="date" class="form-control" id="dateTo" placeholder="To">
-                </div>
-                <div class="row">
-                    <h5>Max km from my location:</h5>
-                </div>
-                <div class="row">
-                    <input type="number" class="form-control" id="km" placeholder="Km">
-                </div>
-
-                <br>
-                <div class="row">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option><p>Type of event</p></option>
-                            <option><p>Music</p></option>
-                            <option><p>Historical</p></option>
-                            <option><p>Trip</p></option>
-                        </select>
+                    <div class="row">
+                        <button class="btn btn-default btn-block" onclick="clear()"><span class="glyphicon glyphicon-remove"></span> Clear</button>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option><p>Order by</p></option>
-                            <option><p>Date</p></option>
-                            <option><p>Alphabetical</p></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option><p>Order direction </p></option>
-                            <option><p>Highest first</p></option>
-                            <option><p>Lowest first</p></option>
-                        </select>
-                    </div>
-                </div>
-
-                <br>
-                <div class="row">
-                    <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-search"></span> Filter</button>
-                    <button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-remove"></span> Clear</button>
                 </div>
             </div>
         </div>
@@ -91,7 +101,7 @@
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h4> <a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
                     <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
                     <h5> Location </h5>
                 </div>
@@ -116,7 +126,7 @@
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h4> <a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
                     <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
                     <h5>Location </h5>
                 </div>
@@ -143,7 +153,7 @@
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h4> <a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
                     <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
                     <h5>Location </h5>
                 </div>
@@ -169,7 +179,7 @@
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
                 <div class="card-block">
-                    <h4> <a href="../event/event.html"> <?php echo $event->title ?> </a></h4>
+                    <h4> <a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
                     <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
                     <h5>Location </h5>
                     <h5>Invited by <a href="../user/profile.html"> joao95 </a> </h5>
@@ -213,3 +223,15 @@
 </footer>
 
 </html>
+
+<script>
+
+    function clear() {
+        document.getElementById('title').value = "";
+        document.getElementById('dateFrom').value = "";
+        document.getElementById('dateTo').value = "";
+        document.getElementById('location').value = "";
+        document.getElementById('type').value = "All";
+    }
+
+</script>

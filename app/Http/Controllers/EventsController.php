@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use DateTime;
 
 use App\Event;
 
@@ -31,21 +32,21 @@ class EventsController extends Controller
         $type = $request->input('type');
         $order = $request->input('order');
         $orderDirection = $request->input('orderDirection');
+        if (empty($startFrom)) {
+            $startFrom = new DateTime('1000-00-00');
+        }
+        if (empty($startTo)) {
+            $startTo = new DateTime('9999-00-00');
+        }
         $events = Event::where('event_visibility','Public')
             ->where('title', 'LIKE', '%'.$title.'%')
+            ->whereBetween('event_start', [$startFrom, $startTo])
             ->orderBy($order, $orderDirection)
             ->get();
-        if ($type != "All" && !(empty($startFrom)) && !(empty($startTo)) ) {
+        if ($type != "All") {
             $events = Event::where('event_visibility','Public')
                 ->where('title', 'LIKE', '%'.$title.'%')
                 ->whereBetween('event_start', [$startFrom, $startTo])
-                ->where('event_type', $type)
-                ->orderBy($order, $orderDirection)
-                ->get();
-        }
-        if ($type != "All" && empty($startFrom) && empty($startTo) ) {
-            $events = Event::where('event_visibility','Public')
-                ->where('title', 'LIKE', '%'.$title.'%')
                 ->where('event_type', $type)
                 ->orderBy($order, $orderDirection)
                 ->get();

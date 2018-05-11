@@ -1,5 +1,6 @@
+<html>
 <link href="{{ asset('css/events.css') }}" rel="stylesheet">
-
+<body>
 <div class="container">
     <h5>All public events</h5>
     <br>
@@ -10,7 +11,7 @@
                     <form method="get" action={{ route('search_events') }}>
                         {{ csrf_field() }}
                         <div class="row">
-                            <input type="text" class="form-control" placeholder="Title" name="title">
+                            <input type="text" class="form-control" placeholder="Title" name="title" id="title">
                         </div>
                     <div class="row">
                         <h5>Select the date period:</h5>
@@ -23,13 +24,15 @@
                     <div class="row">
                         <h5>Max km from my location:</h5>
                     </div>
-                    <div class="row">
-                        <input type="number" class="form-control" id="km" placeholder="Km" name="km">
-                    </div>
+                        <div class="row">
+                            <input type="text" class="form-control" id="location" placeholder="Location" name="location">
+                        </div>
                     <br>
-                    <div class="row">
-                        <div class="form-group">
-                            <select class="form-control" name="type">
+                        <div class="row">
+                            <h5>Event type:</h5>
+                        </div>
+                        <div class="row">
+                            <select class="form-control" name="type" id="type">
                                 <option value="All">All types</option>
                                 <option value="Trip">Trip</option>
                                 <option value="Party">Party</option>
@@ -39,7 +42,6 @@
                                 <option value="Birthday">Birthday</option>
                             </select>
                         </div>
-                    </div>
                     <div class="row">
                         <div class="form-group">
                             <select class="form-control" name="order">
@@ -56,19 +58,21 @@
                     </div>
                     <div class="row">
                         <button type="submit" class="btn btn-primary btn-block"> Filter </button>
-                        <button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-remove"></span> Clear</button>
                     </div>
                     </form>
+                    <div class="row">
+                        <button class="btn btn-default btn-block" onclick="clear()"><span class="glyphicon glyphicon-remove"></span> Clear</button>
+                    </div>
                 </div>
             </div>
-
+            <?php $events?>
             <div class="col-sm align-content-center">
             <?php for ($i=0; $i < $count; $i++) :
                 if (($i % 4) == 0)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
@@ -82,7 +86,7 @@
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
@@ -96,7 +100,7 @@
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
@@ -110,7 +114,7 @@
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
-                        <h4><a href="../event"> <?php echo $events[$i]->title ?> </a></h4>
+                        <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
                         <h5> Porto's Airport </h5>
                     </div>
@@ -122,3 +126,17 @@
     </div>
     </div>
 </div>
+</body>
+</html>
+
+<script>
+    
+    function clear() {
+        document.getElementById('title').value = "";
+        document.getElementById('dateFrom').value = "";
+        document.getElementById('dateTo').value = "";
+        document.getElementById('location').value = "";
+        document.getElementById('type').value = "All";
+    }
+    
+</script>

@@ -71,6 +71,7 @@ Route::get('events/search', 'EventsController@search')->name('search_events');
 //My events
 Route::get('/users/{id}/my_events', 'MyEventsController@show');
 Route::get('/users/{id}/past_events', 'MyEventsController@showPast');
+Route::get('/api/users/{id}/my_events', 'MyEventsController@search');
 
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
