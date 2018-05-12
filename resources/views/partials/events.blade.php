@@ -1,33 +1,34 @@
-<html>
 <link href="{{ asset('css/events.css') }}" rel="stylesheet">
-<body>
 <div class="container">
-    <h5>All public events</h5>
+    <h3>All public events</h3>
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col">
                 <div class="container">
                     <form method="get" action={{ route('search_events') }}>
                         {{ csrf_field() }}
                         <div class="row">
+                            <h5>Select title</h5>
                             <input type="text" class="form-control" placeholder="Title" name="title" id="title">
                         </div>
-                    <div class="row">
-                        <h5>Select the date period:</h5>
-                    </div>
-                    <div class="row">
-                        <input type="date" class="form-control" id="dateFrom" placeholder="From" name="startFrom">
-                        <br>
-                        <input type="date" class="form-control" id="dateTo" placeholder="To" name="startTo">
-                    </div>
-                    <div class="row">
-                        <h5>Max km from my location:</h5>
-                    </div>
+                        <br/>
+                        <div class="row">
+                            <h5>Select the date period:</h5>
+                        </div>
+                        <div class="row">
+                            <input type="date" class="form-control" id="dateFrom" placeholder="From" name="startFrom">
+                            <br>
+                            <input type="date" class="form-control" id="dateTo" placeholder="To" name="startTo">
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <h5>Max km from my location:</h5>
+                        </div>
                         <div class="row">
                             <input type="text" class="form-control" id="location" placeholder="Location" name="location">
                         </div>
-                    <br>
+                        <br/>
                         <div class="row">
                             <h5>Event type:</h5>
                         </div>
@@ -42,32 +43,34 @@
                                 <option value="Birthday">Birthday</option>
                             </select>
                         </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <select class="form-control" name="order">
-                                <option value="title"><p>Title</p></option>
-                                <option value="event_start"><p>Date</p></option>
-                            </select>
+                        <br/>
+                        <div class="row">
+                            <div class="form-group">
+                                <select class="form-control" name="order">
+                                    <option value="title"><p>Title</p></option>
+                                    <option value="event_start"><p>Date</p></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="orderDirection">
+                                    <option value="desc"><p>Descending</p></option>
+                                    <option value="asc"><p>Ascending</p></option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <select class="form-control" name="orderDirection">
-                                <option value="desc"><p>Descending</p></option>
-                                <option value="asc"><p>Ascending</p></option>
-                            </select>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary btn-block"> Filter</button>
                         </div>
-                    </div>
-                    <div class="row">
-                        <button type="submit" class="btn btn-primary btn-block"> Filter </button>
-                    </div>
                     </form>
+                    <p></p>
                     <div class="row">
-                        <button class="btn btn-default btn-block" onclick="clear()"><span class="glyphicon glyphicon-remove"></span> Clear</button>
+                        <input id="submit" type="button" class="btn btn-default btn-block" value="Clear">
                     </div>
                 </div>
             </div>
             <?php $events?>
-            <div class="col-sm align-content-center">
-            <?php for ($i=0; $i < $count; $i++) :
+            <div class="col align-content-center">
+                <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 0)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
@@ -78,11 +81,11 @@
                     </div>
                 </div>
                 <br>
-            <?php } endfor ?>
+                <?php } endfor ?>
             </div>
-            <div class="col-sm align-content-center">
-            <?php for ($i=0; $i < $count; $i++) :
-            if (($i % 4) == 1)  { ?>
+            <div class="col align-content-center">
+                <?php for ($i = 0; $i < $count; $i++) :
+                if (($i % 4) == 1)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
@@ -92,11 +95,11 @@
                     </div>
                 </div>
                 <br>
-            <?php } endfor ?>
+                <?php } endfor ?>
             </div>
-            <div class="col-sm align-content-center">
-            <?php for ($i=0; $i < $count; $i++) :
-            if (($i % 4) == 2)  { ?>
+            <div class="col align-content-center">
+                <?php for ($i = 0; $i < $count; $i++) :
+                if (($i % 4) == 2)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
@@ -106,10 +109,10 @@
                     </div>
                 </div>
                 <br>
-            <?php } endfor ?>
+                <?php } endfor ?>
             </div>
-            <div class="col-sm align-content-center">
-                <?php for ($i=0; $i < $count; $i++) :
+            <div class="col align-content-center">
+                <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 3)  { ?>
                 <div class="card">
                     <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
@@ -121,16 +124,17 @@
                 </div>
                 <br>
                 <?php } endfor ?>
-            <br>
+                <br>
+            </div>
         </div>
     </div>
-    </div>
 </div>
-</body>
-</html>
 
-<script>
-    
+<script type="text/javascript">
+    document.getElementById('submit').addEventListener('click', function () {
+        clear();
+    });
+
     function clear() {
         document.getElementById('title').value = "";
         document.getElementById('dateFrom').value = "";
@@ -138,5 +142,4 @@
         document.getElementById('location').value = "";
         document.getElementById('type').value = "All";
     }
-    
 </script>
