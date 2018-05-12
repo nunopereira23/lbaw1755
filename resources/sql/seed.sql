@@ -1,3 +1,5 @@
+--TODO introduce the database transaction from a9
+
 --Tables
 DROP TABLE IF EXISTS answers CASCADE;
 DROP TABLE IF EXISTS answer_user CASCADE;
@@ -37,7 +39,7 @@ CREATE TABLE users (
   name text NOT NULL,
 	birthdate date,
 	nr_warnings integer,
-	password text NOT NULL,
+	password text,
 	profile_picture_path text,
 	is_banned boolean,
 	is_admin boolean,
@@ -48,7 +50,8 @@ CREATE TABLE event_user (
 	id_event integer NOT NULL,
   id_user integer NOT NULL,
 	event_user_state text NOT NULL,
-	CONSTRAINT event_user_state CHECK ((event_user_state = ANY (ARRAY['Going'::text, 'Invited'::text, 'Ignoring'::text, 'Owner'::text])))
+	CONSTRAINT event_user_state CHECK ((event_user_state = ANY (ARRAY['Deciding'::text,'Going'::text, 'Ignoring'::text, 'Owner'::text]))),
+	is_invited boolean
 );
 
 CREATE TABLE comments (
@@ -56,6 +59,7 @@ CREATE TABLE comments (
 	id_event integer NOT NULL,
 	id_user integer NOT NULL,
 	comment_content text NOT NULL,
+	replyto integer NOT NULL,
 	"date" timestamp with time zone DEFAULT now()
 );
 
@@ -174,7 +178,7 @@ ALTER TABLE ONLY reports
 	  IF EXISTS (SELECT * FROM event_user
 			INNER JOIN events on events.id = event_user.id_event
 			WHERE events.event_visibility = 'Private'
-			 	AND (event_user.event_user_state != 'Invited' OR event_user.event_user_state != 'Owner')
+			 	AND (event_user.event_user_state != 'Going' OR event_user.event_user_state != 'Deciding' OR event_user.event_user_state != 'Owner')
 				AND NEW.id_event = events.id AND NEW.id_user = event_user.id_user) THEN
 	    RAISE EXCEPTION 'An uninvited user cannot comment on a private event.';
 	  END IF;
