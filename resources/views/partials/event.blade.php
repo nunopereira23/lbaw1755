@@ -282,18 +282,12 @@
         </div>
     </div>
 </div>
+
+
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <script type="text/javascript">
-    var labelText = $('#triggerModal').text().trim();
-    if (labelText != "noModal") {
-        $(document).ready(function () {
-            $('#inviteSuccess').modal('show');
-        });
-    }
 
-
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-    <script>
 
       $(document).on( "click", "#acceptEvent", function( ) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -521,7 +515,7 @@
         function myMap() {
             var mapCanvas = document.getElementById("map");
             var mapOptions = {
-                center: new google.maps.LatLng(<?php echo $event->gps ?>), zoom: 15
+                center: new google.maps.LatLng(41.15, -8.63), zoom: 15
             };
             var map = new google.maps.Map(mapCanvas, mapOptions);
             var geocoder = new google.maps.Geocoder;
