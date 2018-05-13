@@ -28,7 +28,7 @@
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>
                 <button type="submit" class="signupbtn">Log In</button>
-                <button type="submit" class="btn-primary">Sign In With Google</button>
+                <button class="btn-primary"> <a href ="{{ route('google') }}"> </a>Sign In With Google</button>
             </div>
             <hr/>
             Don't have an account?
