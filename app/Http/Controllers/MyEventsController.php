@@ -25,7 +25,9 @@ class MyEventsController extends Controller
             $user = User::findOrFail($id_auth);
             $now = new DateTime();
             $past = true;
-            $events = $user->events()->where('event_start' ,'>=' ,$now)->get();
+            $events = $user->events()->where('event_start' ,'>=' ,$now)
+                ->where('is_deleted', false)
+                ->get();
             return view('pages.my_events', ['events' => $events, 'user' =>$user, 'past'=> $past]);
         }
         return view('pages.error');
@@ -38,7 +40,9 @@ class MyEventsController extends Controller
             $user = User::findOrFail($id_auth);
             $now = new DateTime();
             $past = false;
-            $events = $user->events()->where('event_start' ,'<' ,$now)->get();
+            $events = $user->events()->where('event_start' ,'<' ,$now)
+                ->where('is_deleted', false)
+                ->get();
             return view('pages.my_events', ['events' => $events, 'user' =>$user, 'past'=> $past]);
         }
         return view('pages.error');
@@ -52,7 +56,6 @@ class MyEventsController extends Controller
         $startTo = $request->input('startTo');
         $location = $request->input('location');
         $type = $request->input('type');
-        $state = $request->input('state');
         $order = $request->input('order');
         $orderDirection = $request->input('orderDirection');
         if (empty($startFrom)) {
@@ -63,12 +66,16 @@ class MyEventsController extends Controller
         }
         $events = $user->events()
             ->where('title', 'LIKE', '%'.$title.'%')
+            ->where('gps', 'LIKE', '%'.$location.'%')
+            ->where('is_deleted', false)
             ->whereBetween('event_start', [$startFrom, $startTo])
             ->orderBy($order, $orderDirection)
             ->get();
         if ($type != "All") {
             $events = $user->events()
                 ->where('title', 'LIKE', '%'.$title.'%')
+                ->where('gps', 'LIKE', '%'.$location.'%')
+                ->where('is_deleted', false)
                 ->whereBetween('event_start', [$startFrom, $startTo])
                 ->where('event_type', $type)
                 ->orderBy($order, $orderDirection)

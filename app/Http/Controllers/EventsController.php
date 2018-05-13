@@ -18,7 +18,9 @@ class EventsController extends Controller
 
     public function show()
     {
-        $events = Event::where('event_visibility','Public')->get();
+        $events = Event::where('event_visibility','Public')
+            ->where('is_deleted', false)
+            ->get();
         $count = $events->count();
         return view('pages.events', ['events' => $events, 'count' => $count]);
     }
@@ -28,7 +30,7 @@ class EventsController extends Controller
         $title = $request->input('title');
         $startFrom = $request->input('startFrom');
         $startTo = $request->input('startTo');
-        $km = $request->input('km');
+        $location = $request->input('location');
         $type = $request->input('type');
         $order = $request->input('order');
         $orderDirection = $request->input('orderDirection');
@@ -40,19 +42,22 @@ class EventsController extends Controller
         }
         $events = Event::where('event_visibility','Public')
             ->where('title', 'LIKE', '%'.$title.'%')
+            ->where('gps', 'LIKE', '%'.$location.'%')
+            ->where('is_deleted', false)
             ->whereBetween('event_start', [$startFrom, $startTo])
             ->orderBy($order, $orderDirection)
             ->get();
         if ($type != "All") {
             $events = Event::where('event_visibility','Public')
                 ->where('title', 'LIKE', '%'.$title.'%')
+                ->where('gps', 'LIKE', '%'.$location.'%')
+                ->where('is_deleted', false)
                 ->whereBetween('event_start', [$startFrom, $startTo])
                 ->where('event_type', $type)
                 ->orderBy($order, $orderDirection)
                 ->get();
         }
         $count = $events->count();
-        //if count == 0, echo NO RESULTS
         return view('pages.events', ['events' => $events, 'count' => $count]);
     }
 

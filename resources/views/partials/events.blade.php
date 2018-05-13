@@ -9,12 +9,12 @@
                     <form method="get" action={{ route('search_events') }}>
                         {{ csrf_field() }}
                         <div class="row">
-                            <h5>Select title</h5>
+                            <h5>Title</h5>
                             <input type="text" class="form-control" placeholder="Title" name="title" id="title">
                         </div>
                         <br/>
                         <div class="row">
-                            <h5>Select the date period:</h5>
+                            <h5>Event start between: </h5>
                         </div>
                         <div class="row">
                             <input type="date" class="form-control" id="dateFrom" placeholder="From" name="startFrom">
@@ -23,7 +23,7 @@
                         </div>
                         <br/>
                         <div class="row">
-                            <h5>Max km from my location:</h5>
+                            <h5>Location:</h5>
                         </div>
                         <div class="row">
                             <input type="text" class="form-control" id="location" placeholder="Location" name="location">
@@ -45,12 +45,17 @@
                         </div>
                         <br/>
                         <div class="row">
+                            <h5>Order by:</h5>
+                        </div>
+                        <div class="row">
                             <div class="form-group">
                                 <select class="form-control" name="order">
                                     <option value="title"><p>Title</p></option>
                                     <option value="event_start"><p>Date</p></option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="form-group">
                                 <select class="form-control" name="orderDirection">
                                     <option value="desc"><p>Descending</p></option>
@@ -77,13 +82,18 @@
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> Porto's Airport </h5>
+                        <h5> <?php echo $events[$i]->gps ?> </h5>
                     </div>
                 </div>
                 <br>
                 <?php } endfor ?>
             </div>
             <div class="col align-content-center">
+                <?php if ($count == 0) { ?>
+                <div class="row">
+                    <h5> There are no events. </h5>
+                </div>
+                <?php } ?>
                 <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 1)  { ?>
                 <div class="card">
@@ -91,7 +101,7 @@
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> Porto's Airport </h5>
+                        <h5> <?php echo $events[$i]->gps ?> </h5>
                     </div>
                 </div>
                 <br>
@@ -105,7 +115,7 @@
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> Porto's Airport </h5>
+                        <h5> <?php echo $events[$i]->gps ?> </h5>
                     </div>
                 </div>
                 <br>
@@ -119,7 +129,7 @@
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> Porto's Airport </h5>
+                        <h5> <?php echo $events[$i]->gps ?> </h5>
                     </div>
                 </div>
                 <br>

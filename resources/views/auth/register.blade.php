@@ -43,10 +43,10 @@
             <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
 
             <div class="clearfix">
-                <button type="button" class="cancelbtn">Cancel</button>
                 <button type="submit" class="signupbtn">Sign Up</button>
-                <button type="submit" class="btn-primary">Sign In With Google</button>
             </div>
+            Login with google?
+            <a href="{{ url('/login/google') }}">Sign In With Google Here </a>
         </div>
     </form>
 @endsection

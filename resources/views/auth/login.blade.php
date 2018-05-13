@@ -26,13 +26,13 @@
             @endif
 
             <div class="clearfix">
-                <button type="button" class="cancelbtn">Cancel</button>
                 <button type="submit" class="signupbtn">Log In</button>
-                <button class="btn-primary"> <a href ="{{ route('google') }}"> </a>Sign In With Google</button>
             </div>
             <hr/>
             Don't have an account?
             <a href="{{ route('register') }}">Sign Up Here</a>
+            Login with google?
+            <a href="{{ url('/login/google') }}">Sign In With Google Here </a>
         </div>
     </form>
 @endsection
