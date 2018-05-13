@@ -169,7 +169,7 @@
             <?php
             $count = 0;
             foreach ($events as $event) :
-            if ($event->pivot->event_user_state == 'Invited') {
+            if ($event->pivot->event_user_state == 'Deciding') {
             $count++;?>
             <div class="card">
                 <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
