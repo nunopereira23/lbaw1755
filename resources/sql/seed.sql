@@ -1,4 +1,5 @@
 --TODO introduce the database transaction from a9
+--TODO fix uninvited_comment trigger
 
 --Tables
 DROP TABLE IF EXISTS answers CASCADE;
@@ -172,25 +173,25 @@ ALTER TABLE ONLY reports
 	ADD CONSTRAINT report_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
 --Triggers
-	CREATE FUNCTION uninvited_comment() RETURNS TRIGGER AS
-	$BODY$
-	BEGIN
-	  IF EXISTS (SELECT * FROM event_user
-			INNER JOIN events on events.id = event_user.id_event
-			WHERE events.event_visibility = 'Private'
-			 	AND (event_user.event_user_state != 'Going' OR event_user.event_user_state != 'Deciding' OR event_user.event_user_state != 'Owner')
-				AND NEW.id_event = events.id AND NEW.id_user = event_user.id_user) THEN
-	    RAISE EXCEPTION 'An uninvited user cannot comment on a private event.';
-	  END IF;
-	  RETURN NEW;
-	END
-	$BODY$
-	LANGUAGE plpgsql;
-
-	CREATE TRIGGER uninvited_comment
-	  BEFORE INSERT OR UPDATE ON comments
-	  FOR EACH ROW
-	    EXECUTE PROCEDURE uninvited_comment();
+	-- CREATE FUNCTION uninvited_comment() RETURNS TRIGGER AS
+	-- $BODY$
+	-- BEGIN
+	--   IF EXISTS (SELECT * FROM event_user
+	-- 		INNER JOIN events on events.id = event_user.id_event
+	-- 		WHERE events.event_visibility = 'Private'
+	-- 		 	AND (event_user.event_user_state != 'Going' OR event_user.event_user_state != 'Deciding' OR event_user.event_user_state != 'Owner')
+	-- 			AND NEW.id_event = events.id AND NEW.id_user = event_user.id_user) THEN
+	--     RAISE EXCEPTION 'An uninvited user cannot comment on a private event.';
+	--   END IF;
+	--   RETURN NEW;
+	-- END
+	-- $BODY$
+	-- LANGUAGE plpgsql;
+	--
+	-- CREATE TRIGGER uninvited_comment
+	--   BEFORE INSERT OR UPDATE ON comments
+	--   FOR EACH ROW
+	--     EXECUTE PROCEDURE uninvited_comment();
 
 	CREATE FUNCTION warning_ban() RETURNS TRIGGER AS
 	$BODY$
