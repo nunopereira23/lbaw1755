@@ -82,7 +82,7 @@ class EventController extends Controller
             ->orderBy('comments.date','ASC')
             ->get();
 
-
+        $invited = false;
 
         if (Auth::check()){
           $user_id = Auth::id();
@@ -103,7 +103,7 @@ class EventController extends Controller
 		                        ->where('id_event', '=', $id)
 		                        ->where('id_user', '=', $user_id)
 		                        ->pluck('is_invited');
-          $invited = false;
+
 
           if (!$event_invited->isEmpty())
             $invited = $event_invited[0];
