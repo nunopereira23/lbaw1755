@@ -74,6 +74,49 @@
             </div>
         </div>
 
+
+        <div class="modal fade" id="addPollModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content ">
+                    <div class="modal-header" style="font-size:15px;">
+                        <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
+                        <p class="modal-title">Type a Question</p>
+                        <input type="text" name="pollQuestion"><br>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="type" value="AddPoll">
+                            <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+
+
+                                <div class="poll-options">
+                                    <div class="poll-option">
+                                        <input type="radio" name="vote" value="1" id="c1" onclick="getVote(this.value)">
+                                        <input type="text" name="pollOption"><br>
+                                    </div>
+                                    <div class="poll-option">
+                                        <input type="radio" name="vote" value="2" id="c2" onclick="getVote(this.value)">
+                                        <input type="text" name="pollOption"><br>
+                                    </div>
+                                    <div class="poll-option">
+                                        <input type="radio" name="vote" value="3" id="c3" onclick="getVote(this.value)">
+                                        <input type="text" name="pollOption"><br>
+                                    </div>
+                                </div>
+
+
+                            <button type="submit" class="btn btn-danger btn-sm btn-xs">Submit</button>
+                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <div class="modal fade goingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content text-center">
@@ -134,7 +177,7 @@
                     <h5>New comment:</h5>
                     <textarea style="resize:none;" class="form-control bg-light" minlength="1" maxlength="150" rows="5" id="commentContent" placeholder=""></textarea>
                     <button type="button" class="btn btn-sm m-2 mr-2" data-toggle="modal" data-target=".bd-example-modal-sm4">Add photo</button>
-                    <button type="button" class="btn m-2">Add poll</button>
+                    <button type="button" class="btn  btn-sm m-2 mr-2" data-toggle="modal" data-target="#addPollModal">Add Poll</button>
                     <input type="submit" id="submitComment" class="btn float-right mt-2 mb-5" value="Submit">
                     <div class="alert alert-success" id="newCommentSuccess" style="display:none;">
                       Comment added sucessfuly.
@@ -291,6 +334,13 @@
             <input type="submit" value="Submit answer">
         </form>
     </div>
+
+
+
+
+
+
+
 
 
     <div class="modal fade" id="inviteSuccess" role="dialog">
@@ -529,6 +579,37 @@
 
             }
         });
+      });
+
+
+      $(document).on( "click", "#replyButton", function( ) {
+          $("#replyButtonId").text($(this).closest("div").attr("id"));
+      });
+
+
+
+      $(document).on( "click", "#submitCommentReply", function( ) {
+
+          var commentContent = $("#new_reply").val();
+          var replyto = $("#replyButtonId").text();
+
+          var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+          $.ajax({
+              url: '/event/<?php echo $event->id ?>',
+              type: 'POST',
+              data: {_token: CSRF_TOKEN,
+                  type : 'SubmitComment',
+                  event_id: <?php echo $event->id ?>,
+                  comment_content: commentContent,
+                  replyto:replyto },
+              dataType: 'JSON',
+              success: function (data) {
+                  $("#closeCommentReply").click();
+                  $("#new_reply").val('');
+                  $("#comments").load(location.href+" #comments>*","");
+
+              }
+          });
       });
 
     </script>
