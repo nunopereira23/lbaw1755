@@ -61,9 +61,19 @@ class EventController extends Controller
                     ->where('id_event','=',$id);
             })->get();
 
+
+        $users_invited = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->join('event_user', 'event_user.id_user', '=', 'users.id')
+            ->where('event_user.id_event',$id)
+            ->where('event_user.event_user_state','=','Deciding')
+            ->get();
+
         $users_canBeInvited = json_decode($users_canBeInvited);
 
         $going = array_merge(json_decode($event_owner),json_decode($users_going));
+
+        $invited_going = array_merge(json_decode($users_invited),json_decode($users_going));
 
 
         $comments = DB::table('comments')
@@ -118,13 +128,13 @@ class EventController extends Controller
 
         if ($event->event_visibility == 'Public'){
           if (Auth::check())
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going,'comments' => $comments,'replies' => $replies]);
             else {
               return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
             }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going,'comments' => $comments,'replies' => $replies]);
           }
         }
 
@@ -291,6 +301,23 @@ class EventController extends Controller
 
                 $response = 'commentDeleted';
               }
+              return response()->json($response);
+
+            break;
+
+            case 'CancelInvite':
+              $response = 'noCancel';
+
+              $toCancel = $request->toCancel;
+              if (count($toCancel) > 0){
+                $response = 'inviteCanceled';
+                foreach ($toCancel as $canceled_id) {
+                    DB::table('event_user')->where(['id_event'=>$request->event_id,
+                                                    'id_user'=>$canceled_id])
+                                          ->delete();
+                }
+              }
+
               return response()->json($response);
 
             break;
