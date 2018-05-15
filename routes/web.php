@@ -63,6 +63,7 @@ Route::post('event/{id}', 'EventController@request');
 Route::get('create_event', 'EventController@showCreateForm')->name('create_event');
 Route::post('create_event', 'EventController@create');
 
+
 Route::get('event/{id}/edit_event', 'EventController@showEditForm')->name('edit_event');
 Route::post('event/{id}/edit_event', 'EventController@update');
 

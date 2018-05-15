@@ -268,6 +268,29 @@
         </div>
     </div>
 
+    <div class="poll">
+        <div class ="pool-question">
+            Poll question
+        </div>
+        <form action="vote.php" method="post">
+            <div class="poll-options">
+                <div class="poll-option">
+                    <input type="radio" name="vote" value="1" id="c1" onclick="getVote(this.value)">
+                    <label for="c1">Choice 1</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="vote" value="2" id="c2" onclick="getVote(this.value)">
+                    <label for="c1">Choice 2</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="vote" value="3" id="c3" onclick="getVote(this.value)">
+                    <label for="c1">Choice 3</label>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit answer">
+        </form>
+    </div>
 
 
     <div class="modal fade" id="inviteSuccess" role="dialog">

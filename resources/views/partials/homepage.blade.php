@@ -8,7 +8,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="{{ asset('../images/concert.jpeg') }}" style="width:100%" class="img-responsive">
+            <img src="{{ asset('../images/picarra2.jpg') }}" style="width:100%" class="img-responsive">
             <div class="container">
                 <div class="caraous-title">
                     <div class="col-md-12">
