@@ -54,10 +54,12 @@
                                 <option value="Birthday">Birthday</option>
                             </select>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="fileToUpload"><b>Event photo</b></label>
-                            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                            <input type="file" class="form-control" name="image">
                         </div>
+
                     </div>
                     <hr class="mb-1">
                     <label><b>Location</b></label>

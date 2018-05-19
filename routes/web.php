@@ -76,8 +76,7 @@ Route::get('/users/{id}/past_events', 'MyEventsController@showPast');
 Route::get('/api/users/{id}/my_events', 'MyEventsController@search');
 
 //Files
-Route::post('upload', 'Auth\SocialController@storePicture')->name('upload');
-
+Route::post('upload', 'UploadController@storePicture')->name('upload_files');
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');

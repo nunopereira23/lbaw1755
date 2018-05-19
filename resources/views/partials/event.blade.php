@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="card col-12">
-                <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
+                <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset($event_picture) }})"></div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">

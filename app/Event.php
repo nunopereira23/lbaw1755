@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Event extends Model
 {
@@ -17,6 +18,16 @@ class Event extends Model
     {
         return $this->belongsToMany('App\User', 'event_user', 'id_event', 'id_user')
             ->withPivot('event_user_state');
+    }
+
+    public function getPicture() {
+        $event_picture_event_path = DB::table('event_path')
+            ->where('id_event', $this->id)
+            ->first();
+        $event_picture_path = DB::table('paths')
+            ->where('id',$event_picture_event_path->id_path)
+            ->first();
+        return $event_picture_path->path_value;
     }
 
 }

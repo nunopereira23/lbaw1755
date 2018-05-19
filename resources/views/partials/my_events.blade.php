@@ -96,7 +96,8 @@
             if ($event->pivot->event_user_state == 'Owner') {
             $count++;?>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src=url("{{ asset($event->getPicture()) }}") alt="<?php echo $event->getPicture() ?>">
+                <div class="card-img-top" style="background-image: url({{ asset($event->getPicture()) }})"></div>
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
                     <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
@@ -121,7 +122,7 @@
             if ($event->pivot->event_user_state == 'Going') {
             $count++;?>
             <div class="card">
-                <img class="card-img-top" src="../../images/myevent.jpg" alt="Card image cap">
+                <img class="card-img-top" src="url({{ asset($event->getPicture()) }})" alt="Card image cap">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
                     <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
