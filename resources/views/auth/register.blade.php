@@ -39,9 +39,6 @@
             <label for="birthdate"><b>Date of birth</b></label>
             <input type="date" name="birthdate" id="birthdate">
 
-            <label for="fileToUpload"><b>Upload profile picture</b></label>
-            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
-
             <div class="clearfix">
                 <button type="submit" class="signupbtn">Sign Up</button>
             </div>

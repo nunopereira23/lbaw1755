@@ -7,11 +7,11 @@
             <div class="panel-body">
                 <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
                     <img alt="User Pic"
-                         src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                         src="{{ asset($user->profile_picture_path) }}"
                          id="profile-image1" class="img-circle img-responsive">
                 </div>
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
-                    <form method="post" action="/users/<?php echo $user->id ?>/edit_profile">
+                    <form method="post" action="/users/<?php echo $user->id ?>/edit_profile" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         Name: <label>
                             <input type="text" name="name" value="<?php echo $user->name;?>">
@@ -19,6 +19,9 @@
                         Birth Date:<label>
                             <input type="text" name="birthdate" value="<?php echo $user->birthdate;?>">
                         </label>
+                            <label for="fileToUpload"><b>User photo</b>
+                            <input type="file" class="form-control" name="image">
+                            </label>
                         <hr>
                         <button type="submit" class="btn btn-primary a-btn-slide-text">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

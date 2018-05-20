@@ -24,10 +24,14 @@ class Event extends Model
         $event_picture_event_path = DB::table('event_path')
             ->where('id_event', $this->id)
             ->first();
-        $event_picture_path = DB::table('paths')
-            ->where('id',$event_picture_event_path->id_path)
-            ->first();
-        return $event_picture_path->path_value;
+        if ($event_picture_event_path != null) {
+            $event_picture_path = DB::table('paths')
+                ->where('id',$event_picture_event_path->id_path)
+                ->first();
+            return $event_picture_path->path_value;
+        }
+        return "../../images/myevent.jpg";
+
     }
 
 }

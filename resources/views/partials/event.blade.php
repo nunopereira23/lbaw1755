@@ -4,10 +4,16 @@
     <div class="col-md-12">
         <div class="row">
             <div class="card col-12">
-                <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset($event_picture) }})"></div>
+                <?php echo $event_pictures?>
+                <?php if ($event_pictures->count() != 0) {?>
+                    <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset($event_pictures[1]->path_value) }})"></div>
+                    <?php } else { ?>
+                    <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
+                    <?php }  ?>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
+
                             <h4 class="card-title mb-1 pb-1 font-weight-bold"><?php echo $event->title ?></h4>
                             <div class="text-muted"><?php echo $event->event_start ?> - <?php echo $event->event_type ?></div>
                             <div id="floating-panel">

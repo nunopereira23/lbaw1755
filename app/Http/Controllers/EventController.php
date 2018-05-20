@@ -117,25 +117,21 @@ class EventController extends Controller
           if (!$event_status->isEmpty())
             $status = $event_status[0];
         }
-
-        $event_picture_event_path = DB::table('event_path')
-                         ->where('id_event', $id)
-                         ->first();
-        $event_picture_path = DB::table('paths')
-                                    ->where('id',$event_picture_event_path->id_path)
-                                    ->first();
-
-        $event_picture = $event_picture_path->path_value;
+        $event_pictures = DB::table('paths')
+            ->select('path_value')
+            ->join('event_path', 'id_path', '=', 'paths.id')
+            ->where('event_path.id_event',$id)
+            ->get();
 
         if ($event->event_visibility == 'Public'){
           if (Auth::check())
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_picture' => $event_picture]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_pictures' => $event_pictures]);
             else {
-              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_picture' => $event_picture]);
+              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_pictures' => $event_pictures]);
             }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_picture' => $event_picture]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_pictures' => $event_pictures]);
           }
         }
 
@@ -326,8 +322,6 @@ class EventController extends Controller
     {
         $event = new Event();
         $user_event = new EventUser();
-        $path = new Path();
-        $event_path = new EventPath();
 
         if (Auth::check()) {
             $user_event->id_user = Auth::id();
@@ -351,16 +345,19 @@ class EventController extends Controller
 
         }
         $event->save();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            Storage::disk('public')->putFile('images/event', $file);
-            $file_path = 'storage/images/event/'.$file->hashName();
-            $path->path_value = $file_path;
-            $path->multimedia_type = "Picture";
-            $path->save();
-            $event_path->id_event = $event->id;
-            $event_path->id_path = $path->id;
-            $event_path->save();
+        if($request->hasFile('images[]')) {
+            foreach ($request->images as $file) {
+                $path = new Path();
+                $event_path = new EventPath();
+                Storage::disk('public')->putFile('images/event', $file);
+                $file_path = 'storage/images/event/'.$file->hashName();
+                $path->path_value = $file_path;
+                $path->multimedia_type = "Picture";
+                $path->save();
+                $event_path->id_event = $event->id;
+                $event_path->id_path = $path->id;
+                $event_path->save();
+            }
         }
 
         $user_event->id_event = $event->id;

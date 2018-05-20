@@ -57,9 +57,8 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="fileToUpload"><b>Event photo</b></label>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" class="form-control" name="images[]" multiple>
                         </div>
-
                     </div>
                     <hr class="mb-1">
                     <label><b>Location</b></label>
