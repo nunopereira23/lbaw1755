@@ -1,12 +1,32 @@
 <link href="{{ asset('css/event.css') }}" rel="stylesheet">
 
+<body>
 <div class="container mt-3">
     <div class="col-md-12">
         <div class="row">
             <div class="card col-12">
                 <?php echo $event_pictures?>
-                <?php if ($event_pictures->count() != 0) {?>
-                    <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset($event_pictures[1]->path_value) }})"></div>
+
+                <?php if ($event_pictures->count() != 0) {
+                    $count = 0; ?>
+                    <div class="slideshow-container">
+                    <?php foreach ($event_pictures as $picture) {
+                        $count++; ?>
+
+                        <div class="mySlides fade">
+                            <div class="numbertext"><?php echo $count .' / '.$event_pictures->count() ?></div>
+                            <img src="{{ asset($picture->path_value) }}" style="width:100%">
+                            <div class="text">Event picture</div>
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
+                        <div style="text-align:center">
+                            <span class="dot" onclick="currentSlide(<?php echo $count?>)"></span>
+                        </div>
+
+                    <?php }?>
+
+                    </div>
                     <?php } else { ?>
                     <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
                     <?php }  ?>
@@ -288,6 +308,11 @@
         </div>
     </div>
 </div>
+<script>
+
+
+</script>
+</body>
 
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -542,5 +567,36 @@
             }
         })
     }
-</script>
+        var slideIndex = 1;
+        $(document).ready(function() {
+            showSlides(slideIndex);
+        });
+            // Next/previous controls
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                if (n > slides.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = slides.length}
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+                dots[slideIndex-1].className += " active";
+            }
+
+
+    </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>

@@ -345,8 +345,10 @@ class EventController extends Controller
 
         }
         $event->save();
-        if($request->hasFile('images[]')) {
+        if($request->images != null) {
+            echo 'if';
             foreach ($request->images as $file) {
+                echo 'foreach';
                 $path = new Path();
                 $event_path = new EventPath();
                 Storage::disk('public')->putFile('images/event', $file);
