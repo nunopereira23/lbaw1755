@@ -9,23 +9,40 @@
 
                 <?php if ($event_pictures->count() != 0) {
                     $count = 0; ?>
-                    <div class="slideshow-container">
+                    <div id="demo" class="carousel slide" data-ride="carousel">
                     <?php foreach ($event_pictures as $picture) {
                         $count++; ?>
 
-                        <div class="mySlides fade">
-                            <div class="numbertext"><?php echo $count .' / '.$event_pictures->count() ?></div>
-                            <img src="{{ asset($picture->path_value) }}" style="width:100%">
-                            <div class="text">Event picture</div>
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                        </div>
-                        <div style="text-align:center">
-                            <span class="dot" onclick="currentSlide(<?php echo $count?>)"></span>
-                        </div>
+                        <?php if ($count == 1) { ?>
+                            <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="<?php echo $count-1?>" class="active"></li>
+                            </ul>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset($picture->path_value) }}" alt="Event image">
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="<?php echo $count-1?>"></li>
+                            </ul>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <img src="{{ asset($picture->path_value) }}" alt="Event image">
+                                </div>
+                            </div>
+                        <?php }  ?>
+
 
                     <?php }?>
-
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
                     </div>
                     <?php } else { ?>
                     <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
@@ -567,36 +584,6 @@
             }
         })
     }
-        var slideIndex = 1;
-        $(document).ready(function() {
-            showSlides(slideIndex);
-        });
-            // Next/previous controls
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
-            }
-
-            // Thumbnail image controls
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
-            }
-
-            function showSlides(n) {
-                var i;
-                var slides = document.getElementsByClassName("mySlides");
-                var dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex-1].style.display = "block";
-                dots[slideIndex-1].className += " active";
-            }
-
 
     </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>

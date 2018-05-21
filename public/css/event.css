@@ -139,4 +139,7 @@ blockquote, dl, figure, form, ol, p, pre, table, ul {
 .active, .dot:hover {
     background-color: #717171;
 }
-
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
