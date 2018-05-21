@@ -76,7 +76,7 @@
               </div>
           </div>
 
-          <div class="modal" id="cancelInviteModal" role="dialog">
+          <div class="modal fade" id="cancelInviteModal" role="dialog">
               <div class="modal-dialog modal-sm">
                   <div class="modal-content text-center">
                     <h5 class="modal-title">Cancel invite</h5>
@@ -185,14 +185,15 @@
                   <?php foreach($comments as $comment){ ?>
                     <div name="comments[]"  class="comment-content col-sm-11 p-2 mb-1 rounded bg-light border">
                         <div class="comment-body" id=<?php echo $comment->id ?>>
-                            <p><?php echo $comment->comment_content ?>
+                            <p><span id="commentContent"><?php echo $comment->comment_content ?></span>
                                 <br>
                                 <?php if ($status != ''){ ?>
                                   <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
                                 <?php } ?>
                                 <?php if (($status == 'Owner' )||($user_id == $comment->user_id)){ ?>
                                   <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
-                                  <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
+                                    <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
+                                    <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                   <?php } ?>
                                 <?php } ?>
                                 <br>
@@ -214,14 +215,15 @@
                         <div name="replies[]"  class="comment-content col-sm-11 p-2 mb-1 ml-1" >
                           <div class="comment-content col-sm-11 p-2 rounded bg-light border">
                             <div class="comment-body" id=<?php echo $comment->id ?>><!-- so the reply is made to the aprent comment -->
-                                <p><?php echo $reply->comment_content ?>
+                                <p><span id="commentContent"><?php echo $reply->comment_content ?></span>
                                     <br>
                                     <?php if ($status != ''){ ?>
-                                      <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
+                                      <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">&#8618;</button>
                                     <?php } ?>
                                     <?php if (($status == 'Owner' )||($user_id == $reply->user_id)) { ?>
                                       <?php if ($reply->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
-                                      <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
+                                        <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">&#9997;</button>
+                                        <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                       <?php } ?>
                                     <?php } ?>
                                     <br>
@@ -267,6 +269,30 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal" id="updateCommentModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <p hidden id="updateCommentId"></p>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update comment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="6" maxlength="100" id="update_reply"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="updateComment" class="btn btn-primary">Send</button>
+                            <button type="button" id="closeCommentUpdate" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
 
             <div class="modal fade" id="deleteCommentModal" role="dialog">
                 <div class="modal-dialog modal-sm">
@@ -514,8 +540,47 @@
       });
 
       /*Fill the toreply field*/
+      $(document).on( "click", "#updateButton", function( ) {
+        $("#updateCommentId").text($(this).parent().parent().parent().find('span#comment_id').text());
+        $("#update_reply").text($(this).siblings('#commentContent').text());
+      });
+
+      $(document).on( "click", "#updateComment", function( ) {
+
+
+        var comment_id = $("#updateCommentId").text();
+        var comment_content = $("#update_reply").val();
+
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'UpdateComment',
+                  event_id: <?php echo $event->id ?>,
+                  comment_id:comment_id,
+                  comment_content:comment_content},
+            dataType: 'JSON',
+            success: function (data) {
+              $("#closeCommentUpdate").click();
+              $("#comments").load(location.href+" #comments>*","");
+              $("#updateCommentModal").load(location.href+" #updateCommentModal>*","");
+              $("#modalInviteBody").empty();
+              if(data == "noUpdate")
+              {
+                $("#modalInviteBody").append("No update(s) made.");
+              }else if (data == "commentUpdated") {
+                $("#modalInviteBody").append("Comment updated sucessfuly.");
+              }
+                $("#inviteSuccess").modal('toggle');
+            }
+        });
+      });
+
+      /*Fill the toreply field*/
       $(document).on( "click", "#deleteButton", function( ) {
-        $("#deleteCommentId").text($(this).parent().parent().parent().find('span').text());
+        $("#deleteCommentId").text($(this).parent().parent().parent().find('span#comment_id').text());
       });
 
       $(document).on( "click", "#submitCommentDelete", function( ) {
@@ -562,14 +627,14 @@
               $("#cancelInviteModal").load(location.href+" #cancelInviteModal>*","");
               $("#closeCancelInvite").click();
               $("#modalInviteBody").empty();
-              if(data == "inviteCanceled")
+              if(data == "Canceled")
               {
-                $("#modalInviteBody").append("User(s) invite(s) canceled.");
+                $("#modalInviteBody").append("User(s) invites canceled.");
               }else if (data == "noCancel") {
                 $("#modalInviteBody").append("No invites were canceled.");
               }
                 $("#inviteSuccess").modal('toggle');
-                $("#eventModals").load(location.href+" #eventModals>*","");
+                $("#eventModals").load(location.href+" #cancelInviteModal>*","");
             }
         });
       });

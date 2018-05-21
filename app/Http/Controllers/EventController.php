@@ -130,7 +130,7 @@ class EventController extends Controller
           if (Auth::check())
             return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going,'comments' => $comments,'replies' => $replies]);
             else {
-              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going,'comments' => $comments,'replies' => $replies]);
             }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
@@ -286,6 +286,20 @@ class EventController extends Controller
                                                 'replyto'=>$request->replyto,
                                                 'date'=> date('Y-m-d H:i:s')]);
                 $response = 'newComment';
+              }
+              return response()->json($response);
+
+            break;
+
+            case 'UpdateComment':
+              $response = 'noUpdate';
+
+              if (Auth::check()){
+
+                DB::table('comments')->where('id','=',$request->comment_id)
+                                     ->update(['comment_content' => $request->comment_content]);
+
+                $response = 'commentUpdated';
               }
               return response()->json($response);
 
