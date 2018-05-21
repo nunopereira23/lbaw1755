@@ -68,8 +68,10 @@ CREATE TABLE polls (
 	id SERIAL NOT NULL,
 	id_event integer NOT NULL,
 	id_user integer NOT NULL,
-	description text,
-	question text NOT NULL
+	poll_question text NOT NULL,
+	poll_option1 text,
+	poll_option2 text,
+	poll_option3 text
 );
 
 CREATE TABLE answers (

@@ -80,8 +80,8 @@
                 <div class="modal-content ">
                     <div class="modal-header" style="font-size:15px;">
                         <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
-                        <p class="modal-title">Type a Question</p>
-                        <input type="text" name="pollQuestion"><br>
+                        <textarea style="resize:none;" class="form-control bg-light modal-tittle" minlength="1" maxlength="80" rows="1" id="pollQuestion" placeholder=""></textarea>
+
                     </div>
                     <div class="modal-footer">
                         <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
@@ -106,8 +106,15 @@
                                 </div>
 
 
-                            <button type="submit" class="btn btn-danger btn-sm btn-xs">Submit</button>
+                            <button type="submit" id="submitPoll" class="btn btn-danger btn-sm btn-xs">Submit</button>
                             <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+
+                            <div class="alert alert-success" id="newPollSuccess" style="display:none;">
+                                Poll added sucessfuly.
+                            </div>
+                            <div class="alert alert-danger" id="newPollFailure" style="display:none;">
+                                Poll failed.
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -469,6 +476,61 @@
             }
         });
       });
+
+
+
+      $(document).on( "click", "#submitPoll", function( ) {
+
+          var pollQuestion = $("#pollQuestion").val();
+
+          var option1 = $("#option1").val();
+
+          var option2 = $("#option2").val();
+
+          var option3 = $("#option3").val();
+
+
+          var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+          $.ajax({
+              url: '/event/<?php echo $event->id ?>',
+              type: 'POST',
+              data: {_token: CSRF_TOKEN,
+                  type : 'SubmitComment',
+                  event_id: <?php echo $event->id ?>,
+                  poll_question: pollQuestion,
+                  poll_option1: option1,
+                  poll_option2: option2,
+                  poll_option3: option3,
+                  },
+              dataType: 'JSON',
+              success: function (data) {
+
+                  $("#submitPoll").attr("disabled",true);
+                  setTimeout(function(){
+                      $("#submitPoll").attr("disabled",false);
+                  }, 1500);
+
+                  if (data == "newPoll"){
+                      $("#newPollSuccess").show();
+                      setTimeout(function(){
+                          $("#newPollSuccess").fadeOut(500);
+                      }, 1000);
+                  }else{
+                      $("#newPollFailure").show();
+                      setTimeout(function(){
+                          $("#newPollFailure").fadeOut(500);
+                      }, 1000);
+
+                  }
+
+/*                  $("#comments").load(location.href+" #comments>*","");
+                  $("#commentContent").val('');
+*/
+              }
+          });
+      });
+
+
 
 
       $(document).ready(function(){
