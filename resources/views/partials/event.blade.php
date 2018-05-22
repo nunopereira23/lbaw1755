@@ -80,30 +80,19 @@
                 <div class="modal-content ">
                     <div class="modal-header" style="font-size:15px;">
                         <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
-                        <textarea style="resize:none;" class="form-control bg-light modal-tittle" minlength="1" maxlength="80" rows="1" id="pollQuestion" placeholder=""></textarea>
+                        <p>Please add your question!</p>
 
                     </div>
                     <div class="modal-footer">
-                        <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                        <br method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
                             {{ csrf_field() }}
                             <input type="hidden" name="type" value="AddPoll">
                             <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
 
 
-                                {{--<div class="poll-options">--}}
-                                    {{--<div class="poll-option">--}}
-                                        {{--<input type="radio" name="vote" value="1" id="c1" onclick="getVote(this.value)">--}}
-                                        {{--<input type="text" name="pollOption"><br>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="poll-option">--}}
-                                        {{--<input type="radio" name="vote" value="2" id="c2" onclick="getVote(this.value)">--}}
-                                        {{--<input type="text" name="pollOption"><br>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="poll-option">--}}
-                                        {{--<input type="radio" name="vote" value="3" id="c3" onclick="getVote(this.value)">--}}
-                                        {{--<input type="text" name="pollOption"><br>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
+                                <div class="poll-options">
+                                    <textarea style="resize:horizontal;" class="form-control bg-light modal-tittle" minlength="1" maxlength="80" rows="1" id="pollQuestion" placeholder=""></textarea>
+                                </div>
 
 
                             <button type="submit" id="submitPoll" class="btn btn-danger btn-sm btn-xs">Submit</button>
