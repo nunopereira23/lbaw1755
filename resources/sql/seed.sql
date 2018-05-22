@@ -68,10 +68,8 @@ CREATE TABLE polls (
 	id SERIAL NOT NULL,
 	id_event integer NOT NULL,
 	id_user integer NOT NULL,
-	poll_question text NOT NULL,
-	poll_option1 text,
-	poll_option2 text,
-	poll_option3 text
+	description text,
+	question text NOT NULL
 );
 
 CREATE TABLE answers (
@@ -227,4 +225,4 @@ ALTER TABLE ONLY reports
 	CREATE TRIGGER event_in_past
 	  BEFORE INSERT OR UPDATE ON events
 		FOR EACH ROW
-	  	EXECUTE PROCEDURE event_in_past();
+EXECUTE PROCEDURE event_in_past();

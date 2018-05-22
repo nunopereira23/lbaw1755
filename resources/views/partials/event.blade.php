@@ -90,20 +90,20 @@
                             <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
 
 
-                                <div class="poll-options">
-                                    <div class="poll-option">
-                                        <input type="radio" name="vote" value="1" id="c1" onclick="getVote(this.value)">
-                                        <input type="text" name="pollOption"><br>
-                                    </div>
-                                    <div class="poll-option">
-                                        <input type="radio" name="vote" value="2" id="c2" onclick="getVote(this.value)">
-                                        <input type="text" name="pollOption"><br>
-                                    </div>
-                                    <div class="poll-option">
-                                        <input type="radio" name="vote" value="3" id="c3" onclick="getVote(this.value)">
-                                        <input type="text" name="pollOption"><br>
-                                    </div>
-                                </div>
+                                {{--<div class="poll-options">--}}
+                                    {{--<div class="poll-option">--}}
+                                        {{--<input type="radio" name="vote" value="1" id="c1" onclick="getVote(this.value)">--}}
+                                        {{--<input type="text" name="pollOption"><br>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="poll-option">--}}
+                                        {{--<input type="radio" name="vote" value="2" id="c2" onclick="getVote(this.value)">--}}
+                                        {{--<input type="text" name="pollOption"><br>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="poll-option">--}}
+                                        {{--<input type="radio" name="vote" value="3" id="c3" onclick="getVote(this.value)">--}}
+                                        {{--<input type="text" name="pollOption"><br>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
 
                             <button type="submit" id="submitPoll" class="btn btn-danger btn-sm btn-xs">Submit</button>
@@ -318,38 +318,6 @@
         </div>
     </div>
 
-    <div class="poll">
-        <div class ="pool-question">
-            Poll question
-        </div>
-        <form action="vote.php" method="post">
-            <div class="poll-options">
-                <div class="poll-option">
-                    <input type="radio" name="vote" value="1" id="c1" onclick="getVote(this.value)">
-                    <label for="c1">Choice 1</label>
-                </div>
-                <div class="poll-option">
-                    <input type="radio" name="vote" value="2" id="c2" onclick="getVote(this.value)">
-                    <label for="c1">Choice 2</label>
-                </div>
-                <div class="poll-option">
-                    <input type="radio" name="vote" value="3" id="c3" onclick="getVote(this.value)">
-                    <label for="c1">Choice 3</label>
-                </div>
-            </div>
-
-            <input type="submit" value="Submit answer">
-        </form>
-    </div>
-
-
-
-
-
-
-
-
-
     <div class="modal fade" id="inviteSuccess" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -483,11 +451,6 @@
 
           var pollQuestion = $("#pollQuestion").val();
 
-          var option1 = $("#option1").val();
-
-          var option2 = $("#option2").val();
-
-          var option3 = $("#option3").val();
 
 
           var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -495,12 +458,11 @@
               url: '/event/<?php echo $event->id ?>',
               type: 'POST',
               data: {_token: CSRF_TOKEN,
-                  type : 'SubmitComment',
+                  type : 'SubmitPoll',
                   event_id: <?php echo $event->id ?>,
-                  poll_question: pollQuestion,
-                  poll_option1: option1,
-                  poll_option2: option2,
-                  poll_option3: option3,
+                  question: pollQuestion,
+
+
                   },
               dataType: 'JSON',
               success: function (data) {
@@ -523,9 +485,6 @@
 
                   }
 
-/*                  $("#comments").load(location.href+" #comments>*","");
-                  $("#commentContent").val('');
-*/
               }
           });
       });

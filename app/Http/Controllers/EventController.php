@@ -82,6 +82,13 @@ class EventController extends Controller
             ->orderBy('comments.date','ASC')
             ->get();
 
+        $polls = DB::table('polls')
+            ->select('polls.id','users.id AS user_id','users.name','polls.question', 'polls.id_event')
+            ->join('users', 'users.id', '=', 'polls.id_user')
+            ->where('polls.id_event',$id)
+            ->orderBy('polls.id', 'ASC')
+            ->get();
+
         $invited = false;
 
         if (Auth::check()){
@@ -118,13 +125,13 @@ class EventController extends Controller
 
         if ($event->event_visibility == 'Public'){
           if (Auth::check())
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls]);
             else {
-              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls]);
             }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls]);
           }
         }
 
@@ -302,10 +309,7 @@ class EventController extends Controller
 
                     DB::table('polls')->insert(['id_event'=>$request->event_id,
                         'id_user'=>Auth::id(),
-                        'poll_question'=>$request->poll_question,
-                        'poll_option1'=>$request->poll_option1,
-                        'poll_option2'=>$request->poll_option2,
-                        'poll_option3'=>$request->poll_option3,
+                        'question'=>$request->question,
                       ]);
                     $response = 'newPoll';
                 }
