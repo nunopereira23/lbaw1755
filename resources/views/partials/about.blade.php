@@ -20,31 +20,23 @@
     <div class="row">
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/lenka2.jpeg') }}">
+            <img src="{{ asset('../../images/about_page/lenka2.jpg') }}">
             <p> Lenka </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/miska.jpeg') }}">
+            <img src="{{ asset('../../images/about_page/miska.jpg') }}">
             <p> Michaela </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/nuno.jpeg') }}">
+            <img src="{{ asset('../../images/about_page/nuno.jpg') }}">
             <p> Nuno </p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/tiago.jpeg') }}">
+            <img src="{{ asset('../../images/about_page/tiago.jpg') }}">
             <p> Tiago </p>
         </div>
     </div>
-    <form method="post" action="{{ route('upload') }}">
-        {{ csrf_field() }}
-        <div class="col-md-6 mb-3">
-            <label for="fileToUpload"><b>Event photo</b></label>
-            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
-            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Create">
-        </div>
-    </form>
 </div>
