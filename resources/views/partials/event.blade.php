@@ -114,7 +114,7 @@
                               <span aria-hidden="true">&times;</span>
                           </button>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body" id="goingBody">
                           <div class="list-group list-group-flush">
                               <?php foreach ($going as $user) {?>
                               <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
@@ -359,6 +359,7 @@
             success: function (data) {
               //if((data == "AcceptSuccess") || (data == "UnacceptSuccess"))
                 $("#userActions").load(location.href+" #userActions>*","");
+                $("#goingBody").load(location.href+" #goingBody>*","");
                 //alert(data);
             }
         });
@@ -638,6 +639,8 @@
             }
         });
       });
+
+
 
     </script>
 
