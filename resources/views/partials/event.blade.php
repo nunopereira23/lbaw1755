@@ -76,10 +76,10 @@
 
 
         <div class="modal fade" id="addPollModal" role="dialog">
+            <?php if ($status != ''){ ?>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content ">
                     <div class="modal-header" style="font-size:15px;">
-                        <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
                         <p>Please add your question!</p>
 
                     </div>
@@ -108,6 +108,7 @@
                     </div>
                 </div>
             </div>
+                <?php } ?>
         </div>
 
 
@@ -166,7 +167,7 @@
             </div>
         </div>
 
-        <div class="row pb-5 mt-2">
+        <div class="row pbpb-5 mt-2">
           <?php if ($status != ''){ ?>
             <div class="new_comment col-md-6 mb-5 mt-3" id="new_comment">
                 <div class="form-group">
@@ -212,7 +213,7 @@
                           <?php } else { ?>
                             User
                           <?php }?>
-                        </p>
+
                         <div class="mb-1 text-muted text-right"><?php echo $comment->date;  echo " | Nr: "?><span id="comment_id"> <?php echo $comment->id." " ?></span></div>
                     </div>
 
