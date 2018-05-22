@@ -39,4 +39,12 @@
             <p> Tiago </p>
         </div>
     </div>
+    <form method="post" action="{{ route('upload') }}">
+        {{ csrf_field() }}
+        <div class="col-md-6 mb-3">
+            <label for="fileToUpload"><b>Event photo</b></label>
+            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Create">
+        </div>
+    </form>
 </div>

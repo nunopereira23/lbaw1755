@@ -1,13 +1,56 @@
 <link href="{{ asset('css/event.css') }}" rel="stylesheet">
 
+<body>
 <div class="container mt-3">
     <div class="col-md-12">
         <div class="row">
             <div class="card col-12">
-                <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
+                <?php echo $event_pictures?>
+
+                <?php if ($event_pictures->count() != 0) {
+                    $count = 0; ?>
+                    <div id="demo" class="carousel slide" data-ride="carousel">
+                    <?php foreach ($event_pictures as $picture) {
+                        $count++; ?>
+
+                        <?php if ($count == 1) { ?>
+                            <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="<?php echo $count-1?>" class="active"></li>
+                            </ul>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset($picture->path_value) }}" alt="Event image">
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="<?php echo $count-1?>"></li>
+                            </ul>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <img src="{{ asset($picture->path_value) }}" alt="Event image">
+                                </div>
+                            </div>
+                        <?php }  ?>
+
+
+                    <?php }?>
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+                    <?php } else { ?>
+                    <div class="card-top mt-3 rounded event_img" style="background-image: url({{ asset('images/concert.jpeg') }});"></div>
+                    <?php }  ?>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
+
                             <h4 class="card-title mb-1 pb-1 font-weight-bold"><?php echo $event->title ?></h4>
                             <div class="text-muted"><?php echo $event->event_start ?> - <?php echo $event->event_type ?></div>
                             <div id="floating-panel">
@@ -282,6 +325,11 @@
         </div>
     </div>
 </div>
+<script>
+
+
+</script>
+</body>
 
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -536,5 +584,6 @@
             }
         })
     }
-</script>
+
+    </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7TfDZysirAi-y1lFLtQQHxP_4Zs2-nrw&callback=myMap"></script>

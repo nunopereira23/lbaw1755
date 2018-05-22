@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -32,6 +33,12 @@ class EditProfileController extends Controller
       if ($id == Auth::id()){
         $user->name = $input['name'];
         $user->birthdate = $input['birthdate'];
+        if ($request->hasFile('image')) {
+            echo "file";
+            $file = $request->file('image');
+            Storage::disk('public')->putFile('images/user', $file);
+            $user->profile_picture_path = 'storage/images/user/'.$file->hashName();
+        }
         $user->save();
       }
 

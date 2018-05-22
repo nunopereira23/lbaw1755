@@ -6,6 +6,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class SocialController extends Controller
@@ -34,5 +35,10 @@ class SocialController extends Controller
         }
 
         return view('pages.homepage');
+    }
+    public function storePicture()
+    {
+        $file = Input::file('file');
+        Storage::disk('local')->put('first.jpg', $file);
     }
 }

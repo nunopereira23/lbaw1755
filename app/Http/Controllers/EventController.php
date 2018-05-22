@@ -7,9 +7,12 @@
  */
 
 namespace App\Http\Controllers;
+use App\EventPath;
+use App\Path;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use DateTime;
 use Auth;
 use Session;
@@ -114,17 +117,21 @@ class EventController extends Controller
           if (!$event_status->isEmpty())
             $status = $event_status[0];
         }
-
+        $event_pictures = DB::table('paths')
+            ->select('path_value')
+            ->join('event_path', 'id_path', '=', 'paths.id')
+            ->where('event_path.id_event',$id)
+            ->get();
 
         if ($event->event_visibility == 'Public'){
           if (Auth::check())
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_pictures' => $event_pictures]);
             else {
-              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_pictures' => $event_pictures]);
             }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'event_pictures' => $event_pictures]);
           }
         }
 
@@ -335,8 +342,26 @@ class EventController extends Controller
             $event->event_end = $date_end . " " . $time_end;
 
             $event->gps = $request->input('gps');
+
         }
         $event->save();
+        if($request->images != null) {
+            echo 'if';
+            foreach ($request->images as $file) {
+                echo 'foreach';
+                $path = new Path();
+                $event_path = new EventPath();
+                Storage::disk('public')->putFile('images/event', $file);
+                $file_path = 'storage/images/event/'.$file->hashName();
+                $path->path_value = $file_path;
+                $path->multimedia_type = "Picture";
+                $path->save();
+                $event_path->id_event = $event->id;
+                $event_path->id_path = $path->id;
+                $event_path->save();
+            }
+        }
+
         $user_event->id_event = $event->id;
 
         $user_event->save();
