@@ -77,8 +77,9 @@
             <div class="col align-content-center">
                 <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 0)  { ?>
+                <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
@@ -96,8 +97,9 @@
                 <?php } ?>
                 <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 1)  { ?>
+                <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
@@ -110,8 +112,9 @@
             <div class="col align-content-center">
                 <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 2)  { ?>
+                <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
@@ -124,8 +127,9 @@
             <div class="col align-content-center">
                 <?php for ($i = 0; $i < $count; $i++) :
                 if (($i % 4) == 3)  { ?>
+                <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset('../images/myevent.jpg') }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
