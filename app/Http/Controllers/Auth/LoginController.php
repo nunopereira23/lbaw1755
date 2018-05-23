@@ -31,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/index';
+    protected $redirectTo = '/my_profile';
 
     /**
      * Create a new controller instance.
@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request)
     {
         if (Auth::user()->is_banned == 1) {
-            $message = 'This account been blocked, please contact us for more information @ RealLexi.com';
+            $message = 'This account has been blocked, please contact us for more information @ RealLexi.com';
             Auth::logout($request);
             Session::flash('Error', $message);
             return View::make('auth.login')->withMessage($message);

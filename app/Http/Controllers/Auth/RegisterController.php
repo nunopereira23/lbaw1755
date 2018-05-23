@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/my_profile';
 
     /**
      * Create a new controller instance.
@@ -65,9 +65,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $file = $_FILES['file']['name'];
+        $c_image_tmp = $_FILES['file']['tmp_name'];
+
+        if ($file == '') {
+            $destination = '';
+        } else {
+            $destination = 'storage/images/user/' . $file;
+        }
+
+        move_uploaded_file($c_image_tmp, $destination);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'nr_warnings' => 0,
+            'profile_picture_path' => $destination == '' ? null : $destination,
             'password' => bcrypt($data['password']),
             'birthdate' => date_format(new DateTime($data['birthdate']), 'Y-m-d'),
         ]);
