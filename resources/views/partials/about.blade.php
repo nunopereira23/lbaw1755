@@ -21,22 +21,26 @@
         <div class="col-sm justify-content-center">
             <br>
             <img src="{{ asset('../../images/about_page/lenka2.jpg') }}">
-            <p> Lenka </p>
-        </div>
+            <p></p>
+            <p>Lenka Jánošová</p>
+          </div>
         <div class="col-sm justify-content-center">
             <br>
             <img src="{{ asset('../../images/about_page/miska.jpg') }}">
-            <p> Michaela </p>
+            <p></p>
+            <p>Michaela Bamburová</p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
             <img src="{{ asset('../../images/about_page/nuno.jpg') }}">
-            <p> Nuno </p>
+            <p></p>
+            <p>Nuno Pereira</p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
             <img src="{{ asset('../../images/about_page/tiago.jpg') }}">
-            <p> Tiago </p>
+            <p></p>
+            <p>Tiago Silva</p>
         </div>
     </div>
 </div>
