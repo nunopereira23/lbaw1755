@@ -3,7 +3,7 @@
 <div class="container">
     <hr>
     <div class="py-3 text-center">
-        <h1> ABOUT US </h1>
+        <h1>ABOUT <i>I AM IN!</i></h1>
     </div>
     <br>
     <div class="py-3 text-center">
