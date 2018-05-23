@@ -1,5 +1,3 @@
-* {box-sizing: border-box}
-
 /* Full-width input fields */
 input[type=text], .form-control {
     width: 100%;
@@ -15,13 +13,8 @@ input[type=text]:focus, .form-control:focus {
     outline: none;
 }
 
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-/* Set a style for all buttons */
-button {
+/*!* Set a style for all buttons *!*/
+.btn-primary {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -37,7 +30,7 @@ button:hover {
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.signupbtn, .btn-primary {
+.btn-primary {
     float: left;
     width: 33%;
 }
@@ -52,4 +45,10 @@ button:hover {
     content: "";
     clear: both;
     display: table;
+}
+
+@media screen and (max-width: 600px) {
+    .btn-primary {
+        width: 100%;
+    }
 }

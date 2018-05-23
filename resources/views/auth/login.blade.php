@@ -26,7 +26,7 @@
             @endif
 
             <div class="clearfix">
-                <button type="submit" class="signupbtn">Log In</button>
+                <button type="submit" class="btn signupbtn">Log In</button>
             </div>
             <hr/>
             Don't have an account?
