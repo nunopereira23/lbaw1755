@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\PasswordEmailSender;
+use App\User;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Session;
-use Auth;
 use View;
-use App\User;
 
 class LoginController extends Controller
 {
@@ -53,5 +54,41 @@ class LoginController extends Controller
         }
     }
 
+    public function showEmailForm()
+    {
+        return view('pages.password_email');
+    }
+
+    public function sendResetPasswordCode(Request $request, \Illuminate\Mail\Mailer $mailer)
+    {
+        $user = User::where('email', '=', $request->input('email'))->first();
+
+        $code = md5(microtime());
+
+        $user->confirmation_code = $code;
+        $user->save();
+
+        $mailer->to($request->input('email'))->send(new PasswordEmailSender($code));
+
+        return view('pages.email_sended', ['email' => $user->email]);
+    }
+
+    public function confirmNewPassword(Request $request)
+    {
+        $user = User::where('email', '=', $request->input('email'))->first();
+
+        if ($request->input('code') == $user->confirmation_code) {
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+
+            $message = 'The password has been successfully changed.';
+            Session::flash('Success', $message);
+
+            return redirect()->route('login');
+        }
+        $error_type = 'Wrong_Confirmation_Code';
+
+        return view('pages.error', ['error_type' => $error_type]);
+    }
 
 }

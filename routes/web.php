@@ -36,6 +36,11 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('/login/google', 'Auth\SocialController@getSocialRedirect');
 Route::get('/login/google/callback','Auth\SocialController@getSocialHandle');
 
+// Password Reset
+Route::get('showEmailForm', 'Auth\LoginController@showEmailForm')->name('showEmailForm');
+Route::post('sendResetPasswordCode', 'Auth\LoginController@sendResetPasswordCode')->name('sendResetPasswordCode');
+Route::post('confirmNewPassword', 'Auth\LoginController@confirmNewPassword')->name('confirmNewPassword');
+
 //Homepage
 Route::get('index', 'HomepageController@show')->name('home');
 Route::get('/','HomepageController@show');

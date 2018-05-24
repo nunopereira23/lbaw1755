@@ -44,7 +44,8 @@ CREATE TABLE users (
 	profile_picture_path text,
 	is_banned boolean,
 	is_admin boolean,
-	remember_token text
+	remember_token text,
+	confirmation_code text
 );
 
 CREATE TABLE event_user (

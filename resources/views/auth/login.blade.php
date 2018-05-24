@@ -29,6 +29,7 @@
                 <button type="submit" class="btn signupbtn">Log In</button>
             </div>
             <hr/>
+            <p>Forgot password? <a href="{{ route('showEmailForm') }}">Reset Password</a></p>
             Don't have an account?
             <a href="{{ route('register') }}">Sign Up Here</a>
             Login with google?

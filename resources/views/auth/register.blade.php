@@ -46,6 +46,7 @@
             <div class="clearfix">
                 <button type="submit" class="btn signupbtn">Sign Up</button>
             </div>
+            <hr/>
             Login with google?
             <a href="{{ url('/login/google') }}">Sign In With Google Here </a>
         </div>
