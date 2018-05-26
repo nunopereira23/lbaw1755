@@ -7,7 +7,7 @@
             <div class="card col-12">
                 <?php if ($event_pictures->count() != 0) { ?>
                 <?php if ($event_pictures->count() == 1) { ?>
-                <img class="img-fluid" src="{{ asset($event_pictures[0]->path_value) }}">
+                <img class="img-fluid event_picture" src="{{ asset($event_pictures[0]->path_value) }}">
                 <?php } else { ?>
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
@@ -17,11 +17,11 @@
                         $count++; ?>
                         <?php if ($count == 1) { ?>
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid" src="{{ asset($picture->path_value) }}">
+                            <img class="d-block img-fluid event_picture" src="{{ asset($picture->path_value) }}">
                         </div>
                         <?php } else { ?>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" src="{{ asset($picture->path_value) }}">
+                            <img class="d-block img-fluid event_picture" src="{{ asset($picture->path_value) }}">
                         </div>
                         <?php } ?>
                         <?php } endforeach ?>
@@ -37,7 +37,7 @@
                     <?php } ?>
                 </div>
                 <?php } else { ?>
-                <img class="img-fluid" src="{{ asset('images/concert.jpeg') }}">
+                <img class="img-fluid event_picture" src="{{ asset('images/concert.jpeg') }}">
                 <?php }  ?>
                 <div class="card-body">
                     <div class="row">
@@ -226,11 +226,6 @@
                                 <?php if ($status != ''){ ?>
                                 <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
                                 <?php } ?>
-                                <?php if (($status == 'Owner') || ($user_id == $comment->user_id)){ ?>
-                                <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
-                                <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
-                                <?php } ?>
-
                                 <?php if (($status == 'Owner' )||($user_id == $comment->user_id)){ ?>
                                   <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
                                     <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
@@ -273,7 +268,7 @@
                                     <br>
                                 </p>
                             </div>
-                            <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+                            <img id="profile_picture" class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
                             <p class="text-right">
                                 <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
                                 <a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a>
