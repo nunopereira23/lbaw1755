@@ -73,7 +73,8 @@
                             <form action="/event/<?php echo $event->id ?>/edit_event" style="margin:0">
                                 <button type="submit" class="btn btn-primary m-2" style="width:100%">Edit event</button>
                             </form>
-                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="font-size:11px;width:100%;">Cancel Event</button>
+                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="font-size:12px;width:100%;">Cancel Event</button>
+                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelInviteModal" style="font-size:12px;width:100%;">Cancel Invite</button>
                             <?php } ?>
                             <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".goingModal">
@@ -89,62 +90,38 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="cancelEventModal" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header" style="font-size:15px;">
-                        <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
-                        <p class="modal-title">Are you sure you want to cancel this event?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="type" value="CancelEvent">
-                            <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
-                            <button type="submit" class="btn btn-danger btn-sm btn-xs">Yes</button>
-                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">No</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="eventModals">
+          <div class="modal fade" id="cancelEventModal" role="dialog">
+              <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                      <div class="modal-header" style="font-size:15px;">
+                          <button type="button" class="close" data-dismiss="modal" style="margin-right:2px;">&times;</button>
+                          <p class="modal-title">Are you sure you want to cancel this event?</p>
+                      </div>
+                      <div class="modal-footer">
+                          <form method="post" style="margin:0" action="/event/<?php echo $event->id ?>">
+                              {{ csrf_field() }}
+                              <input type="hidden" name="type" value="CancelEvent">
+                              <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
+                              <button type="submit" class="btn btn-danger btn-sm btn-xs">Yes</button>
+                              <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">No</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-        <div class="modal fade goingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content text-center">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title" id="exampleModalLabel">Currently Accepted</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="list-group list-group-flush">
-                            <?php foreach ($going as $user) {?>
-                            <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
-                                <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
-                                <?php echo $user->name; ?>
-                            </a>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade shareModal" id="shareEventModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content text-center">
-                    <h5 class="modal-title">Share with...</h5>
+          <div class="modal fade" id="cancelInviteModal" role="dialog">
+              <div class="modal-dialog modal-sm">
+                  <div class="modal-content text-center">
+                    <h5 class="modal-title">Cancel invite</h5>
 
                     <div class="modal-body">
                         <div class="list-group list-group-flush">
                             <a class="list-group-item list-group-item-action">
-                                <?php foreach ($canBeInvited as $user) {?>
+                                <?php foreach ($invited_going as $user) {?>
                                 <div class="custom-control custom-checkbox mb-1" style="height:30px;">
-                                    <input type="checkbox" class="custom-control-input" name="invited[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
+                                    <input type="checkbox" class="custom-control-input" name="toCancel[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
                                     <img class="img-responsive" style=" height: 100%;float:left;" src="../../images/profile.png">
                                     <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                 </div>
@@ -153,13 +130,68 @@
 
                         </div>
                     </div>
+
                     <div class="modal-footer">
-                        <button type="submit" id="shareEvent" class="btn btn-primary btn-xs">Send</button>
-                        <button type="button" id="closeShareEvent" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                        <button type="submit" id="cancelInvite" class="btn btn-primary btn-xs">Send</button>
+                        <button type="button" id="closeCancelInvite" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
                     </div>
 
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="modal fade goingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                  <div class="modal-content text-center">
+                      <div class="modal-header text-center">
+                          <h5 class="modal-title" id="exampleModalLabel">Currently Accepted</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body" id="goingBody">
+                          <div class="list-group list-group-flush">
+                              <?php foreach ($going as $user) {?>
+                              <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
+                                  <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
+                                  <?php echo $user->name; ?>
+                              </a>
+                              <?php } ?>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal fade shareModal" id="shareEventModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                  <div class="modal-content text-center">
+                      <h5 class="modal-title">Share with...</h5>
+
+                      <div class="modal-body">
+                          <div class="list-group list-group-flush">
+                              <a class="list-group-item list-group-item-action">
+                                  <?php foreach ($canBeInvited as $user) {?>
+                                  <div class="custom-control custom-checkbox mb-1" style="height:30px;">
+                                      <input type="checkbox" class="custom-control-input" name="invited[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
+                                      <img class="img-responsive" style=" height: 100%;float:left;" src="../../images/profile.png">
+                                      <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
+                                  </div>
+                                  <?php }?>
+                              </a>
+
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit" id="shareEvent" class="btn btn-primary btn-xs">Send</button>
+                          <button type="button" id="closeShareEvent" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
         </div>
 
         <div class="row pb-5 mt-2">
@@ -189,7 +221,7 @@
                     <?php foreach($comments as $comment){ ?>
                     <div name="comments[]" class="comment-content col-sm-11 p-2 mb-1 rounded bg-light border">
                         <div class="comment-body" id=<?php echo $comment->id ?>>
-                            <p><?php echo $comment->comment_content ?>
+                            <p><span id="commentContent"><?php echo $comment->comment_content ?></span>
                                 <br>
                                 <?php if ($status != ''){ ?>
                                 <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
@@ -198,6 +230,13 @@
                                 <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
                                 <?php } ?>
+
+                                <?php if (($status == 'Owner' )||($user_id == $comment->user_id)){ ?>
+                                  <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
+                                    <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
+                                    <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
+                                  <?php } ?>
+
                                 <?php } ?>
                                 <br>
                             </p>
@@ -218,15 +257,18 @@
                     <div name="replies[]" class="comment-content col-sm-11 p-2 mb-1 ml-1">
                         <div class="comment-content col-sm-11 p-2 rounded bg-light border">
                             <div class="comment-body" id=<?php echo $comment->id ?>><!-- so the reply is made to the aprent comment -->
-                                <p><?php echo $reply->comment_content ?>
+                                <p><span id="commentContent"><?php echo $reply->comment_content ?></span>
                                     <br>
                                     <?php if ($status != ''){ ?>
-                                    <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">Reply</button>
+
+                                      <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">&#8618;</button>
                                     <?php } ?>
-                                    <?php if (($status == 'Owner') || ($user_id == $reply->user_id)) { ?>
-                                    <?php if ($reply->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
-                                    <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
-                                    <?php } ?>
+                                    <?php if (($status == 'Owner' )||($user_id == $reply->user_id)) { ?>
+                                      <?php if ($reply->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
+                                        <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">&#9997;</button>
+                                        <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
+                                      <?php } ?>
+
                                     <?php } ?>
                                     <br>
                                 </p>
@@ -271,6 +313,30 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal" id="updateCommentModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <p hidden id="updateCommentId"></p>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update comment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="6" maxlength="100" id="update_reply"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="updateComment" class="btn btn-primary">Send</button>
+                            <button type="button" id="closeCommentUpdate" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
 
             <div class="modal fade" id="deleteCommentModal" role="dialog">
                 <div class="modal-dialog modal-sm">
@@ -340,8 +406,11 @@
                 event_id: <?php echo $event->id ?> },
             dataType: 'JSON',
             success: function (data) {
-                //if((data == "AcceptSuccess") || (data == "UnacceptSuccess"))
-                $("#userActions").load(location.href + " #userActions>*", "");
+
+              //if((data == "AcceptSuccess") || (data == "UnacceptSuccess"))
+                $("#userActions").load(location.href+" #userActions>*","");
+                $("#goingBody").load(location.href+" #goingBody>*","");
+
                 //alert(data);
             }
         });
@@ -394,6 +463,7 @@
                     $("#modalInviteBody").append("No one invited.");
                 }
                 $("#inviteSuccess").modal('toggle');
+                $("#cancelInviteModal").load(location.href+" #cancelInviteModal>*","");
             }
         });
     });
@@ -525,10 +595,51 @@
         });
     });
 
-    /*Fill the toreply field*/
-    $(document).on("click", "#deleteButton", function () {
-        $("#deleteCommentId").text($(this).parent().parent().parent().find('span').text());
-    });
+
+      /*Fill the toreply field*/
+      $(document).on( "click", "#updateButton", function( ) {
+        $("#updateCommentId").text($(this).parent().parent().parent().find('span#comment_id').text());
+        $("#update_reply").text($(this).siblings('#commentContent').text());
+      });
+
+      $(document).on( "click", "#updateComment", function( ) {
+
+
+        var comment_id = $("#updateCommentId").text();
+        var comment_content = $("#update_reply").val();
+
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'UpdateComment',
+                  event_id: <?php echo $event->id ?>,
+                  comment_id:comment_id,
+                  comment_content:comment_content},
+            dataType: 'JSON',
+            success: function (data) {
+              $("#closeCommentUpdate").click();
+              $("#comments").load(location.href+" #comments>*","");
+              $("#updateCommentModal").load(location.href+" #updateCommentModal>*","");
+              $("#modalInviteBody").empty();
+              if(data == "noUpdate")
+              {
+                $("#modalInviteBody").append("No update(s) made.");
+              }else if (data == "commentUpdated") {
+                $("#modalInviteBody").append("Comment updated sucessfuly.");
+              }
+                $("#inviteSuccess").modal('toggle');
+            }
+        });
+      });
+
+      /*Fill the toreply field*/
+      $(document).on( "click", "#deleteButton", function( ) {
+        $("#deleteCommentId").text($(this).parent().parent().parent().find('span#comment_id').text());
+      });
+
 
     $(document).on("click", "#submitCommentDelete", function () {
 
@@ -555,7 +666,44 @@
         });
     });
 
-</script>
+
+      $(document).on( "click", "#cancelInvite", function( ) {
+
+        var toCancel = [];
+        $('input[name="toCancel[]"]:checked').each(function () {
+            toCancel.push(this.value);
+        });
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                  type : 'CancelInvite',
+                  event_id: <?php echo $event->id ?>,
+                  toCancel: toCancel},
+            dataType: 'JSON',
+            success: function (data) {
+              var inviteStatus = data;
+              $("#cancelInviteModal").load(location.href+" #cancelInviteModal>*","");
+              $("#closeCancelInvite").click();
+              $("#modalInviteBody").empty();
+              if(data == "Canceled")
+              {
+                $("#modalInviteBody").append("User(s) invites canceled.");
+              }else if (data == "noCancel") {
+                $("#modalInviteBody").append("No invites were canceled.");
+              }
+                $("#inviteSuccess").modal('toggle');
+                $("#eventModals").load(location.href+" #cancelInviteModal>*","");
+            }
+        });
+      });
+
+
+
+    </script>
+
 
 
 <script>
