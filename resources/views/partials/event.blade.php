@@ -683,14 +683,15 @@
               $("#cancelInviteModal").load(location.href+" #cancelInviteModal>*","");
               $("#closeCancelInvite").click();
               $("#modalInviteBody").empty();
-              if(data == "Canceled")
+              if(data == "inviteCanceled")
               {
                 $("#modalInviteBody").append("User(s) invites canceled.");
               }else if (data == "noCancel") {
                 $("#modalInviteBody").append("No invites were canceled.");
               }
                 $("#inviteSuccess").modal('toggle');
-                $("#eventModals").load(location.href+" #cancelInviteModal>*","");
+                $("#shareEventModal").load(location.href+" #shareEventModal>*","");
+
             }
         });
       });
