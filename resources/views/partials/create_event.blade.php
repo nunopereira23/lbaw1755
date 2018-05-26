@@ -54,9 +54,10 @@
                                 <option value="Birthday">Birthday</option>
                             </select>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="fileToUpload"><b>Event photo</b></label>
-                            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                            <input type="file" class="form-control" name="images[]" multiple>
                         </div>
                     </div>
                     <hr class="mb-1">
@@ -93,9 +94,15 @@
 <script type="text/javascript">
     function validate() {
         var username = document.getElementById("title").value;
+        var location = document.getElementById("gps").value;
 
         if (username.length <= 0) {
             alert("Please enter the name of the event.");
+            return false;
+        }
+
+        if (location.length <= 0) {
+            alert("Please enter the location of the event.");
             return false;
         }
     }

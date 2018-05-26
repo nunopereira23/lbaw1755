@@ -1,4 +1,4 @@
-* {box-sizing: border-box}
+/** {box-sizing: border-box}*/
 
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=number], input[type=file], input[type=date]  {
@@ -20,30 +20,25 @@ hr {
     margin-bottom: 25px;
 }
 
-/* Set a style for all buttons */
-button {
+/*!*!* Set a style for all buttons *!*!*/
+.signupbtn {
+    display:inline-block;
     background-color: #4CAF50;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+    /*padding: 14px 20px;*/
+    /*margin: 8px 0;*/
+    /*border: none;*/
+    /*cursor: pointer;*/
+    /*width: 100%;*/
+    /*opacity: 0.9;*/
 }
 
 button:hover {
     opacity:1;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
-
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn, .btn-primary {
+.signupbtn, .btn-primary {
     float: left;
     width: 33%;
 }
@@ -60,9 +55,8 @@ button:hover {
     display: table;
 }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-    .cancelbtn, .signupbtn {
+@media screen and (max-width: 600px) {
+    .signupbtn {
         width: 100%;
     }
 }

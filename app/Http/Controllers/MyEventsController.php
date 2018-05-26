@@ -28,6 +28,7 @@ class MyEventsController extends Controller
             $events = $user->events()->where('event_start' ,'>=' ,$now)
                 ->where('is_deleted', false)
                 ->get();
+
             return view('pages.my_events', ['events' => $events, 'user' =>$user, 'past'=> $past]);
         }
         return view('pages.error');

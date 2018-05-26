@@ -3,7 +3,7 @@
 <div class="container">
     <hr>
     <div class="py-3 text-center">
-        <h1> ABOUT US </h1>
+        <h1>ABOUT <i>I AM IN!</i></h1>
     </div>
     <br>
     <div class="py-3 text-center">
@@ -20,23 +20,27 @@
     <div class="row">
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/lenka2.jpeg') }}">
-            <p> Lenka </p>
+            <img src="{{ asset('../../images/about_page/lenka2.jpg') }}">
+            <p></p>
+            <p>Lenka Jánošová</p>
+          </div>
+        <div class="col-sm justify-content-center">
+            <br>
+            <img src="{{ asset('../../images/about_page/miska.jpg') }}">
+            <p></p>
+            <p>Michaela Bamburová</p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/miska.jpeg') }}">
-            <p> Michaela </p>
+            <img src="{{ asset('../../images/about_page/nuno.jpg') }}">
+            <p></p>
+            <p>Nuno Pereira</p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../images/about_page/nuno.jpeg') }}">
-            <p> Nuno </p>
-        </div>
-        <div class="col-sm justify-content-center">
-            <br>
-            <img src="{{ asset('../images/about_page/tiago.jpeg') }}">
-            <p> Tiago </p>
+            <img src="{{ asset('../../images/about_page/tiago.jpg') }}">
+            <p></p>
+            <p>Tiago Silva</p>
         </div>
     </div>
 </div>
