@@ -40,6 +40,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/events') }}">PUBLIC EVENTS</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/users/<?php echo Auth::user()->id ?>/my_events">MY EVENTS <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
@@ -93,7 +96,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/events') }}">EVENTS</a>
+                            <a class="nav-link" href="{{ url('/events') }}">PUBLIC EVENTS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
