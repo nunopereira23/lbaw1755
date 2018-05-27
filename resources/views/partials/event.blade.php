@@ -121,19 +121,17 @@
                                     <?php foreach ($invited_going as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="toCancel[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
-                                        <img class="img-responsive" style=" height: 100%;float:left;" src="../../images/profile.png">
+                                        <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" height="25px" width="25px">
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
                                     <?php }?>
                                 </a>
                             </div>
                         </div>
-
                         <div class="modal-footer">
                             <button type="submit" id="cancelInvite" class="btn btn-primary btn-xs">Send</button>
                             <button type="button" id="closeCancelInvite" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -151,8 +149,8 @@
                             <div class="list-group list-group-flush">
                                 <?php foreach ($going as $user) {?>
                                 <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
-                                    <img class="img-responsive pull-right" style=" height: 100%;" src="../../images/profile.png">
-                                    <?php echo $user->name; ?>
+                                    <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" height="25px" width="25px">
+                                <?php echo $user->name; ?>
                                 </a>
                                 <?php } ?>
                             </div>
@@ -173,7 +171,7 @@
                                     <?php foreach ($canBeInvited as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="invited[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
-                                        <img class="img-responsive" style=" height: 100%;float:left;" src="../../images/profile.png">
+                                        <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" height="25px" width="25px">
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
                                     <?php }?>
@@ -230,7 +228,7 @@
                                 <br>
                             </p>
                         </div>
-                        <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+                        <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
                         <p class="text-right">
                             <?php if ($comment->comment_content != ' Comment deleted' ){ ?>
                             <a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a>
@@ -260,7 +258,7 @@
                                     <br>
                                 </p>
                             </div>
-                            <img id="profile_picture" class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+                            <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
                             <p class="text-right">
                                 <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
                                 <a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a>
