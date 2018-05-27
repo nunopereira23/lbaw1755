@@ -99,8 +99,8 @@
                 <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <br/>
@@ -124,8 +124,8 @@
                 <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <?php } endforeach ?>
@@ -150,8 +150,8 @@
                 <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <?php } endforeach ?>
@@ -175,8 +175,8 @@
                 <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <?php } endforeach ?>

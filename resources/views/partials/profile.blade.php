@@ -32,7 +32,7 @@
             <br>
             <ul>
                 <li><p><b>E-mail: </b><span class="fas fa-envelope" style="width:50px;"></span><?php echo $user->email;?></p></li>
-                <li><p><b>Date of birth: </b><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo $user->birthdate;?></p></li>
+                <li><p><b>Date of birth: </b><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo date_format(new DateTime($user->birthdate), 'jS F Y') ?></p></li>
             </ul>
         </div>
         <div class="col"></div>

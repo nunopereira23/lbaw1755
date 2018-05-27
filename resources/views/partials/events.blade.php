@@ -82,8 +82,8 @@
                     <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
-                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> <?php echo $events[$i]->gps ?> </h5>
+                        <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                        <h6><?php echo $events[$i]->gps ?></h6>
                     </div>
                 </div>
                 <br>
@@ -102,8 +102,8 @@
                     <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
-                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> <?php echo $events[$i]->gps ?> </h5>
+                        <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                        <h6><?php echo $events[$i]->gps ?></h6>
                     </div>
                 </div>
                 <br>
@@ -117,8 +117,8 @@
                     <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
-                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> <?php echo $events[$i]->gps ?> </h5>
+                        <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                        <h6><?php echo $events[$i]->gps ?></h6>
                     </div>
                 </div>
                 <br>
@@ -132,8 +132,8 @@
                     <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
-                        <h6 class="text-muted"> <?php echo $events[$i]->event_start ?> </h6>
-                        <h5> <?php echo $events[$i]->gps ?> </h5>
+                        <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                        <h6><?php echo $events[$i]->gps ?></h6>
                     </div>
                 </div>
                 <br>
