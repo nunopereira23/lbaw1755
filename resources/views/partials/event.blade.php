@@ -1,6 +1,5 @@
 <link href="{{ asset('css/event.css') }}" rel="stylesheet">
 <?php use Illuminate\Support\Facades\Auth;?>
-<body>
 <div class="container mt-3">
     <div class="col-md-12">
         <div class="row">
@@ -42,21 +41,23 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-
                             <h4 class="card-title mb-1 pb-1 font-weight-bold"><?php echo $event->title ?></h4>
-                            <div class="text-muted"><?php echo $event->event_start ?> - <?php echo $event->event_type ?></div>
+                            <hr>
+                            <h6><b>Visibility: </b></h6><h6><?php echo $event->event_visibility ?></h6>
+                            <h6><b>Date and time: </b></h6><h6><?php echo date_format(new DateTime($event->event_start), 'g:ia \o\n l jS F Y') ?></h6>
+                            <h6><b>Type: </b></h6><h6><?php echo $event->event_type ?></h6>
+                            <h6><b>Description: </b></h6>
+                            <p class="card-text"><?php echo $event->description ?></p>
+                            <hr>
                             <div id="floating-panel">
                                 <input id="address" type="hidden" value="<?php echo $event->gps ?>">
                             </div>
-                            <p class="card-text"><?php echo $event->description ?></p>
                             <div class="container-fluid  mb-2">
                                 <div id="map" class="map rounded" style="width:100%"></div>
                             </div>
                         </div>
                         <div id="userActions" class="col-md-2">
-                            <?php if ($status != ('')){
-                            echo '->user: ' . $status . "\n" . '->event: ' . $event->event_visibility;
-                            if ($status != 'Owner'){ ?>
+                            <?php if ($status != 'Owner'){ ?>
                             <?php if(($status != 'Going') && ($status != 'Ignoring')){ ?>
                             <button type="submit" id="acceptEvent" class="btn btn-primary m-2" style="width:100%">Accept</button>
                             <?php }else if ($status == 'Going'){ ?>
@@ -73,9 +74,8 @@
                             <form action="/event/<?php echo $event->id ?>/edit_event" style="margin:0">
                                 <button type="submit" class="btn btn-primary m-2" style="width:100%">Edit event</button>
                             </form>
-                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="font-size:12px;width:100%;">Cancel Event</button>
-                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelInviteModal" style="font-size:12px;width:100%;">Cancel Invite</button>
-                            <?php } ?>
+                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelEventModal" style="width:100%;">Cancel Event</button>
+                            <button type="button" class="btn btn-danger m-2" data-toggle="modal" data-target="#cancelInviteModal" style="width:100%;">Cancel Invite</button>
                             <?php } ?>
                             <button type="button" class="btn m-2 dropdown-toggle" style="width:100%" data-toggle="modal" data-target=".goingModal">
                                 <?php echo count($going); ?> are in!
@@ -115,7 +115,6 @@
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content text-center">
                         <h5 class="modal-title">Cancel invite</h5>
-
                         <div class="modal-body">
                             <div class="list-group list-group-flush">
                                 <a class="list-group-item list-group-item-action">
@@ -127,7 +126,6 @@
                                     </div>
                                     <?php }?>
                                 </a>
-
                             </div>
                         </div>
 
@@ -169,7 +167,6 @@
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content text-center">
                         <h5 class="modal-title">Share with...</h5>
-
                         <div class="modal-body">
                             <div class="list-group list-group-flush">
                                 <a class="list-group-item list-group-item-action">
@@ -181,14 +178,12 @@
                                     </div>
                                     <?php }?>
                                 </a>
-
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" id="shareEvent" class="btn btn-primary btn-xs">Send</button>
                             <button type="button" id="closeShareEvent" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -198,10 +193,10 @@
             <?php if ($status != ''){ ?>
             <div class="new_comment col-md-6 mb-5 mt-3" id="new_comment">
                 <div class="form-group">
-                    <h5>New comment:</h5>
+                    <h5><b>New comment:</b></h5>
                     <textarea style="resize:none;" class="form-control bg-light" minlength="1" maxlength="150" rows="5" id="commentContent" placeholder=""></textarea>
                     <button type="button" class="btn btn-sm m-2 mr-2" data-toggle="modal" data-target=".bd-example-modal-sm4">Add photo</button>
-                    <button type="button" class="btn m-2">Add poll</button>
+                    <button type="button" class="btn btn-sm m-2 mr-2">Add poll</button>
                     <input type="submit" id="submitComment" class="btn float-right mt-2 mb-5" value="Submit">
                     <div class="alert alert-success" id="newCommentSuccess" style="display:none;">
                         Comment added sucessfuly.
@@ -212,11 +207,11 @@
                 </div>
             </div>
             <?php } ?>
-            </br>
+            <br>
             <hr>
 
             <div class="comments col-md-6 pull-right mt-3" id="comments">
-                <h5 class="mb-2 ">Comments(<?php echo count(json_decode($comments)) + count(json_decode($replies)); ?>)</h5>
+                <h5 class="mb-2 "><b>Comments(<?php echo count(json_decode($comments)) + count(json_decode($replies)); ?>)</b></h5>
                 <div class="comment mb-2 ml-2 row">
                     <?php foreach($comments as $comment){ ?>
                     <div name="comments[]" class="comment-content col-sm-11 p-2 mb-1 rounded bg-light border">
@@ -231,7 +226,6 @@
                                 <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
-
                                 <?php } ?>
                                 <br>
                             </p>
@@ -255,7 +249,6 @@
                                 <p><span id="commentContent"><?php echo $reply->comment_content ?></span>
                                     <br>
                                     <?php if ($status != ''){ ?>
-
                                     <button type="button" id="replyButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#replyCommentModal">&#8618;</button>
                                     <?php } ?>
                                     <?php if (($status == 'Owner') || (Auth::id() != null && Auth::id() == $reply->user_id)) { ?>
@@ -376,18 +369,9 @@
         </div>
     </div>
 </div>
-</div>
-<script>
-
-
-</script>
-</body>
-
 
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
-
 <script type="text/javascript">
-
 
     $(document).on("click", "#acceptEvent", function () {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -697,11 +681,6 @@
         });
     });
 
-
-</script>
-
-
-<script>
     function myMap() {
         var mapCanvas = document.getElementById("map");
         var mapOptions = {
