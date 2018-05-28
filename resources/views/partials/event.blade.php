@@ -224,13 +224,15 @@
                                 <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
+                                <?php } elseif ($is_admin == true && $comment->comment_content != ' Comment deleted') {?>
+                                <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
                                 <br>
                             </p>
                         </div>
-                        <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
                         <p class="text-right">
-                            <?php if ($comment->comment_content != ' Comment deleted' ){ ?>
+                        <?php if ($comment->comment_content != ' Comment deleted' ){ ?>
+                            <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
                             <a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a>
                             <?php } else { ?>
                             User
@@ -254,13 +256,15 @@
                                     <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">&#9997;</button>
                                     <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                     <?php } ?>
+                                    <?php }  elseif ($is_admin == true && $reply->comment_content != ' Comment deleted') {?>
+                                    <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                     <?php } ?>
                                     <br>
                                 </p>
                             </div>
-                            <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
                             <p class="text-right">
-                                <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
+                            <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
+                                <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
                                 <a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a>
                                 <?php } else { ?>
                                 User

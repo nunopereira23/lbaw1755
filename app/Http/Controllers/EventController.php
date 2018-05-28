@@ -89,9 +89,16 @@ class EventController extends Controller
             ->get();
 
         $invited = false;
+        $is_admin = false;
 
         if (Auth::check()) {
             $user_id = Auth::id();
+
+            $is_admin = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->pluck('is_admin');
+
+
             $i = 0;
             foreach ($users_canBeInvited as $user_tbi)//user can't invite himself
             {
@@ -127,13 +134,16 @@ class EventController extends Controller
 
         if ($event->event_visibility == 'Public') {
             if (Auth::check())
-                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going, 'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures]);
+                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going,
+                    'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             else {
-                return view('pages.event', ['event' => $event, 'status' => $status, 'going' => $going, 'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures]);
+                return view('pages.event', ['event' => $event, 'status' => $status, 'going' => $going,
+                    'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             }
         } else if ($event->event_visibility == 'Private') {
             if (($status == 'Owner') || ($status == 'Going') || ($invited == true)) {
-                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going, 'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures]);
+                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going,
+                    'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             }
         }
 
