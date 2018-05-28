@@ -89,6 +89,14 @@ class EventController extends Controller
             ->orderBy('polls.id', 'ASC')
             ->get();
 
+        $answers = DB::table('answers')
+            ->select('answers.id','users.id AS user_id','users.name','answers.answer', 'answers.id_poll')
+            ->join('answer_user', 'answer_user.id_answer', '=', 'answers.id' )
+            ->join('users',  'users.id', '=', 'answer_user.id_user' )
+            ->join('polls',  'polls.id', '=', 'answers.id_poll' )
+            ->where('polls.id_event',$id)
+            ->get();
+
         $invited = false;
 
         if (Auth::check()){
@@ -125,13 +133,13 @@ class EventController extends Controller
 
         if ($event->event_visibility == 'Public'){
           if (Auth::check())
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls, 'answers' => $answers]);
             else {
-              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls]);
+              return view('pages.event', ['event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls, 'answers' => $answers]);
             }
         }else if($event->event_visibility == 'Private'){
           if (($status == 'Owner')  || ($status == 'Going') || ($invited == true) ){
-            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls]);
+            return view('pages.event', ['user_id'=> Auth::id(),'event' => $event,'status' => $status,'going' => $going,'canBeInvited' => $users_canBeInvited,'comments' => $comments,'replies' => $replies, 'polls' => $polls, 'answers' => $answers]);
           }
         }
 

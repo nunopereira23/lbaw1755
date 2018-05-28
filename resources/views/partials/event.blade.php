@@ -93,7 +93,7 @@
                         <input type="hidden" name="event_id" value=<?php echo $event->id ?>>
 
 
-                        <div class="poll-options">
+                        <div class="poll-question">
                             <textarea style="resize:horizontal;" class="form-control bg-light modal-tittle" minlength="1" maxlength="80" rows="1" id="pollQuestion" placeholder=""></textarea>
                         </div>
 
@@ -264,11 +264,11 @@
                         <div class="poll-id" id=<?php echo $poll->id ?>>
                             <p><?php echo $poll->question ?>
                                 <br>
-
                             </p>
                         </div>
                         <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
                     </div>
+                        <?php } ?>
                 </div>
 
 
