@@ -50,6 +50,7 @@ Route::get('about', 'AboutController@show');
 
 // Contact
 Route::get('contact', 'ContactController@show');
+Route::post('contact', 'ContactController@request');
 
 // FAQ
 Route::get('faq', 'FaqController@show');
@@ -88,3 +89,5 @@ Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
 Route::get('my_profile','ProfileController@showLoggedInUser')->name('my_profile');
 Route::post('/users/{id}/report','ReportController@report');
+
+Route::get('sendbasicemail','MailController@basic_email');
