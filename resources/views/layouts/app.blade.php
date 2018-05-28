@@ -43,19 +43,19 @@
                             <a class="nav-link" href="{{ url('/events') }}">PUBLIC EVENTS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/users/<?php echo Auth::user()->id ?>/my_events">MY EVENTS <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/users/<?php echo Auth::user()->id ?>/my_events">MY EVENTS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/create_event') }}">CREATE EVENT</a>
+                            <a class="nav-link" href="/create_event">CREATE EVENT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
+                            <a class="nav-link" href="/faq">FAQ<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/about') }}">ABOUT US</a>
+                            <a class="nav-link" href="/about">ABOUT US<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contact') }}">CONTACT US</a>
+                            <a class="nav-link" href="/contact">CONTACT US</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,16 +96,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/events') }}">PUBLIC EVENTS</a>
+                            <a class="nav-link" href="/events">PUBLIC EVENTS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
+                            <a class="nav-link" href="/faq">FAQ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/about') }}">ABOUT US</a>
+                            <a class="nav-link" href="/about">ABOUT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contact') }}">CONTACT US</a>
+                            <a class="nav-link" href="/contact">CONTACT US</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -125,6 +125,16 @@
         @yield('content')
     </section>
 </main>
+
+<script>
+
+    $(document).ready(function() {
+        $('li.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+    });
+
+</script>
+
 </body>
 <footer class="copyright">
     <div class="footer-copyright py-3 text-center">
