@@ -188,7 +188,35 @@
                 </div>
             </div>
             <?php } ?>
+
             </br><hr>
+
+            <!-- Polls -->
+                <div class="polls-div col-md-6 mb-5 mt-3">
+                    <h5 class="mb-2 ">Polls(<?php echo count(json_decode($polls)); ?>)</h5>
+
+                    <?php foreach($polls as $poll){ ?>
+                    <div name="polls[]"  class="poll-content  rounded bg-light border">
+                        <div class="poll-id" id=<?php echo $poll->id ?>>
+                            <p><?php echo $poll->question ?>
+                                <br>
+                                <?php if ($status != ''){ ?>
+                                <button type="button" id="answerPoll" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#answerPoll">Answer</button>
+                                <?php } ?>
+                                <?php if (($status == 'Owner' )||($user_id == $poll->id_user)){ ?>
+                                <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deletePoll">Delete</button>
+                                <?php } ?>
+                                <br>
+                            </p>
+                        </div>
+                        <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+                        <br>
+                        <br>
+                    </div>
+                    <?php } ?>
+                </div>
+
+
 
             <div class="comments col-md-6 pull-right mt-3" id="comments">
                 <h5 class="mb-2 ">Comments(<?php echo count(json_decode($comments))+count(json_decode($replies)); ?>)</h5>
@@ -254,22 +282,6 @@
                     <?php } ?>
                 </div>
 
-
-
-                <!-- Polls -->
-                <div class="polls div">
-
-                    <?php foreach($polls as $poll){ ?>
-                    <div name="polls[]"  class="poll-content col-sm-11 p-2 mb-1 rounded bg-light border">
-                        <div class="poll-id" id=<?php echo $poll->id ?>>
-                            <p><?php echo $poll->question ?>
-                                <br>
-                            </p>
-                        </div>
-                        <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
-                    </div>
-                        <?php } ?>
-                </div>
 
 
 
