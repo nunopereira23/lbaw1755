@@ -7,11 +7,11 @@
         <br>
         <div class="col">
             <?php if ($user->profile_picture_path == null) { ?>
-            <img alt="User Without Pic"
+            <img alt="User Without Picture"
                  src="{{ asset('../../images/person.png') }}"
                  id="profile-image1">
             <?php } else { ?>
-            <img alt="User Pic"
+            <img alt="User Picture"
                  src="{{ asset($user->profile_picture_path) }}"
                  id="profile-image1">
             <?php } ?>
@@ -32,7 +32,7 @@
             <br>
             <ul>
                 <li><p><b>E-mail: </b><span class="fas fa-envelope" style="width:50px;"></span><?php echo $user->email;?></p></li>
-                <li><p><b>Date of birth: </b><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo $user->birthdate;?></p></li>
+                <li><p><b>Date of birth: </b><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo date_format(new DateTime($user->birthdate), 'jS F Y') ?></p></li>
             </ul>
         </div>
         <div class="col"></div>

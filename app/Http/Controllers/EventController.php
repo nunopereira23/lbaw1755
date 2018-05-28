@@ -40,45 +40,40 @@ class EventController extends Controller
         }
 
         $event_owner = DB::table('users')
-            ->select('users.id', 'users.name')
+            ->select('users.id', 'users.name', 'users.profile_picture_path')
             ->join('event_user', 'event_user.id_user', '=', 'users.id')
             ->where('event_user.id_event', $id)
             ->where('event_user.event_user_state', '=', 'Owner')
             ->get();
 
         $users_going = DB::table('users')
-            ->select('users.id', 'users.name')
+            ->select('users.id', 'users.name', 'users.profile_picture_path')
             ->join('event_user', 'event_user.id_user', '=', 'users.id')
             ->where('event_user.id_event', $id)
             ->where('event_user.event_user_state', '=', 'Going')
             ->get();
 
-
         $users_canBeInvited = DB::table("users")
-            ->select('id', 'name')
+            ->select('id', 'name', 'profile_picture_path')
             ->whereNotIn('id', function ($query) use (&$id) {
                 $query->select('id_user')
                     ->from('event_user')
                     ->where('id_event', '=', $id);
             })->get();
 
-
         $users_invited = DB::table('users')
-            ->select('users.id', 'users.name')
+            ->select('users.id', 'users.name', 'users.profile_picture_path')
             ->join('event_user', 'event_user.id_user', '=', 'users.id')
-            ->where('event_user.id_event',$id)
-            ->where('event_user.event_user_state','=','Deciding')
+            ->where('event_user.id_event', $id)
+            ->where('event_user.event_user_state', '=', 'Deciding')
             ->get();
 
         $users_canBeInvited = json_decode($users_canBeInvited);
-
         $going = array_merge(json_decode($event_owner), json_decode($users_going));
-
-        $invited_going = array_merge(json_decode($users_invited),json_decode($users_going));
-
+        $invited_going = array_merge(json_decode($users_invited), json_decode($users_going));
 
         $comments = DB::table('comments')
-            ->select('comments.id', 'users.id AS user_id', 'users.name', 'comments.comment_content', 'comments.date', 'comments.id_event')
+            ->select('comments.id', 'users.id AS user_id', 'users.name', 'comments.comment_content', 'comments.date', 'comments.id_event', 'users.profile_picture_path')
             ->join('users', 'users.id', '=', 'comments.id_user')
             ->where('comments.id_event', $id)
             ->where('comments.replyto', 0)
@@ -86,7 +81,7 @@ class EventController extends Controller
             ->get();
 
         $replies = DB::table('comments')
-            ->select('comments.id', 'users.id AS user_id', 'users.name', 'comments.comment_content', 'comments.date', 'comments.id_event', 'comments.replyto')
+            ->select('comments.id', 'users.id AS user_id', 'users.name', 'comments.comment_content', 'comments.date', 'comments.id_event', 'comments.replyto', 'users.profile_picture_path')
             ->join('users', 'users.id', '=', 'comments.id_user')
             ->where('comments.id_event', $id)
             ->where('comments.replyto', "!=", 0)
@@ -94,9 +89,16 @@ class EventController extends Controller
             ->get();
 
         $invited = false;
+        $is_admin = false;
 
         if (Auth::check()) {
             $user_id = Auth::id();
+
+            $is_admin = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->pluck('is_admin');
+
+
             $i = 0;
             foreach ($users_canBeInvited as $user_tbi)//user can't invite himself
             {
@@ -115,7 +117,6 @@ class EventController extends Controller
                 ->where('id_user', '=', $user_id)
                 ->pluck('is_invited');
 
-
             if (!$event_invited->isEmpty())
                 $invited = $event_invited[0];
 
@@ -133,15 +134,17 @@ class EventController extends Controller
 
         if ($event->event_visibility == 'Public') {
             if (Auth::check())
-                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going, 'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures]);
+                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going,
+                    'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             else {
-                return view('pages.event', ['event' => $event, 'status' => $status, 'going' => $going, 'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures]);
+                return view('pages.event', ['event' => $event, 'status' => $status, 'going' => $going,
+                    'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             }
         } else if ($event->event_visibility == 'Private') {
             if (($status == 'Owner') || ($status == 'Going') || ($invited == true)) {
-                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going, 'canBeInvited' => $users_canBeInvited,'invited_going' =>$invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures]);
+                return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going,
+                    'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             }
-
         }
 
         $error_type = 'Event_No_Permission';
@@ -162,13 +165,10 @@ class EventController extends Controller
                 ->where('id_user', '=', $user_id)
                 ->pluck('is_invited');
 
-
             switch ($request->type) {
-
                 case 'AcceptEvent':
 
                     $response = 'noAction';
-
                     if ($event_status->isEmpty()) {
                         DB::table('event_user')->insert(['id_event' => $request->event_id,
                             'id_user' => $user_id,
@@ -177,7 +177,6 @@ class EventController extends Controller
                         $response = 'AcceptSuccess';
 
                     } else if (!$event_status->isEmpty()) {
-
                         if ($event_status[0] == 'Deciding') {
                             DB::table('event_user')->where('id_event', '=', $request->event_id)
                                 ->where('id_user', '=', $user_id)
@@ -198,18 +197,13 @@ class EventController extends Controller
                                 $response = 'InviteUnacceptSuccess';
                             }
                         }
-
-
                     }
-
                     return response()->json($response);
-
                     break;
 
                 case 'IgnoreEvent':
 
                     $response = 'noAction';
-
                     if ($event_status->isEmpty()) {
                         DB::table('event_user')->insert(['id_event' => $request->event_id,
                             'id_user' => $user_id,
@@ -238,31 +232,24 @@ class EventController extends Controller
                                 $response = 'InviteUnignoringSuccess';
                             }
                         }
-
-
                     }
-
                     return response()->json($response);
-
                     break;
 
                 case 'CancelEvent':
                     if (Auth::check()) {
-
                         $event = Event::findOrFail($id);
                         if ($event_status[0] == 'Owner') {
                             $event->is_deleted = 'true';
                             $event->save();
                         }
-
                         return redirect()->route('event', ['id' => $request->event_id]);
                     }
-
                     break;
 
                 case 'ShareEvent':
-                    $response = 'noInvite';
 
+                    $response = 'noInvite';
                     $invited = $request->invited;
                     if (count($invited) > 0) {
                         $response = 'Invited';
@@ -273,7 +260,6 @@ class EventController extends Controller
                                 'is_invited' => true]);
                         }
                     }
-
                     return response()->json($response);
                     break;
 
@@ -281,7 +267,6 @@ class EventController extends Controller
                     $response = 'noComment';
 
                     if (Auth::check()) {
-
                         DB::table('comments')->insert(['id_event' => $request->event_id,
                             'id_user' => Auth::id(),
                             'comment_content' => $request->comment_content,
@@ -290,26 +275,23 @@ class EventController extends Controller
                         $response = 'newComment';
                     }
                     return response()->json($response);
-
                     break;
 
+                case 'UpdateComment':
+                    $response = 'noUpdate';
 
-            case 'UpdateComment':
-              $response = 'noUpdate';
+                    if (Auth::check()) {
 
-              if (Auth::check()){
+                        DB::table('comments')->where('id', '=', $request->comment_id)
+                            ->update(['comment_content' => $request->comment_content]);
 
-                DB::table('comments')->where('id','=',$request->comment_id)
-                                     ->update(['comment_content' => $request->comment_content]);
+                        $response = 'commentUpdated';
+                    }
+                    return response()->json($response);
+                    break;
 
-                $response = 'commentUpdated';
-              }
-              return response()->json($response);
-
-            break;
-
-            case 'DeleteComment':
-              $response = 'noDelete';
+                case 'DeleteComment':
+                    $response = 'noDelete';
 
                     if (Auth::check()) {
 
@@ -319,29 +301,24 @@ class EventController extends Controller
                         $response = 'commentDeleted';
                     }
                     return response()->json($response);
-
                     break;
 
-            case 'CancelInvite':
-              $response = 'noCancel';
+                case 'CancelInvite':
 
-              $toCancel = $request->toCancel;
-              if (count($toCancel) > 0){
-                $response = 'inviteCanceled';
-                foreach ($toCancel as $canceled_id) {
-                    DB::table('event_user')->where(['id_event'=>$request->event_id,
-                                                    'id_user'=>$canceled_id])
-                                          ->delete();
-                }
-              }
-
-              return response()->json($response);
-
-            break;
-
+                    $response = 'noCancel';
+                    $toCancel = $request->toCancel;
+                    if (count($toCancel) > 0) {
+                        $response = 'inviteCanceled';
+                        foreach ($toCancel as $canceled_id) {
+                            DB::table('event_user')->where(['id_event' => $request->event_id,
+                                'id_user' => $canceled_id])
+                                ->delete();
+                        }
+                    }
+                    return response()->json($response);
+                    break;
 
                 default:
-
                     break;
             }
         }

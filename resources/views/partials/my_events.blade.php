@@ -96,11 +96,11 @@
             if ($event->pivot->event_user_state == 'Owner') {
             $count++;?>
             <div class="card">
-                <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
+                <img class="img-fluid" src="{{ asset($event->getPicture()) }}" alt="Event picture">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <br/>
@@ -121,11 +121,11 @@
             if ($event->pivot->event_user_state == 'Going') {
             $count++;?>
             <div class="card">
-                <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
+                <img class="img-fluid" src="{{ asset($event->getPicture()) }}" alt="Event picture">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?> </h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <?php } endforeach ?>
@@ -147,11 +147,11 @@
             if ($event->pivot->event_user_state == 'Ignoring') {
             $count++;?>
             <div class="card">
-                <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
+                <img class="img-fluid" src="{{ asset($event->getPicture()) }}" alt="Event picture">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <?php } endforeach ?>
@@ -172,11 +172,11 @@
             if ($event->pivot->event_user_state == 'Deciding') {
             $count++;?>
             <div class="card">
-                <img class="img-fluid" src="{{ asset($event->getPicture()) }}">
+                <img class="img-fluid" src="{{ asset($event->getPicture()) }}" alt="Event picture">
                 <div class="card-block">
                     <h4><a href="/event/<?php echo $event->id ?>"> <?php echo $event->title ?> </a></h4>
-                    <h6 class="text-muted"> <?php echo $event->event_start ?></h6>
-                    <h5> <?php echo $event->gps ?> </h5>
+                    <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
+                    <h6><?php echo $event->gps ?></h6>
                 </div>
             </div>
             <?php } endforeach ?>

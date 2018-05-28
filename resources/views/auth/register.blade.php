@@ -9,7 +9,7 @@
             <p>Please fill in this form to create an account.</p>
             <hr>
 
-            <label for="name"><b>Full name</b></label>
+            <label for="name"><b>Full name (required)</b></label>
             <input type="text" placeholder="Enter name and surname" name="name" id="name" required>
             @if ($errors->has('name'))
                 <span class="error">
@@ -17,7 +17,7 @@
                 </span>
             @endif
 
-            <label for="email"><b>Email</b></label>
+            <label for="email"><b>Email (required)</b></label>
             <input type="text" placeholder="Enter Email" name="email" id="email" required>
             @if ($errors->has('email'))
                 <span class="error">
