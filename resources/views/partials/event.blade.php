@@ -201,7 +201,7 @@
                             <p><?php echo $poll->question ?>
                                 <br>
                                 <?php if ($status != ''){ ?>
-                                <button type="button" id="answerPoll" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#answerPoll">Answer</button>
+                                <button type="button" id="answerPoll" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#answerPollModal">Answer</button>
                                 <?php } ?>
                                 <?php if (($status == 'Owner' )||($user_id == $poll->id_user)){ ?>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deletePoll">Delete</button>
@@ -309,6 +309,39 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <div class="modal" id="answerPollModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modal-lg">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Answer</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="1" maxlength="80" id="new_answer"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="submitPoolAnswer" class="btn btn-primary">Send</button>
+                                <button type="button" id="closeCommentReply" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <div class="alert alert-success" id="newAnswerSuccess" style="display:none;">
+                                    Poll added sucessfuly.
+                                </div>
+                                <div class="alert alert-danger" id="newAnswerFailure" style="display:none;">
+                                    Poll failed.
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -497,6 +530,42 @@
             }
         });
     });
+
+
+    $(document).on( "click", "#submitPollAnswer", function( ) {
+        var pollAnswer = $("#pollAnswer").val();
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/event/<?php echo $event->id ?>',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN,
+                type : 'SubmitPollAnswer',
+                id_poll: <?php echo $poll->id ?>,
+                pollAnswer: pollAnswer,
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                $("#submitPollAnswer").attr("disabled",true);
+                setTimeout(function(){
+                    $("#submitPollAnswer").attr("disabled",false);
+                }, 1500);
+                if (data == "newAnswer"){
+                    $("#newAnswerSuccess").show();
+                    setTimeout(function(){
+                        $("#newAnswerSuccess").fadeOut(500);
+                    }, 1000);
+                }else{
+                    $("#newAnswerFailure").show();
+                    setTimeout(function(){
+                        $("#newAnswerFailure").fadeOut(500);
+                    }, 1000);
+                }
+            }
+        });
+    });
+
+
+
     $(document).ready(function(){
         var i = 0;
         var j = 0;

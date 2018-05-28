@@ -326,6 +326,28 @@ class EventController extends Controller
                 break;
 
 
+            case 'SubmitPollAnswer':
+                $response = 'noAnswer';
+
+                if (Auth::check()){
+
+                    DB::table('answers')->insert(['id_poll'=>$request->id_poll,
+                        'id_user'=>Auth::id(),
+                        'answer'=>$request->answer,
+                    ]);
+
+                    DB::table('answer_user')->insert(['id_answer'=>$request->id_answer,
+                        'id_user'=>Auth::id(),
+                    ]);
+
+
+                    $response = 'newAnswer';
+                }
+                return response()->json($response);
+
+                break;
+
+
           default:
 
             break;
