@@ -191,7 +191,7 @@
             <?php if ($status != ''){ ?>
             <div class="new_comment col-md-6 mb-5 mt-3" id="new_comment">
                 <div class="form-group">
-                    <h5><b>New comment:</b></h5>
+                    <label><h5><b>New comment:</b></h5></label>
                     <textarea style="resize:none;" class="form-control bg-light" minlength="1" maxlength="150" rows="5" id="commentContent" placeholder=""></textarea>
                     <button type="button" class="btn btn-sm m-2 mr-2" data-toggle="modal" data-target=".bd-example-modal-sm4">Add photo</button>
                     <button type="button" class="btn btn-sm m-2 mr-2">Add poll</button>
