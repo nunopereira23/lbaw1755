@@ -20,8 +20,24 @@
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
+    <style>
+      html,body
+      {
+        margin: 0 auto;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      a{
+        color:white !important;
+        text-align: center !important;
+      }
+
+    </style>
+
 </head>
-<body>
+<body width="100%" style="margin: 0; background-color: #f2f2f2;">
 <main>
     <section id="content">
         @yield('content')
