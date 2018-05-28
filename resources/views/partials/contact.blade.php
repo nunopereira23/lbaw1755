@@ -11,7 +11,7 @@
             <label for="name"><b>Name</b></label>
             <input type="text" placeholder="Enter your name" name="name" id="name">
 
-            <label for="email"><b>Email</b></label>
+            <label for="email"><b>Email (required)</b></label>
             <input type="text" placeholder="Enter your email" name="email" id="email" required>
 
             <label for="phoneNumber"><b>Password confirmation</b></label>
