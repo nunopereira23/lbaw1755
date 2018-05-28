@@ -20,25 +20,25 @@
     <div class="row">
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../../images/about_page/lenka2.jpg') }}">
+            <img src="{{ asset('../../images/about_page/lenka2.jpg') }}" alt="Lenka photo">
             <p></p>
             <p>Lenka Jánošová</p>
           </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../../images/about_page/miska.jpg') }}">
+            <img src="{{ asset('../../images/about_page/miska.jpg') }}" alt="Michaela photo">
             <p></p>
             <p>Michaela Bamburová</p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../../images/about_page/nuno.jpg') }}">
+            <img src="{{ asset('../../images/about_page/nuno.jpg') }}" alt="Nuno photo">
             <p></p>
             <p>Nuno Pereira</p>
         </div>
         <div class="col-sm justify-content-center">
             <br>
-            <img src="{{ asset('../../images/about_page/tiago.jpg') }}">
+            <img src="{{ asset('../../images/about_page/tiago.jpg') }}" alt="Tiago photo">
             <p></p>
             <p>Tiago Silva</p>
         </div>

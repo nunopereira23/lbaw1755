@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col">
             <?php if ($user->profile_picture_path == null) { ?>
-            <img alt="User Without Pic"
+            <img alt="User without photo"
                  src="{{ asset('../../images/person.png') }}"
                  id="profile-image1">
             <?php } else { ?>
-            <img alt="User Pic"
+            <img alt="User photo"
                  src="{{ asset($user->profile_picture_path) }}"
                  id="profile-image1">
             <?php } ?>

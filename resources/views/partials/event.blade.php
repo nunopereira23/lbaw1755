@@ -6,7 +6,7 @@
             <div class="card col-12">
                 <?php if ($event_pictures->count() != 0) { ?>
                 <?php if ($event_pictures->count() == 1) { ?>
-                <img class="img-fluid event_picture" src="{{ asset($event_pictures[0]->path_value) }}">
+                <img class="img-fluid event_picture" src="{{ asset($event_pictures[0]->path_value) }}" alt="Event picture">
                 <?php } else { ?>
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
@@ -16,11 +16,11 @@
                         $count++; ?>
                         <?php if ($count == 1) { ?>
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid event_picture" src="{{ asset($picture->path_value) }}">
+                            <img class="d-block img-fluid event_picture" src="{{ asset($picture->path_value) }}" alt="Event picture">
                         </div>
                         <?php } else { ?>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid event_picture" src="{{ asset($picture->path_value) }}">
+                            <img class="d-block img-fluid event_picture" src="{{ asset($picture->path_value) }}" alt="Event picture">
                         </div>
                         <?php } ?>
                         <?php } endforeach ?>
@@ -36,7 +36,7 @@
                     <?php } ?>
                 </div>
                 <?php } else { ?>
-                <img class="img-fluid event_picture" src="{{ asset('images/concert.jpeg') }}">
+                <img class="img-fluid event_picture" src="{{ asset('images/concert.jpeg') }}" alt="Event default picture">
                 <?php }  ?>
                 <div class="card-body">
                     <div class="row">
@@ -121,7 +121,7 @@
                                     <?php foreach ($invited_going as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="toCancel[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
-                                        <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" height="25px" width="25px">
+                                        <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
                                     <?php }?>
@@ -149,7 +149,7 @@
                             <div class="list-group list-group-flush">
                                 <?php foreach ($going as $user) {?>
                                 <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
-                                    <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" height="25px" width="25px">
+                                    <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
                                 <?php echo $user->name; ?>
                                 </a>
                                 <?php } ?>
@@ -171,7 +171,7 @@
                                     <?php foreach ($canBeInvited as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="invited[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
-                                        <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" height="25px" width="25px">
+                                        <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
                                     <?php }?>
@@ -232,7 +232,7 @@
                         </div>
                         <p class="text-right">
                         <?php if ($comment->comment_content != ' Comment deleted' ){ ?>
-                            <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
+                            <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
                             <a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a>
                             <?php } else { ?>
                             User
@@ -264,7 +264,7 @@
                             </div>
                             <p class="text-right">
                             <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
-                                <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" height="25px" width="25px">
+                                <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
                                 <a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a>
                                 <?php } else { ?>
                                 User

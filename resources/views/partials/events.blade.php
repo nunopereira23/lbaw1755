@@ -79,7 +79,7 @@
                 if (($i % 4) == 0)  { ?>
                 <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" alt="Event picture" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
@@ -99,7 +99,7 @@
                 if (($i % 4) == 1)  { ?>
                 <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" alt="Event picture" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
@@ -114,7 +114,7 @@
                 if (($i % 4) == 2)  { ?>
                 <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}"  alt="Event picture" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
@@ -129,7 +129,7 @@
                 if (($i % 4) == 3)  { ?>
                 <?php $event = $events[$i]; ?>
                 <div class="card">
-                    <img src="{{ asset($event->getPicture()) }}" style="width:100%" class="card-img-top">
+                    <img src="{{ asset($event->getPicture()) }}" alt="Event picture" style="width:100%" class="card-img-top">
                     <div class="card-block">
                         <h4><a href="event/<?php echo $events[$i]->id ?>"> <?php echo $events[$i]->title ?> </a></h4>
                         <h6><?php echo date_format(new DateTime($event->event_start), 'g:ia jS F Y') ?></h6>
