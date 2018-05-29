@@ -202,9 +202,7 @@
                                 <?php if ($status != ''){ ?>
                                 <button type="button" id="answerPoll" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#answerPollModal">Answer</button>
                                 <?php } ?>
-                                <?php if (($status == 'Owner' )||($user_id == $poll->id_user)){ ?>
-                                <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1" data-toggle="modal" data-target="#deletePoll">Delete</button>
-                                <?php } ?>
+
                                 <br>
                             </p>
                         </div>
