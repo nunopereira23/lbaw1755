@@ -36,9 +36,6 @@
             <label for="password"><b>Password confirmation</b></label>
             <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirmation" required>
 
-            <label for="birthdate"><b>Date of birth</b></label>
-            <input type="date" name="birthdate" id="birthdate">
-
             <label for="file"><b>User photo</b>
                 <input type="file" id="file" class="form-control" name="file">
             </label>

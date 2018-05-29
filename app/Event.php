@@ -30,7 +30,7 @@ class Event extends Model
                 ->first();
             return $event_picture_path->path_value;
         }
-        return "../../images/myevent.jpg";
+        return 'images/concert.jpeg';
 
     }
 

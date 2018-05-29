@@ -1,9 +1,13 @@
-<link href="{{ asset('css/my_events.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/my_events.css') }}" rel="stylesheet">
+    <title> "My events" </title>
+</head>
 <div class="container">
     <?php if ($past) { ?>
-    <h3> MY EVENTS </h3>
+    <h3> My events </h3>
     <?php } else { ?>
-    <h3> MY PAST EVENTS </h3>
+    <h3> My past events </h3>
     <?php }?>
     <br/>
     <div class="row">

@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<head>
+    <title> "User 404" </title>
+</head>
 <div class="container">
     <div class="jumbotron">
         <h5>

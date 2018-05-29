@@ -1,4 +1,8 @@
-<link href="{{ asset('css/event.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/event.css') }}" rel="stylesheet">
+    <title> "Event" </title>
+</head>
 <?php use Illuminate\Support\Facades\Auth;?>
 <div class="container mt-3">
     <div class="col-md-12">
@@ -122,7 +126,11 @@
                                     <?php foreach ($invited_going as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="toCancel[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
+                                        <?php if ($user->profile_picture_path == null) { ?>
+                                        <img class="rounded-circle float-right" src="{{ asset('../../images/person.png') }}" alt="User without picture" height="25px" width="25px">
+                                        <?php } else { ?>
                                         <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
+                                        <?php } ?>
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
                                     <?php }?>
@@ -150,7 +158,11 @@
                             <div class="list-group list-group-flush">
                                 <?php foreach ($going as $user) {?>
                                 <a class="list-group-item list-group-item-action" href="../users/<?php echo $user->id ?>/profile" style="height:50px">
+                                    <?php if ($user->profile_picture_path == null) { ?>
+                                    <img class="rounded-circle float-right" src="{{ asset('../../images/person.png') }}" alt="User without picture" height="25px" width="25px">
+                                    <?php } else { ?>
                                     <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
+                                    <?php } ?>
                                 <?php echo $user->name; ?>
                                 </a>
                                 <?php } ?>
@@ -172,7 +184,11 @@
                                     <?php foreach ($canBeInvited as $user) {?>
                                     <div class="custom-control custom-checkbox mb-1" style="height:30px;">
                                         <input type="checkbox" class="custom-control-input" name="invited[]" id="customCheck<?php echo $user->id ?>" value=<?php echo $user->id ?>>
+                                        <?php if ($user->profile_picture_path == null) { ?>
+                                        <img class="rounded-circle float-right" src="{{ asset('../../images/person.png') }}" alt="User without picture" height="25px" width="25px">
+                                        <?php } else { ?>
                                         <img class="rounded-circle float-right" src="{{ asset($user->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
+                                        <?php } ?>
                                         <label class="custom-control-label" for="customCheck<?php echo $user->id ?>" style='font-size:14px;'><?php echo $user->name ?></label>
                                     </div>
                                     <?php }?>
@@ -192,9 +208,8 @@
             <?php if ($status != ''){ ?>
             <div class="new_comment col-md-6 mb-5 mt-3" id="new_comment">
                 <div class="form-group">
-                    <label><h5><b>New comment:</b></h5></label>
+                    <h5><b>New comment:</b></h5>
                     <textarea style="resize:none;" class="form-control bg-light" minlength="1" maxlength="150" rows="5" id="commentContent" placeholder=""></textarea>
-                    <button type="button" class="btn btn-sm m-2 mr-2" data-toggle="modal" data-target=".bd-example-modal-sm4">Add photo</button>
                     <button type="button" class="btn btn-sm m-2 mr-2">Add poll</button>
                     <input type="submit" id="submitComment" class="btn float-right mt-2 mb-5" value="Submit">
                     <div class="alert alert-success" id="newCommentSuccess" style="display:none;">
@@ -222,10 +237,11 @@
                                 <?php } ?>
                                 <?php if (($status == 'Owner') || (Auth::id() != null && Auth::id() == $comment->user_id)){ ?>
                                 <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
+                                <button type="button" id="fileButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#addFileModal">Add file</button>
                                 <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
-                                <?php } elseif ($is_admin == true && $comment->comment_content != ' Comment deleted') {?>
+                                <?php } elseif (Auth::user()->is_admin == true && $comment->comment_content != ' Comment deleted') {?>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
                                 <br>
@@ -233,7 +249,11 @@
                         </div>
                         <p class="text-right">
                         <?php if ($comment->comment_content != ' Comment deleted' ){ ?>
+                            <?php if ($comment->profile_picture_path == null) { ?>
+                            <img class="rounded-circle float-right" src="{{ asset('../../images/person.png') }}" alt="User without picture" height="25px" width="25px">
+                            <?php } else { ?>
                             <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
+                            <?php } ?>
                             <a href="../users/<?php echo $comment->user_id ?>/profile"><?php echo $comment->name ?></a>
                             <?php } else { ?>
                             User
@@ -257,7 +277,7 @@
                                     <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">&#9997;</button>
                                     <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                     <?php } ?>
-                                    <?php }  elseif ($is_admin == true && $reply->comment_content != ' Comment deleted') {?>
+                                    <?php }  elseif (Auth::user()->is_admin == true && $reply->comment_content != ' Comment deleted') {?>
                                     <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                     <?php } ?>
                                     <br>
@@ -265,7 +285,11 @@
                             </div>
                             <p class="text-right">
                             <?php if ($reply->comment_content != ' Comment deleted' ){ ?>
+                                <?php if ($reply->profile_picture_path == null) { ?>
+                                <img class="rounded-circle float-right" src="{{ asset('../../images/person.png') }}" alt="User without picture" height="25px" width="25px">
+                                <?php } else { ?>
                                 <img class="rounded-circle float-right" src="{{ asset($comment->profile_picture_path) }}" alt="User profile picture" height="25px" width="25px">
+                                <?php } ?>
                                 <a href="../users/<?php echo $reply->user_id ?>/profile"><?php echo $reply->name ?></a>
                                 <?php } else { ?>
                                 User
@@ -344,14 +368,14 @@
             </div>
         </div>
 
-        <div class="modal fade bd-example-modal-sm4" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-sm4" id="addFileModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content text-center">
                     <div class="modal-body">
                         <input type="file" single>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Add</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

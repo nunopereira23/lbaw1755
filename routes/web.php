@@ -16,17 +16,6 @@ Route::get('/error', function () {
     return view('pages.error');
 });
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -83,11 +72,10 @@ Route::get('/users/{id}/my_events', 'MyEventsController@show');
 Route::get('/users/{id}/past_events', 'MyEventsController@showPast');
 Route::get('/api/users/{id}/my_events', 'MyEventsController@search');
 
-//Files
-Route::post('upload', 'UploadController@storePicture')->name('upload_files');
 //Profile
 Route::get('/users/{id}/profile','ProfileController@show')->name('profile');
 Route::get('/users/{id}/edit_profile','EditProfileController@show');
 Route::post('/users/{id}/edit_profile','EditProfileController@update');
+Route::post('/users/{id}/delete_photo','EditProfileController@delete');
 Route::get('my_profile','ProfileController@showLoggedInUser')->name('my_profile');
 Route::post('/users/{id}/report','ReportController@report');

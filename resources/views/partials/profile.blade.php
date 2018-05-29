@@ -1,5 +1,8 @@
-<link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <title> "User profile" </title>
+</head>
 <div class="container">
     <h2>User Profile</h2>
     <br>
@@ -13,7 +16,7 @@
             <?php } else { ?>
             <img alt="User Picture"
                  src="{{ asset($user->profile_picture_path) }}"
-                 id="profile-image1">
+                 id="profile-image">
             <?php } ?>
         </div>
         <div class="col">
@@ -32,7 +35,11 @@
             <br>
             <ul>
                 <li><p><b>E-mail: </b><span class="fas fa-envelope" style="width:50px;"></span><?php echo $user->email;?></p></li>
+                <?php if ($user->birthdate == null) { ?>
+                <li><p><b>Date of birth: </b><span class="fas fa-birthday-cake" style="width:50px;"></span>dd.mm.yyyy</p></li>
+                <?php } else { ?>
                 <li><p><b>Date of birth: </b><span class="fas fa-birthday-cake" style="width:50px;"></span><?php echo date_format(new DateTime($user->birthdate), 'jS F Y') ?></p></li>
+                <?php } ?>
             </ul>
         </div>
         <div class="col"></div>

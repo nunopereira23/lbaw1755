@@ -1,4 +1,9 @@
-<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <title> "Admin - All users" </title>
+</head>
+<body>
 <div class="container">
     <h2>Active Users</h2>
     <br>
@@ -27,5 +32,6 @@
         </tbody>
     </table>
 </div>
-
+</body>
+</html>
 
