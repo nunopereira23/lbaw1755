@@ -70,7 +70,7 @@ class LoginController extends Controller
       $user = User::where('email', '=', $request->input('email'))->first();
       if (isset($user))
       {
-        $code = md5(microtime());
+        $code = str_random(15);
 
         $user->confirmation_code = $code;
         $user->save();
