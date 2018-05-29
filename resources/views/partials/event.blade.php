@@ -188,7 +188,6 @@
                 </div>
             </div>
             <?php } ?>
-
             </br><hr>
 
             <!-- Polls -->
@@ -315,6 +314,7 @@
                 <div class="modal" id="answerPollModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modal-lg">
+                            <p hidden id="answerPollButton"></p>
                             <div class="modal-header">
                                 <h5 class="modal-title">Answer</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -327,8 +327,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" id="submitPoolAnswer" class="btn btn-primary">Send</button>
-                                <button type="button" id="closeCommentReply" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="submitPollAnswer" class="btn btn-primary">Send</button>
+                                <button type="button" id="closePollAnswer" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                                 <div class="alert alert-success" id="newAnswerSuccess" style="display:none;">
                                     Poll added sucessfuly.
@@ -343,14 +343,6 @@
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -531,16 +523,19 @@
         });
     });
 
-
+    $(document).on( "click", "#answerPoll", function( ) {
+        $("#answerPollButton").text($(this).closest("div").attr("id"));
+    });
     $(document).on( "click", "#submitPollAnswer", function( ) {
         var pollAnswer = $("#pollAnswer").val();
+        var poll_id = $("#answerPollButton").text();
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: '/event/<?php echo $event->id ?>',
             type: 'POST',
             data: {_token: CSRF_TOKEN,
                 type : 'SubmitPollAnswer',
-                id_poll: <?php echo $poll->id ?>,
+                id_poll: poll_id,
                 pollAnswer: pollAnswer,
             },
             dataType: 'JSON',
