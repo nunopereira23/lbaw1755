@@ -1,12 +1,15 @@
-<link href="{{ asset('css/create_event.css') }}" rel="stylesheet">
-
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/create_event.css') }}" rel="stylesheet">
+    <title> "Create event" </title>
+</head>
 <div class="container">
     <div class="py-3 text-center">
         <h1>Create event</h1>
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form class="needs-validation" role="form" method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());" enctype="multipart/form-data">
+            <form class="needs-validation"  method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());" enctype="multipart/form-data">
                 <fieldset>
                     {{ csrf_field() }}
                     <div class="row">

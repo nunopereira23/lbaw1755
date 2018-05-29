@@ -1,4 +1,8 @@
-<link href="{{ asset('css/email.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/email.css') }}" rel="stylesheet">
+    <title> "Reset password" </title>
+</head>
 <div class="container">
     <form class="needs-validation" role="form" method="POST" action="{{ route('sendResetPasswordCode') }}">
         {{ csrf_field() }}

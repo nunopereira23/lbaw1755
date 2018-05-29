@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<head>
+    <title> "Request error" </title>
+</head>
 <div class="container">
     <div class="jumbotron">
         <h5>

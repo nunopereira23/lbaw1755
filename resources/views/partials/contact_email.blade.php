@@ -1,5 +1,9 @@
-<div class="container">
+<!DOCTYPE html>
+<head>
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
+    <title> "Contact email" </title>
+</head>
+<div class="container">
     <div id="contactUsform">
         {{ csrf_field() }}
           <table align="center" cellspacing="0" cellpadding="0" border="0" width="500"  style="margin: 0 auto;padding-top:50px;padding-bottom:50px;" >

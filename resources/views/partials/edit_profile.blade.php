@@ -1,5 +1,8 @@
-<link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <title> "Edit profile" </title>
+</head>
 <div class="container">
     <h2>Edit User Profile</h2>
     <br>
@@ -8,15 +11,21 @@
             <?php if ($user->profile_picture_path == null) { ?>
             <img alt="User without photo"
                  src="{{ asset('../../images/person.png') }}"
-                 id="profile-image1">
+                 id="profile-image">
             <?php } else { ?>
             <img alt="User photo"
                  src="{{ asset($user->profile_picture_path) }}"
                  id="profile-image1">
+                <form method="POST" action="/users/<?php echo $user->id ?>/delete_photo">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-danger">
+                        <span><strong>Delete photo</strong></span>
+                    </button>
+                </form>
             <?php } ?>
         </div>
         <div class="col">
-            <form class="form-horizontal" role="form" method="POST" action="/users/<?php echo $user->id ?>/edit_profile" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="/users/<?php echo $user->id ?>/edit_profile" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <label for="name"><b>Name: </b></label>
                 <input type="text" name="name" value="<?php echo $user->name;?>" required>

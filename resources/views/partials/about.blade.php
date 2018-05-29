@@ -1,5 +1,9 @@
-<link href="{{ asset('css/about.css') }}" rel="stylesheet">
-
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+    <title> "About" </title>
+</head>
+<body>
 <div class="container">
     <hr>
     <div class="py-3 text-center">
@@ -44,3 +48,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

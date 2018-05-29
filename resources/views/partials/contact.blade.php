@@ -1,6 +1,9 @@
-<div class="container">
+<!DOCTYPE html>
+<head>
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
-
+    <title> "Contact us" </title>
+</head>
+<div class="container">
     <form  id="contactUsform" style="margin:0" onclick="return toSend()">
 
         <div class="container">
@@ -41,6 +44,7 @@
 </div>
 
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
+
 
 <script type="text/javascript">
 

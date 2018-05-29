@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'nr_warnings' => 0,
             'profile_picture_path' => $destination == '' ? null : $destination,
             'password' => bcrypt($data['password']),
-            'birthdate' => date_format(new DateTime($data['birthdate']), 'Y-m-d'),
+            'birthdate' => null,
         ]);
     }
 }

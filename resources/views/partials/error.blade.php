@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<head>
+    <title> "Error" </title>
+</head>
 <div class="container">
     <div class="jumbotron">
       <?php if (!isset($error_type)){ ?>

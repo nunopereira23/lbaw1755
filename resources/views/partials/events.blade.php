@@ -1,4 +1,8 @@
-<link href="{{ asset('css/events.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/events.css') }}" rel="stylesheet">
+    <title> "Public events" </title>
+</head>
 <div class="container">
     <h3>All public events</h3>
     <br>

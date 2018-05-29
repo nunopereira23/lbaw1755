@@ -46,4 +46,16 @@ class EditProfileController extends Controller
     }
   }
 
+    public function delete($id)
+    {
+        if (Auth::check()){
+            $user= User::findOrFail($id);
+            if ($id == Auth::id()){
+                $user->profile_picture_path = null;
+            }
+            $user->save();
+            return redirect()->route('my_profile', [$user]);
+        }
+
+    }
 }
