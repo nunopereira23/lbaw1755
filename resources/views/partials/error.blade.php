@@ -19,6 +19,12 @@
       <?php } else if ($error_type == 'Wrong_Confirmation_Code') { ?>
           <h1 class="text-center">Code you entered is not right. <br>Please try password reset again.<p></p>
           </h1>
+      <?php } else if ($error_type == 'Email_Not_Found') { ?>
+            <h1 class="text-center">This is email is not registered. <br>Please go back and try again.<p></p>
+            </h1>
+      <?php } else if ($error_type == 'Generate_Code') { ?>
+            <h1 class="text-center">Must generate a password reset code before accessing this page.
+            </h1>
       <?php } ?>
         <p class="text-center">Try pressing the back button or clicking on this button.</p>
         <p class="text-center"><a class="btn btn-primary" href="/"><i class="fa fa-home"></i> Go To Homepage</a></p>

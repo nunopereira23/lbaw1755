@@ -19,6 +19,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Session;
+use Mail;
 
 
 class EventController extends Controller
@@ -258,6 +259,25 @@ class EventController extends Controller
                                 'id_user' => $invited_id,
                                 'event_user_state' => 'Deciding',
                                 'is_invited' => true]);
+
+
+                            $user_invited = DB::table('users')
+                                ->select('users.name','users.email')
+                                ->where('id', '=', $invited_id)
+                                ->first();
+
+                            $event_info = DB::table('events')
+                                ->select('events.title')
+                                ->where('id', '=', $request->event_id)
+                                ->first();
+
+                            $toSend = ['event_id'=>$request->event_id,'event_name'=>$event_info->title];
+
+                            Mail::send('emails.event_invite',$toSend, function($message) use (&$user_invited) {
+                               $message->to($user_invited->email, $user_invited->name)->subject
+                                  ('You have been invited to an event!');
+                               $message->from('iaminwebsite@gmail.com','IAmInWebsite');
+                            });
                         }
                     }
                     return response()->json($response);

@@ -34,8 +34,9 @@ class PasswordEmailSender extends Mailable
      */
     public function build()
     {
-        return $this->from('ourEmail@blabla.com') //TODO: add email of the sender
-            ->view('pages.reset_mail');
+        return $this->from('iaminwebsite@gmail.com')
+                    ->subject('Password reset on IAmIn')
+                    ->view('pages.reset_mail');
     }
 
 }

@@ -59,10 +59,17 @@ class LoginController extends Controller
         return view('pages.password_email');
     }
 
+    public function resetPasswordPage()
+    {
+      $error_type = 'Generate_Code';
+      return view('pages.error', ['error_type' => $error_type]);
+    }
+
     public function sendResetPasswordCode(Request $request, \Illuminate\Mail\Mailer $mailer)
     {
-        $user = User::where('email', '=', $request->input('email'))->first();
-
+      $user = User::where('email', '=', $request->input('email'))->first();
+      if (isset($user))
+      {
         $code = md5(microtime());
 
         $user->confirmation_code = $code;
@@ -71,6 +78,14 @@ class LoginController extends Controller
         $mailer->to($request->input('email'))->send(new PasswordEmailSender($code));
 
         return view('pages.email_sended', ['email' => $user->email]);
+      } else{
+        $error_type = 'Email_Not_Found';
+        return view('pages.error', ['error_type' => $error_type]);
+      }
+    }
+
+    public function confirmPasswordPage(){
+      return view('pages.error');
     }
 
     public function confirmNewPassword(Request $request)
