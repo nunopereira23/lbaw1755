@@ -332,7 +332,6 @@ class EventController extends Controller
                 if (Auth::check()){
 
                     DB::table('answers')->insert(['id_poll'=>$request->id_poll,
-                        'id_user'=>Auth::id(),
                         'answer'=>$request->answer,
                     ]);
 
