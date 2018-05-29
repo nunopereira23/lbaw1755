@@ -69,31 +69,25 @@
                     <hr class="mb-4">
                     <div id="map" class="map rounded mt-1"></div>
                     <hr class="mb-4">
-                    <fieldset>
-                        <legend><h5 class="mb-3"><b>Event privacy</b></h5></legend>
-                        <div class="row">
-                            <div class="col-6 d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="event_visibility"
-                                           name="event_visibility"
-                                           value="Private"
-                                           class="custom-control-input"
-                                           type="radio"
-                                    <?php echo($event->event_visibility == "Private" ? 'checked' : ''); ?>>
-                                    <label class="custom-control-label" for="invite">Invite only</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="public"
-                                           name="event_visibility"
-                                           value="Public"
-                                           class="custom-control-input"
-                                           checked type="radio"
-                                    <?php echo($event->event_visibility == "Public" ? 'checked' : ''); ?>>
-                                    <label class="custom-control-label" for="public">Public</label>
-                                </div>
+                    <h5 class="mb-3"><b>Event privacy</b></h5>
+                    <div class="row">
+                        <div class="col-6 d-block my-3">
+                            <div class="radio">
+                                <label><input type="radio"
+                                              id="event_visibility"
+                                              name="event_visibility"
+                                              value="Private"
+                                    <?php echo($event->event_visibility == "Private" ? 'checked' : ''); ?>> Private</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio"
+                                              id="event_visibility"
+                                              name="event_visibility"
+                                              value="Public"
+                                    <?php echo($event->event_visibility == "Public" ? 'checked' : ''); ?>> Public</label>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
                     <h5><b>Event description</b></h5>
                     <textarea class="form-control" rows="5" placeholder="Write a description..." name="event_description" id="event_description"><?php echo $event->description ?></textarea>
                     <hr class="mb-4">

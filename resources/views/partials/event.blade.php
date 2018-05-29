@@ -237,7 +237,6 @@
                                 <?php } ?>
                                 <?php if (($status == 'Owner') || (Auth::id() != null && Auth::id() == $comment->user_id)){ ?>
                                 <?php if ($comment->comment_content != ' Comment deleted' ){ ?><!-- White space is intentional-->
-                                <button type="button" id="fileButton" class="btn btn-sm float-left mt-5" data-toggle="modal" data-target="#addFileModal">Add file</button>
                                 <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
