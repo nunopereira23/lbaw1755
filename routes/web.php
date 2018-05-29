@@ -38,7 +38,9 @@ Route::get('/login/google/callback','Auth\SocialController@getSocialHandle');
 
 // Password Reset
 Route::get('showEmailForm', 'Auth\LoginController@showEmailForm')->name('showEmailForm');
+Route::get('sendResetPasswordCode', 'Auth\LoginController@resetPasswordPage');
 Route::post('sendResetPasswordCode', 'Auth\LoginController@sendResetPasswordCode')->name('sendResetPasswordCode');
+Route::get('confirmNewPassword', 'Auth\LoginController@confirmPasswordPage');
 Route::post('confirmNewPassword', 'Auth\LoginController@confirmNewPassword')->name('confirmNewPassword');
 
 //Homepage
