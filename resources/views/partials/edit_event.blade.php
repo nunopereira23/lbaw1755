@@ -105,14 +105,9 @@
 <script type="text/javascript">
     function validate() {
         var username = document.getElementById("title").value;
-        var location = document.getElementById("gps").value;
 
         if (username.length <= 0) {
             alert("Please enter the name of the event.");
-            return false;
-        }
-        if (location.length <= 0) {
-            alert("Please enter the location of the event.");
             return false;
         }
     }
