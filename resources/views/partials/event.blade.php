@@ -58,18 +58,19 @@
                         </div>
                         <div id="userActions" class="col-md-2">
                             <?php if ($status != 'Owner'){ ?>
-                            <?php if(($status != 'Going') && ($status != 'Ignoring')){ ?>
-                            <button type="submit" id="acceptEvent" class="btn btn-primary m-2" style="width:100%">Accept</button>
-                            <?php }else if ($status == 'Going'){ ?>
-                            <button type="submit" id="acceptEvent" class="btn btn-success m-2" style="width:100%">Going</button>
-                            <?php } ?>
+                            <?php if ($status != ('')){ ?>
+                              <?php if(($status != 'Going') && ($status != 'Ignoring')){ ?>
+                              <button type="submit" id="acceptEvent" class="btn btn-primary m-2" style="width:100%">Accept</button>
+                              <?php }else if ($status == 'Going'){ ?>
+                              <button type="submit" id="acceptEvent" class="btn btn-success m-2" style="width:100%">Going</button>
+                              <?php } ?>
 
                             <?php if(($status != 'Ignoring') && ($status != 'Going')){ ?>
                             <button type="submit" id="ignoreEvent" class="btn btn-secondary m-2" style="width:100%">Ignore</button>
                             <?php }else if ($status == 'Ignoring'){ ?>
                             <button type="submit" id="ignoreEvent" class="btn btn-danger m-2" style="width:100%">Ignoring</button>
                             <?php } ?>
-
+                            <?php } ?>
                             <?php } else{ ?>
                             <form action="/event/<?php echo $event->id ?>/edit_event" style="margin:0">
                                 <button type="submit" class="btn btn-primary m-2" style="width:100%">Edit event</button>
