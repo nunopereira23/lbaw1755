@@ -89,6 +89,7 @@ class EventController extends Controller
             ->orderBy('polls.id', 'ASC')
             ->get();
 
+
         $answers = DB::table('answers')
             ->select('answers.id','users.id AS user_id','users.name','answers.answer', 'answers.id_poll')
             ->join('answer_user', 'answer_user.id_answer', '=', 'answers.id' )
@@ -96,6 +97,12 @@ class EventController extends Controller
             ->join('polls',  'polls.id', '=', 'answers.id_poll' )
             ->where('polls.id_event',$id)
             ->get();
+
+//        $answers = DB::table('answers')
+//            ->select('answers.id','answers.answer', 'polls.id', 'answers.id_poll')
+//            ->join('polls',  'polls.id', '=', 'answers.id_poll' )
+//            ->where('polls.id_event',$id)
+//            ->get();
 
         $invited = false;
 
@@ -335,11 +342,10 @@ class EventController extends Controller
                         'answer'=>$request->pollAnswer
                     ]);
 
-                    DB::table('answer_user')->insert(['id_answer'=>$request->id_answer,
-                        'id_user'=>Auth::id()
-                    ]);
 
-                    alert(id_answer);
+//                    DB::table('answer_user')->insert(['id_answer'=>$request->id_answer,
+//                        'id_user'=>Auth::id()
+//                    ]);
 
 
                     $response = 'newAnswer';

@@ -214,8 +214,8 @@
 
                     <?php foreach($answers as $answer){ ?>
                     <?php if($poll->id == $id_poll ){?>
-                    <div name="answers[]"  class="answers-content col-sm-11 p-2 mb-1 ml-1" >
-                        <div class="answers-content col-sm-11 p-2 rounded bg-light border">
+                    <div name="answers[]"  class="answers-content  col-md-6 mb-5 mt-3" >
+                        <div class="answers-content  col-md-6 mb-5 mt-3 rounded bg-light border">
                             <div class="answer-body" id=<?php echo $poll->id ?>><!-- so the answer is made to the parent poll -->
                                 <p><?php echo $answer->answer ?>
                                     <br>
@@ -549,7 +549,7 @@
     $(document).on( "click", "#submitPollAnswer", function( ) {
         var pollAnswer = $("#new_answer").val();
         var poll_id = $("#answerPollButton").text();
-        var answer_id = $("#answerId").text(); alert(answer_id);
+        var answer_id = $("#answerId").text();
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: '/event/<?php echo $event->id ?>',
