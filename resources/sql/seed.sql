@@ -188,7 +188,7 @@ VALUES (100,'admin@gmail.com','Admin IaAmIn','Dec 24, 1949',0,'$2y$10$jH6QTJC9ar
 INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
 VALUES (101,'john@gmail.com','John','Dec 2, 1988',0,'$2y$10$mYlI7.VuA3sJ1UklCTO16uceHdaFTfjMUXygg5gAY/wnIZy7a.E02',null,'false','false');
 INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
-VALUES (102,'maria@gmail.com','Maria','Oct 25, 1998',0,'$2y$10$QzScrM0AT7tpwR/2T2uR7.ibA7BvUPRu4a5cdwWuxkuDFYP/.LNeO',null,'true','false');
+VALUES (102,'maria@gmail.com','Maria','Oct 25, 1998',0,'$2y$10$QzScrM0AT7tpwR/2T2uR7.ibA7BvUPRu4a5cdwWuxkuDFYP/.LNeO',null,'false','false');
 INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
 VALUES (103,'ariana@gmail.com','Ariana','Feb 14, 1995',0,'$2y$10$c0LRPSGZp8r7yFYsb.pGx.9SR2.LoDrNfAnRFLx3b2U4tEcpim5kq',null,'false','false');
 
