@@ -9,7 +9,7 @@
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form class="needs-validation"  method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());" enctype="multipart/form-data">
+            <form class="needs-validation" method="POST" action="{{ route('create_event') }}" onsubmit="return(validate());" enctype="multipart/form-data">
                 <fieldset>
                     {{ csrf_field() }}
                     <div class="row">
@@ -74,13 +74,17 @@
                         <legend><h5><b>Event privacy</b></h5></legend>
                         <div class="row">
                             <div class="col-6 d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="event_visibility" name="event_visibility" value="Private" class="custom-control-input" checked="checked" type="radio">
-                                    <label class="custom-control-label" for="invite">Invite only</label>
+                                <div class="radio">
+                                    <label><input type="radio"
+                                                  id="event_visibility"
+                                                  name="event_visibility"
+                                                  value="Private"> Private</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="public" name="event_visibility" value="Public" class="custom-control-input" type="radio">
-                                    <label class="custom-control-label" for="public">Public</label>
+                                <div class="radio">
+                                    <label><input type="radio"
+                                                  id="event_visibility"
+                                                  name="event_visibility"
+                                                  value="Public" checked> Public</label>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +110,7 @@
             return false;
         }
 
-        if(date_start > date_end) {
+        if (date_start > date_end) {
             alert("'Start Date' can not be after 'End Date'");
             return false;
         }
