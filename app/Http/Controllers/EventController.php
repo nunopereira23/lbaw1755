@@ -339,6 +339,8 @@ class EventController extends Controller
                         'id_user'=>Auth::id()
                     ]);
 
+                    alert(id_answer);
+
 
                     $response = 'newAnswer';
                 }

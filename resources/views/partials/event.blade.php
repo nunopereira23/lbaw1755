@@ -525,8 +525,9 @@
         $("#answerPollButton").text($(this).closest("div").attr("id"));
     });
     $(document).on( "click", "#submitPollAnswer", function( ) {
-        var pollAnswer = $("#pollAnswer").val();
+        var pollAnswer = $("#new_answer").val();
         var poll_id = $("#answerPollButton").text();
+        var answer_id = $("#answerId").text(); alert(answer_id);
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: '/event/<?php echo $event->id ?>',
