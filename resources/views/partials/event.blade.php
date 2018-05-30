@@ -210,8 +210,30 @@
                         <br>
                         <br>
                     </div>
+
+
+                    <?php foreach($answers as $answer){ ?>
+                    <?php if($poll->id == $id_poll ){?>
+                    <div name="answers[]"  class="answers-content col-sm-11 p-2 mb-1 ml-1" >
+                        <div class="answers-content col-sm-11 p-2 rounded bg-light border">
+                            <div class="answer-body" id=<?php echo $poll->id ?>><!-- so the answer is made to the parent poll -->
+                                <p><?php echo $answer->answer ?>
+                                    <br>
+                                </p>
+                            </div>
+                            <img class="img-fluid rounded-circle float-right" src="../../images/profile.png" height="25px" width="25px">
+
+                        </div>
+                    </div>
+                    <?php } ?>
+                    <?php } ?>
+
+
                     <?php } ?>
                 </div>
+
+
+
 
 
 
