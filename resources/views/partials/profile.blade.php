@@ -44,10 +44,12 @@
         </div>
         <div class="col"></div>
     </div>
+    <?php if ($user->is_admin == false) { ?>
     <hr>
     <div class="row">
         <div class="col-sm-5 col-xs-6 tital "><h6><b>Number of warnings: </b></h6><h5><b><?php echo $user->nr_warnings;?></b></h5></div>
     </div>
+    <?php } ?>
     <div class="modal fade bd-example-modal-sm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content text-center">

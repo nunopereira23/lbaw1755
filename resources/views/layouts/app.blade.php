@@ -137,7 +137,7 @@
 
 </body>
 <footer class="copyright">
-    <div class="footer-copyright py-3 text-center">
+    <div class="footer-copyright py-3 text-center" id="footer">
         <div class="container">
             <hr>
             © 2018 I am In!
