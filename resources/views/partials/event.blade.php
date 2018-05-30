@@ -325,7 +325,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" id="submitPollAnswer" class="btn btn-primary">Send</button>
+                                <button type="button" id="submitPollAnswer" class="btn btn-primary" data-target="submitPollAnswer">Send</button>
                                 <button type="button" id="closePollAnswer" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                                 <div class="alert alert-success" id="newAnswerSuccess" style="display:none;">
