@@ -240,7 +240,7 @@
                                 <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">Update</button>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
-                                <?php } elseif (Auth::user()->is_admin == true && $comment->comment_content != ' Comment deleted') {?>
+                                <?php } elseif (Auth::user() != null && Auth::user()->is_admin == true && $comment->comment_content != ' Comment deleted') {?>
                                 <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                 <?php } ?>
                                 <br>
@@ -276,7 +276,7 @@
                                     <button type="button" id="updateButton" class="btn btn-primary btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#updateCommentModal">&#9997;</button>
                                     <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                     <?php } ?>
-                                    <?php }  elseif (Auth::user()->is_admin == true && $reply->comment_content != ' Comment deleted') {?>
+                                    <?php }  elseif (Auth::user() != null && Auth::user()->is_admin == true && $reply->comment_content != ' Comment deleted') {?>
                                     <button type="button" id="deleteButton" class="btn btn-danger btn-sm float-left mt-5 ml-1 text-center" data-toggle="modal" data-target="#deleteCommentModal">&#10060;</button>
                                     <?php } ?>
                                     <br>
