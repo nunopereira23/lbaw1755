@@ -142,7 +142,7 @@ class EventController extends Controller
                     'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             }
         } else if ($event->event_visibility == 'Private') {
-            if (($status == 'Owner') || ($status == 'Going') || ($invited == true)) {
+            if (($status == 'Owner') || ($status == 'Going') || ($status == 'Ignoring') || ($invited == true)) {
                 return view('pages.event', ['user_id' => Auth::id(), 'event' => $event, 'status' => $status, 'going' => $going,
                     'canBeInvited' => $users_canBeInvited, 'invited_going' => $invited_going, 'comments' => $comments, 'replies' => $replies, 'event_pictures' => $event_pictures, 'is_admin' => $is_admin]);
             }
