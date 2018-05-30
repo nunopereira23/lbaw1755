@@ -351,10 +351,10 @@
                                 <button type="button" id="closePollAnswer" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                                 <div class="alert alert-success" id="newAnswerSuccess" style="display:none;">
-                                    Poll added sucessfuly.
+                                    Answer added sucessfuly.
                                 </div>
                                 <div class="alert alert-danger" id="newAnswerFailure" style="display:none;">
-                                    Poll failed.
+                                    Answer failed.
                                 </div>
 
                             </div>
