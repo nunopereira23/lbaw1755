@@ -102,9 +102,16 @@
 <script type="text/javascript">
     function validate() {
         var username = document.getElementById("title").value;
+        var date_start = document.getElementById("date_start").value;
+        var date_end = document.getElementById("date_end").value;
 
         if (username.length <= 0) {
             alert("Please enter the name of the event.");
+            return false;
+        }
+
+        if(date_start > date_end) {
+            alert("'Start Date' can not be after 'End Date'");
             return false;
         }
     }
