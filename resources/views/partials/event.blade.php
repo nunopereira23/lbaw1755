@@ -516,7 +516,10 @@
         });
     });
 
-
+    $(document).ready(function () {
+        $("#comments").load(location.href + " #comments>*", "");
+        $("#commentContent").val('');
+    });
     $(document).ready(function () {
 
         var i = 0;
@@ -541,6 +544,8 @@
                 $("#comments").append('<button id="moreComments" type="button" class="btn btn-primary ml-2 mr-2" style="width:98%;height:35px;">Load more comments</button>');
 
             }
+        } else {
+
         }
 
     });

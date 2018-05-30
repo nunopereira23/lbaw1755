@@ -4,7 +4,7 @@
     <title> "Banned users" </title>
 </head>
 <body>
-<div class="container">
+<div class="container" id="admin">
     <h2>Banned Users</h2>
     <br>
     <table class="table table-condensed">
