@@ -173,6 +173,66 @@ ALTER TABLE ONLY event_path
 ALTER TABLE ONLY reports
 	ADD CONSTRAINT report_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE;
 
+INSERT INTO events (id,description,title,event_start,event_end,event_visibility,event_type,gps,is_deleted)
+VALUES (100,'One of the best student parties in summer, hope to see you there.','Student party','2018-05-30 22:00:00','2018-05-31 04:00:00','Private','Party','Espinho','false');
+INSERT INTO events (id,description,title,event_start,event_end,event_visibility,event_type,gps,is_deleted)
+VALUES (200,'Trip to the oceanside of Aveiro with hiking walk, dont miss this, it will be amazing!','Hiking trip','2018-07-15 12:00:00','2018-07-16 18:00:00','Public','Trip','Aveiro','false');
+INSERT INTO events (id,description,title,event_start,event_end,event_visibility,event_type,gps,is_deleted)
+VALUES (300,'The best salsa lesson you can attend. If you are new in dancing, dont worry, we will teach you everything!','Salsa lesson','2018-06-10 15:00:00','2018-06-11 17:00:00','Public','Culture','São Marcos','false');
+INSERT INTO events (id,description,title,event_start,event_end,event_visibility,event_type,gps,is_deleted)
+VALUES (400,'This workshop is for all FEUP students who are interested in programming.','VueJs workshop','2018-06-7 13:00:00','2018-06-8 15:00:00','Private','Education','FEUP','false');
+
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
+VALUES (100,'admin@gmail.com','Admin IaAmIn','Dec 24, 1949',0,'$2y$10$jH6QTJC9ar8Epv3.96X3oOz.gCtoKjqTvDoNQqaVU4mqKSElopzVu',null,'false','true');
+
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
+VALUES (101,'john@gmail.com','John','Dec 2, 1988',0,'$2y$10$mYlI7.VuA3sJ1UklCTO16uceHdaFTfjMUXygg5gAY/wnIZy7a.E02',null,'false','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
+VALUES (102,'maria@gmail.com','Maria','Oct 25, 1998',0,'$2y$10$QzScrM0AT7tpwR/2T2uR7.ibA7BvUPRu4a5cdwWuxkuDFYP/.LNeO',null,'true','false');
+INSERT INTO users (id,email,name,birthdate,nr_warnings,password,profile_picture_path,is_banned,is_admin)
+VALUES (103,'ariana@gmail.com','Ariana','Feb 14, 1995',0,'$2y$10$c0LRPSGZp8r7yFYsb.pGx.9SR2.LoDrNfAnRFLx3b2U4tEcpim5kq',null,'false','false');
+
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (100,102,'Owner');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (200,102,'Going');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (300,102,'Deciding');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (200,100,'Owner');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (300,101,'Owner');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (300,103,'Deciding');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (400,103,'Owner');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (400,101,'Ignoring');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (300,100,'Deciding');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (100,101,'Ignoring');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (200,103,'Deciding');
+INSERT INTO "event_user" (id_event,id_user,event_user_state)
+VALUES (100,103,'Going');
+
+INSERT INTO comments (id,id_event,id_user,comment_content,replyto,date)
+VALUES (100,100,103,'See you there guys!',1,'2018-05-28 06:11:36');
+INSERT INTO comments (id,id_event,id_user,comment_content,replyto,date)
+VALUES (200,100,101,'See you Ariana!',1,'2018-05-28 17:19:36');
+INSERT INTO comments (id,id_event,id_user,comment_content,replyto,date)
+VALUES (300,200,102,'Do we need to some special clothes to this hiking?',3,'2018-05-27 10:25:38');
+INSERT INTO comments (id,id_event,id_user,comment_content,replyto,date)
+VALUES (400,200,100,'You just need some comfortable shoes and thats it!',3,'2018-05-27 10:36:36');
+INSERT INTO comments (id,id_event,id_user,comment_content,replyto,date)
+VALUES (500,300,103,'Is it problem when I am beginner in dancing? I dont feel very self-confident.',5,'2018-05-28 12:25:38');
+
+INSERT INTO reports (id,id_user,description)
+VALUES (100,103,'This user posted rude comments for my event');
+INSERT INTO reports (id,id_user,description)
+VALUES (200,102,'This user spammed my event with unpleasant comments');
+
 --Triggers
 	-- CREATE FUNCTION uninvited_comment() RETURNS TRIGGER AS
 	-- $BODY$
